@@ -37,39 +37,7 @@
   </head>
   <body> 
     <div id="loader_cont"><img src="img/loaders/page_loader.gif"></div> 
-    <div class="options_cont">
-      <form name="myForm">
-        <a class="options_btn" href="#">OPTIONS</a> 
-        <div class="options group">
-          <div>
-            <p>Background image:</p>
-            <ul class="background_list">
-              <li><a class="current" id='bg_ubo' href="#">bg_ubo</a></li>
-              <li><a id='bg_2' href="#">bg_2</a></li>
-              <li><a id='bg_3' href="#">bg_3</a></li>
-              <li><a id='bg_4' href="#">bg_4</a></li>
-              <li><a id='bg_5' href="#">bg_5</a></li>
-              <li><a id='bg_6' href="#">bg_6</a></li>
-              <li><a id='bg_7' href="#">bg_7</a></li>
-              <li><a id='bg_8' href="#">bg_8</a></li>
-              <li><a id='bg_9' href="#">bg_9</a></li>
-              <li><a id='bg_10' href="#">bg_10</a></li>
-            </ul>
-          </div>
-          <div>
-            <p>Color styling:</p>
-            <ul class="color_list">
-              <li><a class="current" id='c_1' href="#" title="Rose">rose</a></li>
-              <li><a id='c_2' href="#" title="Orange">orange</a></li>
-              <li><a id='c_3' href="#" title="Apple Green">apple_green</a></li>
-              <li><a id='c_4' href="#" title="Sky Blue">sky_blue</a></li>
-              <li><a id='c_5' href="#" title="Purple">purple</a></li>
-            </ul>            
-          </div>           
-          <div class="clear_cache_cont"><a class="btn btn-mini" href="#">Clear Cache</a></div>              
-        </div> 
-      </form> 
-    </div>    
+      
       
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -93,7 +61,7 @@
                 
                 <fieldset>                
                    
-                    <select id="select01">
+                    <select id="select01" style="width:300px;">
                                 <option>{{Enseignant1}}</option>
                                 <option>{{Enseignant2}}</option>
                                 <option>{{Enseignant3}}</option>
@@ -113,66 +81,8 @@
               </form>      
             </div>
         </div> 
-        <div class="login_cont group sign_up">
-            <ul class="login_switcher">
-              <li><a class="login_l" href="#"><span>Authentification</span></a></li>
-              <li><a class="login_s akt" href="#"><span>Sign up</span></a></li>
-              <li><a class="login_f" href="#"><span>Forgot password</span></a></li>
-            </ul>
-            <h2>Sign up</h2>
-            <div class="login_form">          
-              <form class="formClass" action="http://themes.loxdesign.net/phoenix/index.html">
-                <fieldset>                
-                    <label class="email_cont" for="email_s"><span>Email</span></label>
-                    <input id="email_s" name="email_s" class="validate[custom[email]] text-input" placeholder="email" type="text" tabindex="1" accesskey="e">                
-                </fieldset>
-                <fieldset>                
-                    <label for="username_s"><span>Username</span></label>
-                    <input id="username_s" name="username_s" class="validate[required] text-input" placeholder="username" type="text" tabindex="2" accesskey="u">                
-                </fieldset>
-                 <fieldset>                
-                    <label class="pw_cont" for="password_s"><span>Password</span></label>
-                    <input id="password_s" name="password_s" class="validate[required] text-input" placeholder="password" type="password" tabindex="3" accesskey="p">                
-                </fieldset>
-                <fieldset class="login_submit"><button type="submit" class="btn">SIGN UP</button></fieldset>
-                  <fieldset class="login_social">                                                  
-                      <ul class="right">                  
-                        <li class="info"><span>SIGN IN WITH</span></li>
-                        <li><a class="login_facebook" href="#"><span>Facebook</span></a></li>
-                        <li><a class="login_twitter" href="#"><span>Twitter</span></a></li>
-                      </ul>               
-                  </fieldset>                    
-              </form> 
-            </div>     
-        </div>
-        <div class="login_cont group forgot">
-            <ul class="login_switcher">
-              <li><a class="login_l" href="#"><span>Login</span></a></li>
-              <li><a class="login_s" href="#"><span>Sign up</span></a></li>
-              <li><a class="login_f akt" href="#"><span>Forgot password</span></a></li>
-            </ul>
-            <h2>Forgot Password</h2> 
-            <div class="login_form">          
-              <form class="formClass" action="eval/listeEval">
-                <fieldset>                
-                    <label class="email_cont" for="email_f"><span>Email</span></label>
-                    <input id="email_f" name="email_f" placeholder="email" class="validate[custom[email]] text-input"  type="text" tabindex="1" accesskey="u">                
-                </fieldset>
-                <fieldset>                
-                    <label for="username_f"><span>Username</span></label>
-                    <input id="username_f" name="username_f" class="validate[required] text-input" placeholder="username" type="text" tabindex="1" accesskey="u">                
-                </fieldset>                            
-                <fieldset class="login_submit"><button type="submit" class="btn">RECOVER PASSWORD</button></fieldset>
-                  <fieldset class="login_social">                                                
-                      <ul class="right">                  
-                        <li class="info"><span>SIGN IN WITH</span></li>
-                        <li><a class="login_facebook" href="#"><span>Facebook</span></a></li>
-                        <li><a class="login_twitter" href="#"><span>Twitter</span></a></li>
-                      </ul>               
-                  </fieldset>                      
-              </form>  
-            </div>                    
-        </div>                
+       
+                  
     </div>
 
     <!-- ===================== JS ===================== -->
@@ -188,19 +98,6 @@
 	<script src="js/script.js"></script>   
     <script src="js/specific/login.js"></script>  
     
-    <script type="text/javascript">
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-31818910-2']);
-      _gaq.push(['_setDomainName', 'loxdesign.net']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
-    </script>
+   
   </body>
 </html>
