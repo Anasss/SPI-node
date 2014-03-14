@@ -43,46 +43,7 @@
   </head>
   <body>
     <div id="loader_cont"><img src="img/loaders/page_loader.gif"></div> 
-    <div class="options_cont">
-      <form name="myForm">
-        <a class="options_btn" href="#">OPTIONS</a> 
-        <div class="options group">
-          <div>
-            <p>Background image:</p>
-            <ul class="background_list">
-              <li><a class="current" id='bg_1' href="#">bg_1</a></li>
-              <li><a id='bg_2' href="#">bg_2</a></li>
-              <li><a id='bg_3' href="#">bg_3</a></li>
-              <li><a id='bg_4' href="#">bg_4</a></li>
-              <li><a id='bg_5' href="#">bg_5</a></li>
-              <li><a id='bg_6' href="#">bg_6</a></li>
-              <li><a id='bg_7' href="#">bg_7</a></li>
-              <li><a id='bg_8' href="#">bg_8</a></li>
-              <li><a id='bg_9' href="#">bg_9</a></li>
-              <li><a id='bg_10' href="#">bg_10</a></li>
-            </ul>
-          </div>
-          <div>
-            <p>Color styling:</p>
-            <ul class="color_list">
-              <li><a class="current" id='c_1' href="#" title="Rose">rose</a></li>
-              <li><a id='c_2' href="#" title="Orange">orange</a></li>
-              <li><a id='c_3' href="#" title="Apple Green">apple_green</a></li>
-              <li><a id='c_4' href="#" title="Sky Blue">sky_blue</a></li>
-              <li><a id='c_5' href="#" title="Purple">purple</a></li>
-            </ul>            
-          </div>
-          <div class="top_mn_setup">
-            <p>Display top menu on:</p>
-            <div>
-              <input id="top_menu_click" checked="checked" type="radio" value="1" class="menu_show" name="top_menu_show"><label for="top_menu_click">Click</label>
-              <input id="top_menu_hover" type="radio" value="0" class="menu_show" name="top_menu_show"><label for="top_menu_hover">Hover</label>
-            </div>            
-          </div>  
-          <div class="clear_cache_cont"><a class="btn btn-mini" href="#">Clear Cache</a></div>              
-        </div> 
-      </form> 
-    </div>   
+     
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -122,14 +83,14 @@
                             <li><span>Administrator</span></li>
                           </ul>
                         </li>
-                        <li><a class="mn_settings" href="#"><span>My Settings</span></a></li>
-                        <li><a class="mn_profile" href="#"><span>My Profile</span></a></li>
-                        <li><a class="mn_logout" href="login.html"><span>Logout</span></a></li>
+                         <li><a class="mn_settings" href="#"><span>Mes param&egrave;tres</span></a></li>
+                        <li><a class="mn_profile" href="#"><span>Mon profil</span></a></li>
+                        <li><a class="mn_logout" href="login.html"><span>D&eacute;connexion</span></a></li>
                     </ul>
                 </li>                          
             </ul>           
           </div>
-          <h1 class="brand"><a href="index-2.html">PHOENIX</a></h1>                                       
+          <h1 class="brand"><a href="index-2.html">Gestion des &eacute;valuations</a></h1>                                       
         </div>
       </div>
     </div>
@@ -143,12 +104,7 @@
         <div class="span3">
 
           <div class="side_nav sidebar-nav" data-spy="affix" data-offset-top="150">
-            <div class="sidebar_widget first_widget group">
-              <form class="sidebar_search form-search">
-                <input type="text" class="input-medium search-query" placeholder="Recherche rapide">
-                <button type="submit" class="btn btn-inverse"><i class="icon-search icon-gray"></i></button>
-              </form>
-            </div>
+            
             <h3 class="main_menu group">
                 <span class="title">Main Menu</span>
                 <a id="nav_list_btn" class="btn-collapse btn btn-inverse">
@@ -407,68 +363,7 @@
 
     </div><!--/.fluid-container-->
 
-    <!-- ===================== CHAT - Modal ===================== -->
-    <div id="chat_modal" class="chat_modal modal fade hide">
-      <div class="modal-header">
-        <ul>
-          <li class="toggle_users"><a href="#">Show Users</a></li>
-          <li class="status">
-            <a class="online" href="#"><span>Status</span></a>  
-            <ul>
-               <li><a class="online" href="#" title="Online"><span>Online</span></a></li>
-               <li><a class="away" href="#" title="Away"><span>Away</span></a></li>
-               <li><a class="busy" href="#" title="Busy"><span>Busy</span></a></li>
-               <li><a class="invisiblee" href="#" title="Invisible"><span>Invisible</span></a></li>
-               <li><a class="offline" href="#" title="Offline"><span>Offline</span></a></li>
-             </ul> 
-          </li>
-          <li class="chat_name">John Doe</li>
-        </ul>       
-        <button type="button" class="close" data-dismiss="modal">x</button>        
-      </div>
-      <div class="modal-body">
-        <div class="msg_cont left">
-          <img src="img/general/user_1.jpg" width="50" height="50" alt="User">
-          <ul>
-            <li>
-              <h3>John Doe:</h3> 
-              <span>16 minutes ago</span>
-            </li>
-            <li>Aliquam iaculis volutpat ipsum ullamcorper tempus. In in dui tortor. Mauris sed volutpat
-metus. Duis ut sapien sapien, id pellentesque orci. Nullam nisl metus, sodales ut laoreet 
-eget, pretium porttitor quam. Sed varius vulputate lacinia. </li>
-          </ul>    
-        </div>
-        <div class="msg_cont right">
-          <img src="img/general/user_2.jpg" width="50" height="50" alt="User">
-          <ul>
-            <li>
-              <h3>Jessie Doe:</h3> 
-              <span>16 minutes ago</span>
-            </li>
-            <li>Aliquam iaculis volutpat ipsum ullamcorper tempus. In in dui tortor. Mauris sed volutpat
-metus. Duis ut sapien sapien, id pellentesque orci. Nullam nisl metus, sodales ut laoreet 
-eget, pretium porttitor quam. Sed varius vulputate lacinia. </li>
-          </ul>    
-        </div>
-        <div class="msg_cont left">
-          <img src="img/general/user_1.jpg" width="50" height="50" alt="User">
-          <ul>
-            <li>
-              <h3>John Doe:</h3> 
-              <span>16 minutes ago</span>
-            </li>
-            <li>Aliquam iaculis volutpat ipsum ullamcorper tempus. In in dui tortor. Mauris sed volutpat
-metus. Duis ut sapien sapien, id pellentesque orci. Nullam nisl metus, sodales ut laoreet 
-eget, pretium porttitor quam. Sed varius vulputate lacinia. </li>
-          </ul>    
-        </div>        
-      </div>
-      <div class="modal-footer">        
-        <textarea></textarea>
-        <a href="#" class="btn btn-inverse">Send</a>
-      </div>
-    </div>    
+     
 
     <!-- ===================== JS ===================== -->
     <script src="js/libs/jquery-1.7.2.min.js"></script>    
@@ -498,19 +393,6 @@ eget, pretium porttitor quam. Sed varius vulputate lacinia. </li>
     <script src="js/specific/sparks.js"></script>
     <script src="js/specific/index.js"></script>
 
-    <script type="text/javascript">
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-31818910-2']);
-      _gaq.push(['_setDomainName', 'loxdesign.net']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
-    </script>
+   
   </body>
 </html>

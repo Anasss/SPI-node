@@ -43,7 +43,7 @@
   </head>
   <body>
     <div id="loader_cont"><img src="img/loaders/page_loader.gif"></div> 
-      
+     
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -83,7 +83,7 @@
                             <li><span>Administrator</span></li>
                           </ul>
                         </li>
-                         <li><a class="mn_settings" href="#"><span>Mes param&egrave;tres</span></a></li>
+                        <li><a class="mn_settings" href="#"><span>Mes param&egrave;tres</span></a></li>
                         <li><a class="mn_profile" href="#"><span>Mon profil</span></a></li>
                         <li><a class="mn_logout" href="login.html"><span>D&eacute;connexion</span></a></li>
                     </ul>
@@ -104,7 +104,7 @@
         <div class="span3">
 
           <div class="side_nav sidebar-nav" data-spy="affix" data-offset-top="150">
-           
+            
             <h3 class="main_menu group">
                 <span class="title">Main Menu</span>
                 <a id="nav_list_btn" class="btn-collapse btn btn-inverse">
@@ -112,10 +112,10 @@
                 </a>
             </h3>
             <ul class="nav nav-list">                          
-              <li class="active"><a class="home" href="listeEval">Liste des &eacutevaluations </a></li>
+              <li class="active"><a class="home" href="index-2.html">Liste des &eacutevaluations </a></li>
               
-              <li><a class="charts" href="ajouterEval">Ajouter une &eacutevaluation </a></li>
-               <li><a class="calendar" href="ajouterEval">Modifier une &eacutevaluation </a></li>
+              <li><a class="charts" href="ajouter-evaluation.html">Ajouter une &eacutevaluation </a></li>
+               <li><a class="calendar" href="ajouter-evaluation.html">Modifier une &eacutevaluation </a></li>
                 			   
              
              
@@ -131,108 +131,41 @@
 
               <div class="widget chart">
                 <header>
-                    <h3>Saisie et Mise &agrave; jour d'une &eacute;valuation </h3>
+                    <h3>Ajouter une question </h3>
                     <ul class="toggle_content">                          
                         <li class="arrow"><a href="#">Toggle Content</a></li>
                     </ul>
                 </header>
-                
-				<section class="welly form_align">
+                <section class="welly form_align">
                   <form class="formClass" method="post">
                     
                    
-                   
-                    <hr>
-                    <div class="row-fluid">
-                      <div class="span4">Promotion:</div>
+					<div class="row-fluid">
+                      <div class="span4">Question:</div>
                       <div class="span8">
-                        <select name="promotion" id="promotion" class="validate[required]">
-                          <option value="">Choisir promotion</option>
-                          <option value="option1">Tennis</option>
-                          <option value="option2">Football</option>
-                          <option value="option3">Golf</option>
+                       
+                        <select name="sport2" id="sport2" multiple class="validate[required]" style="width:400px;">
+                          <option value="">Clart&eacute; des &eacute;nonc&eacute;s-Peu clair-Tr&egrave;s clair</option>
+                           <option value="">Clart&eacute; des cours-Peu clair-Tr&egrave;s clair</option>
+                           <option value="">Nombre de s&eacute;ances-Suffisant-Insuffisant</option>
+						   <option value="">Clart&eacute; des &eacute;nonc&eacute;s-Peu clair-Tr&egrave;s clair</option>
+                           <option value="">Clart&eacute; des cours-Peu clair-Tr&egrave;s clair</option>
+                           <option value="">Nombre de s&eacute;ances-Suffisant-Insuffisant</option>
+                          
                         </select>
                       </div>
+                      
                     </div>
-                    <hr>
-					<div class="row-fluid">
-                      <div class="span4">Formation:</div>
-                      <div class="span8">
-                        <select name="formation" id="formation" class="validate[required]">
-                          <option value="">Choisir formation</option>
-                          <option value="option1">Tennis</option>
-                          <option value="option2">Football</option>
-                          <option value="option3">Golf</option>
-                        </select>
-                      </div>
-                    </div>
-					<hr>
-					<div class="row-fluid">
-                      <div class="span4">Unit&eacute; d'enseignement :</div>
-                      <div class="span8">
-                        <select name="ue" id="ue" class="validate[required]">
-                          <option value="">unit&eacute; d'enseignement </option>
-                          <option value="option1">Tennis</option>
-                          <option value="option2">Football</option>
-                          <option value="option3">Golf</option>
-                        </select>
-                      </div>
-                    </div>
-					<hr>
-					<div class="row-fluid">
-                      <div class="span4">D&eacute;signation:</div>
-                      <div class="span8">
-                        <select name="designation" id="designation" class="validate[required]">
-                          <option value="">Choisir d&eacute;signation</option>
-                          <option value="option1">Tennis</option>
-                          <option value="option2">Football</option>
-                          <option value="option3">Golf</option>
-                        </select>
-                      </div>
-                    </div>
-					<hr>
-					<div class="row-fluid">
-                          <div class="span4">Mise &agrave; disposition:</div>
-                          <div class="span3"><input id="debut" type="text" name="debut"><span class="help-inline">99/99/9999</span></div>
-						  <div class="span4"><input id="debut" type="text" name="debut"><span class="help-inline">99/99/9999</span></div>
-                        </div> 
+					
 						
-					<hr>
 					
-                    <div class="row-fluid">
-                      <div class="span4">P&eacute;riode :</div>
-                      <div class="span8"><input value="" data-validation-placeholder="This is a placeholder" class="validate[required] text-input" type="text" name="periode" id="periode" /></div>
-                    </div>
-					
-                                  
-                    
-                  
-                   
-                    <hr class="big_space">
-                   
-                    <div class="row-fluid">
-                      <div class="span4"> Etat :</div>                      
-                      <div class="span8 radio_btn_cont">
-                        <div>
-                          <label for="radio1">En cours d'&eacute;laboration</label>
-                          <input class="validate[required] radio" type="radio" name="enCours" id="enCours" value="5"/>
-                        </div>
-                        <div>
-                          <label for="radio2">Mise &agrave; disposition</label>
-                          <input class="validate[required] radio" type="radio" name="miseADisposition" id="miseADisposition" value="3"/>
-                        </div>
-                        <div>
-                          <label for="radio3">Cl&ocirc;tur&eacute;</label>
-                          <input class="validate[required] radio" type="radio" name="cloture" id="cloture" value="9"/>
-                        </div>
-                      </div>
-                    </div>                    
                     <hr class="big_space">
                     
                                      
                   
 
-                    <input class="btn btn-inverse" type="submit" value="valider"/><hr/>
+                    <input class="btn btn-inverse" type="submit" value="valider"/>
+					<input class="btn btn-inverse" type="submit" value="annuler"/>
                   </form>  
                 </section>
               </div>
@@ -243,15 +176,15 @@
           
         </div><!--/span-->
       </div><!--/row-->      
-      <hr>
+     
 
       <footer>
-        <p>&copy; LoxDesign.net - Phoenix 2012</p>
+        <p></p>
       </footer>
 
     </div><!--/.fluid-container-->
 
-   
+
 
     <!-- ===================== JS ===================== -->
     <script src="js/libs/jquery-1.7.2.min.js"></script>    
