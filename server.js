@@ -42,12 +42,13 @@ var Enseignant2 ={};
 var Enseignant3 ={};
 var nbEnregistrementEval = {};
 var promotion1,promotion2,formation1,formation2,designation1,designation2,ue1,ue2,etat1,etat2,periode1,periode2;
+var ordreRubrique1,ordreRubrique2,ordreRubrique3,designationRubrique1,designationRubrique2,designationRubrique3;
 var listePromotion = [];
+var ENS_NOM = "'Le Roux'";
+var requetteListeEnseignant = 'SELECT * from v_evaluation where ENS_NOM ='+ENS_NOM;
+var countEvaluationEnseignant = 'SELECT count(*) as nb from v_evaluation where ENS_NOM ='+ENS_NOM;
+var requetteRubrique = 'SELECT * from v_rubeval where ENS_NOM =' +ENS_NOM;
 
-
-//<td class ="center"><i class="icon-search"/></td>
-//<td {{ab}}><{{ac}}/></td>
- 
 connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
     if (err) throw err;
     connection.query('USE evaespi', function (err) {
@@ -61,12 +62,8 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
             res.end("Query error:" + err);
         } else {
 		
-            // Shows the result on console window
-            console.log(rows[0].NOM+' '+rows[0].PRENOM);
-			console.log(rows[1].NOM);
-			console.log(rows[2].NOM);
-			console.log(rows[3].NOM);
-			
+       	
+		
         Enseignant1= rows[0].PRENOM+' '+rows[0].NOM;
 		Enseignant2= rows[1].PRENOM+' '+rows[1].NOM;
 		Enseignant3= rows[2].PRENOM+' '+rows[2].NOM;
@@ -77,20 +74,19 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
 		
 		
     });
-	connection.query("SELECT count(*) as nb from v_evaluation where ENS_NOM ='Saliou'", function(err, rows){
+	connection.query(countEvaluationEnseignant, function(err, rows){
         // There was a error or not?
         if(err != null) {
             res.end("Query error:" + err);
         } else {
 		   nbEnregistrementEval = rows[0].nb;
-           console.log(nbEnregistrementEval);
-		   //console.log(a);
-		   //console.log(ac);
+         
+		   
          }
 		
 		
     });
-	    connection.query("SELECT * from v_evaluation where ENS_NOM = 'Saliou'", function(err, rows){
+	    connection.query(requetteListeEnseignant, function(err, rows){
         // There was a error or not?
         if(err != null) {
             res.end("Query error:" + err);
@@ -116,21 +112,36 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
 			else {
 			
             promotion1 = rows[0].EVE_ANNEE_PRO;
-			//promotion2 = rows[1].EVE_ANNEE_PRO;
+			
 			formation1 = rows[0].FRM_CODE_FORMATION;
-			//formation2 = rows[1].FRM_CODE_FORMATION;
 			designation1 = rows[0].EVE_DESIGNATION;
-			//designation2 = rows[1].EVE_DESIGNATION;
 			ue1 = rows[0].UE_DESIGNATION;
-			//ue2= rows[1].UE_DESIGNATION;
 			etat1 = rows[0].EVE_ETAT;
-			//etat2 = rows[1].EVE_ETAT;
 			periode1 = rows[0].EVE_PERIODE;
-			//periode2 = rows[1].EVE_PERIODE;
+			
 		}
 		
         }
 			
+    });
+	 connection.query(requetteRubrique, function(err, rows){
+        // There was a error or not?
+        if(err != null) {
+            res.end("Query error:" + err);
+        } else {
+		
+       	ordreRubrique1= rows[0].REV_ORDRE;
+		ordreRubrique2= rows[1].REV_ORDRE;
+		ordreRubrique3= rows[2].REV_ORDRE;
+		designationRubrique1= rows[0].REV_DESIGNATION;
+		designationRubrique2= rows[1].REV_DESIGNATION;
+		designationRubrique3= rows[2].REV_DESIGNATION;
+		
+		
+		
+        }
+		
+		
     });
 });
 
@@ -152,9 +163,7 @@ var data = {
 		Enseignant2: Enseignant2,
 		Enseignant3: Enseignant3,
 		Enseignant4: Enseignant4
-        
-		//type: rubriques[0].type;
-		//designation:
+       
     }
 
 
@@ -191,10 +200,14 @@ var data1 = {
 			etat2: etat2,
 			periode1: periode1,
 			periode2: periode2,
-            hidden: hidden
-			
-			//b: b;
-			//c: c;
+            hidden: hidden,
+			ordreRubrique1: ordreRubrique1,
+			ordreRubrique2: ordreRubrique2,
+			ordreRubrique3: ordreRubrique3,
+			designationRubrique1: designationRubrique1,
+			designationRubrique2: designationRubrique2,
+			designationRubrique3: designationRubrique3
+		
 		
     }
 
