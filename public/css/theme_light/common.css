@@ -27,6 +27,10 @@ div.jGrowl {
 	z-index:9999; 
 	
 }
+
+
+
+
 body > div.jGrowl { position:fixed; }
 div.jGrowl.top-left { left:0; top:0; }
 div.jGrowl.top-right { right:0; top:0; }
