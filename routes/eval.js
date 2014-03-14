@@ -15,9 +15,9 @@ rubriques.push(new rubrique(4,"standard","Contrôle Continue",4));
 
 
 
-exports.listeEvaluation = function (req, res){
+/*exports.listeEvaluation = function (req, res){
 res.render('index-2.hbs');
-};
+};*/
 
 exports.ajouterEval = function (req, res){
 
