@@ -10,6 +10,6 @@ FOR %%X IN (*.sql) DO type %%X >> scriptsrun.txt
 @ECHO OFF
 
 ECHO Running scripts
-FOR %%X IN (*.sql) DO mysql -h localhost -u root aaaaaa < %%X
+FOR %%X IN (*.sql) DO mysql -h localhost -u root evaespi < %%X
 
 ECHO Finished!
