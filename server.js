@@ -171,6 +171,7 @@ app.get('/eval/listeRubriqueEvaluation/', eval.listeRubriqueEvaluation);
 app.get('/eval/injecterEvaluation', eval.InjecterNouvelleEvaluation);
 app.get('/ajouterEval', eval.ajouterEval);
 app.get('/listeEval', function (req, res){
+console.log(req.params.nom);
 if (nbEnregistrementEval == 1) {
 		
 	   var hidden = "hidden";

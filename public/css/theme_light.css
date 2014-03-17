@@ -37,7 +37,7 @@
 ------------------------------------------*/
 html { height: 100%; }
 
-body { background: url("../img/bg-ubo.png"); color: #737373; font-family: Verdana, Geneva, sans-serif; font-size: 12px; text-align: left; height: 100%; padding-top: 40px; position: relative; }
+body { background: url("../img/bg-ubo.png"); color: #737373; font-family: Verdana, Geneva, sans-serif; font-size: 12px; text-align: left; height: 100%; position: relative; }
 
 #loader_cont { position: absolute; background-color: rgba(255, 255, 255, 0.9); width: 100%; height: 100%; top: 0; left: 0; z-index: 1500; }
 #loader_cont img { width: 40px; height: 40px; position: absolute; top: 50%; left: 50%; margin-top: -20px; margin-left: -20px; }
@@ -226,7 +226,7 @@ a:focus { outline: none; }
 
 /* --->> 7 - SUB NAVIGATION
 ------------------------------------------*/
-.sub_nav { margin-top: 18px; min-height: 100px; }
+.sub_nav { margin-top: 18px; min-height: 40px; }
 .sub_nav .nav { margin-bottom: 0; }
 .sub_nav .nav > li { min-width: 100px; margin: 0 0.8%; background: url('../img/bg/content_bg.png'); -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; -o-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: 0px 0px 5px #b0b0b0; -moz-box-shadow: 0px 0px 5px #b0b0b0; box-shadow: 0px 0px 5px #b0b0b0; }
 .sub_nav .nav > li.first { margin-left: 0; }
@@ -2188,7 +2188,7 @@ div.jGrowl div.notification_styled_info div.jGrowl-header, div.jGrowl div.notifi
 ------------------------------------------*/
 .go_to_front { background: url("../img/logo-ubo2.png") no-repeat center left; float: left; margin-top: 10px; padding-left: 20px; }
 
-.login_main_cont { margin: 17% auto; width: 350px; }
+.login_main_cont { margin: 5% auto; width: 350px; }
 
 .login_cont { -webkit-box-shadow: 0px 0px 5px #b0b0b0; -moz-box-shadow: 0px 0px 5px #b0b0b0; box-shadow: 0px 0px 5px #b0b0b0; background: url('../img/bg/content_bg.png'); }
 .login_cont ul { list-style: none; padding: 0; margin: 0; }

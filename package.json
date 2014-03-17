@@ -1,6 +1,5 @@
 {
   "name": "Spi-node",
-  "version": "0.0.1",
   "description": "Gestion des évaluations :Suivi personnel de compètences",
   "dependencies": {
       "express": "*",
