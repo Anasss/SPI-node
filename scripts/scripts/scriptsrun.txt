@@ -359,103 +359,105 @@ CREATE TABLE IF NOT EXISTS `unite_enseignement` (
   `NBH_TP` decimal(2,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Structure de la table `v_diplome`
---
 
-CREATE TABLE IF NOT EXISTS `v_diplome` (
-  `CODE` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `ABREVIATION` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `SIGNIFICATION` varchar(240) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE OR REPLACE  VIEW V_SERVICE
+ (CODE
+ ,ABREVIATION
+ ,SIGNIFICATION)
+ AS SELECT CGRC.RV_LOW_VALUE CODE
+          ,CGRC.RV_ABBREVIATION ABREVIATION
+          ,CGRC.RV_MEANING SIGNIFICATION
+FROM CG_REF_CODES CGRC
+  WHERE CGRC.RV_DOMAIN = 'SERVICE'
+;
 
+CREATE OR REPLACE  VIEW V_PROCESSUS_STAGE
+ (CODE
+ ,ABREVIATION
+ ,SIGNIFICATION)
+ AS SELECT CGRC.RV_LOW_VALUE CODE
+          ,CGRC.RV_ABBREVIATION ABREVIATION
+          ,CGRC.RV_MEANING SIGNIFICATION
+FROM CG_REF_CODES CGRC
+  WHERE CGRC.RV_DOMAIN = 'PROCESSUS_STAGE'
+;
 
---
--- Structure de la table `v_domaine_activite`
---
+CREATE OR REPLACE  VIEW V_DOMAINE_ACTIVITE
+ (CODE
+ ,ABREVIATION
+ ,SIGNIFICATION)
+ AS SELECT CGRC.RV_LOW_VALUE CODE
+          ,CGRC.RV_ABBREVIATION ABREVIATION
+          ,CGRC.RV_MEANING SIGNIFICATION
+FROM CG_REF_CODES CGRC
+  WHERE CGRC.RV_DOMAIN = 'DOMAINE_ACTIVITE'
+;
 
-CREATE TABLE IF NOT EXISTS `v_domaine_activite` (
-  `CODE` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `ABREVIATION` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `SIGNIFICATION` varchar(240) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE OR REPLACE  VIEW V_SEMESTRE
+ (CODE
+ ,ABREVIATION
+ ,SIGNIFICATION)
+ AS SELECT CGRC.RV_LOW_VALUE CODE
+          ,CGRC.RV_ABBREVIATION ABREVIATION
+          ,CGRC.RV_MEANING SIGNIFICATION
+FROM CG_REF_CODES CGRC
+  WHERE CGRC.RV_DOMAIN = 'SEMESTRE'
+;
 
+CREATE OR REPLACE  VIEW V_DIPLOME
+ (CODE
+ ,ABREVIATION
+ ,SIGNIFICATION)
+ AS SELECT CGRC.RV_LOW_VALUE CODE
+          ,CGRC.RV_ABBREVIATION ABREVIATION
+          ,CGRC.RV_MEANING SIGNIFICATION
+FROM CG_REF_CODES CGRC
+  WHERE CGRC.RV_DOMAIN = 'DIPLOME'
+;
 
---
--- Structure de la table `v_fonction`
---
+CREATE OR REPLACE  VIEW V_TYPE_EMPLOI
+ (CODE
+ ,ABREVIATION
+ ,SIGNIFICATION)
+ AS SELECT CGRC.RV_LOW_VALUE CODE
+          ,CGRC.RV_ABBREVIATION ABREVIATION
+          ,CGRC.RV_MEANING SIGNIFICATION
+FROM CG_REF_CODES CGRC
+  WHERE CGRC.RV_DOMAIN = 'TYPE_EMPLOI'
+;
 
-CREATE TABLE IF NOT EXISTS `v_fonction` (
-  `CODE` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `ABREVIATION` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `SIGNIFICATION` varchar(240) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE OR REPLACE  VIEW V_FONCTION
+ (CODE
+ ,ABREVIATION
+ ,SIGNIFICATION)
+ AS SELECT CGRC.RV_LOW_VALUE CODE
+          ,CGRC.RV_ABBREVIATION ABREVIATION
+          ,CGRC.RV_MEANING SIGNIFICATION
+FROM CG_REF_CODES CGRC
+  WHERE CGRC.RV_DOMAIN = 'FONCTION'
+;
 
+CREATE OR REPLACE  VIEW V_MOYEN_OBTENTION_EMPLOI
+ (CODE
+ ,ABREVIATION
+ ,SIGNIFICATION)
+ AS SELECT CGRC.RV_LOW_VALUE CODE
+          ,CGRC.RV_ABBREVIATION ABREVIATION
+          ,CGRC.RV_MEANING SIGNIFICATION
+FROM CG_REF_CODES CGRC
+  WHERE CGRC.RV_DOMAIN = 'MOYEN_OBTENTION_EMPLOI'
+;
 
---
--- Structure de la table `v_moyen_obtention_emploi`
---
-
-CREATE TABLE IF NOT EXISTS `v_moyen_obtention_emploi` (
-  `CODE` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `ABREVIATION` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `SIGNIFICATION` varchar(240) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-
---
--- Structure de la table `v_oui_non`
---
-
-CREATE TABLE IF NOT EXISTS `v_oui_non` (
-  `CODE` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `ABREVIATION` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `SIGNIFICATION` varchar(240) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-
---
--- Structure de la table `v_processus_stage`
---
-
-CREATE TABLE IF NOT EXISTS `v_processus_stage` (
-  `CODE` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `ABREVIATION` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `SIGNIFICATION` varchar(240) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-
---
--- Structure de la table `v_semestre`
---
-
-CREATE TABLE IF NOT EXISTS `v_semestre` (
-  `CODE` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `ABREVIATION` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `SIGNIFICATION` varchar(240) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-
---
--- Structure de la table `v_service`
---
-
-CREATE TABLE IF NOT EXISTS `v_service` (
-  `CODE` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `ABREVIATION` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `SIGNIFICATION` varchar(240) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-
---
--- Structure de la table `v_type_emploi`
---
-
-CREATE TABLE IF NOT EXISTS `v_type_emploi` (
-  `CODE` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `ABREVIATION` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `SIGNIFICATION` varchar(240) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE OR REPLACE  VIEW V_OUI_NON
+ (CODE
+ ,ABREVIATION
+ ,SIGNIFICATION)
+ AS SELECT CGRC.RV_LOW_VALUE CODE
+          ,CGRC.RV_ABBREVIATION ABREVIATION
+          ,CGRC.RV_MEANING SIGNIFICATION
+FROM CG_REF_CODES CGRC
+  WHERE CGRC.RV_DOMAIN = 'OUI_NON'
+;
 
 
 ALTER TABLE ETUDIANT
@@ -1099,113 +1101,6 @@ INSERT INTO `element_constitutif` (`CODE_FORMATION`, `CODE_UE`, `CODE_EC`, `NO_E
 ('M2DOSI', 'WEB', 'AA', '2', 'AA', 'AAAAAAAAA', '10', '10', '10'),
 ('M2DOSI', 'ISI', 'BB', '2', 'BB', 'BBBBBBBBBBBB', '10', '10', '10');
 --
--- Contenu de la table `v_diplome`
---
-
-INSERT INTO `v_diplome` (`CODE`, `ABREVIATION`, `SIGNIFICATION`) VALUES
-('D', 'D', 'Doctorat'),
-('L', 'L', 'Licence'),
-('M', 'M', 'Master');
-
--- --------------------------------------------------------
---
--- Contenu de la table `v_domaine_activite`
---
-
-INSERT INTO `v_domaine_activite` (`CODE`, `ABREVIATION`, `SIGNIFICATION`) VALUES
-('BANQ', 'BANQ', 'Domaine bancaire'),
-('SSII', 'SSII', 'Société de services en ingénierie informatique'),
-('TEL', 'TEL', 'Domaine de la téléphonie');
-
--- --------------------------------------------------------
-
---
--- Contenu de la table `v_fonction`
---
-
-INSERT INTO `v_fonction` (`CODE`, `ABREVIATION`, `SIGNIFICATION`) VALUES
-('CDP', 'CDP', 'Chef de Projet'),
-('COMM', 'COMM', 'Commercial'),
-('DACH', 'DACH', 'Directeur des Achats'),
-('DIR', 'DIR', 'Directeur'),
-('DRH', 'DRH', 'Directeur des Ressources Humaines'),
-('DT', 'DT', 'Directeur Technique'),
-('GER', 'GER', 'Gérant'),
-('IE', 'IE', 'Ingénieur d''Etudes'),
-('ING', 'ING', 'Ingénieur'),
-('RAG', 'RAG', 'Responsable d''Agence'),
-('RQ', 'RQ', 'Responsable Qualité'),
-('RREC', 'RREC', 'Responsable Recrutement');
-
--- --------------------------------------------------------
---
--- Contenu de la table `v_moyen_obtention_emploi`
---
-
-INSERT INTO `v_moyen_obtention_emploi` (`CODE`, `ABREVIATION`, `SIGNIFICATION`) VALUES
-('SPO', 'SPO', 'Candidature Spontanée'),
-('STA', 'STA', 'Suite au stage');
-
--- --------------------------------------------------------
---
--- Contenu de la table `v_oui_non`
---
-
-INSERT INTO `v_oui_non` (`CODE`, `ABREVIATION`, `SIGNIFICATION`) VALUES
-('N', 'N', 'Non'),
-('O', 'O', 'Oui');
-
--- --------------------------------------------------------
---
--- Contenu de la table `v_processus_stage`
---
-
-INSERT INTO `v_processus_stage` (`CODE`, `ABREVIATION`, `SIGNIFICATION`) VALUES
-('EC', 'EC', 'Stage en cours'),
-('EVAL', 'EVAL', 'Stage evalué'),
-('RECH', 'RECH', 'Recherche en cours'),
-('SOUT', 'SOUT', 'Sessions de soutenance définies'),
-('TUT', 'TUT', 'Tuteurs attribués');
-
--- --------------------------------------------------------
---
--- Contenu de la table `v_semestre`
---
-
-INSERT INTO `v_semestre` (`CODE`, `ABREVIATION`, `SIGNIFICATION`) VALUES
-('S1', 'S1', 'Semestre 1'),
-('S10', 'S10', 'Semestre 10'),
-('S2', 'S2', 'Semestre 2'),
-('S3', 'S3', 'Semestre 3'),
-('S4', 'S4', 'Semestre 4'),
-('S5', 'S5', 'Semestre 5'),
-('S6', 'S6', 'Semestre 6'),
-('S7', 'S7', 'Semestre 7'),
-('S8', 'S8', 'Semestre 8'),
-('S9', 'S9', 'Semestre 9');
-
--- --------------------------------------------------------
---
--- Contenu de la table `v_service`
---
-
-INSERT INTO `v_service` (`CODE`, `ABREVIATION`, `SIGNIFICATION`) VALUES
-('EP', 'EP', 'Equipe Projet'),
-('QUA', 'QUA', 'Qualité'),
-('RetD', 'RetD', 'Recherche et Développement');
-
--- --------------------------------------------------------
---
--- Contenu de la table `v_type_emploi`
---
-
-INSERT INTO `v_type_emploi` (`CODE`, `ABREVIATION`, `SIGNIFICATION`) VALUES
-('CDD', 'CDD', 'Contrat à durée déterminée'),
-('CDI', 'CDI', 'Contrat à durée indéterminée'),
-('CNE', 'CNE', 'Contrat Nouvelle Embauche'),
-('SE', 'SE', 'Sans emploi');
-
---
 -- Structure de la table `question_evaluation`
 --
 
@@ -1332,70 +1227,78 @@ CREATE TABLE IF NOT EXISTS `reponse_evaluation` (
   `NOM` varchar(32) COLLATE utf8_bin DEFAULT NULL,
   `PRENOM` varchar(32) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
---
--- Structure de la table `v_positionnement`
---
 
-CREATE TABLE IF NOT EXISTS `v_positionnement` (
-  `CODE` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `ABREVIATION` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `SIGNIFICATION` varchar(240) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE OR REPLACE  VIEW V_POSITIONNEMENT
+ (CODE
+ ,ABREVIATION
+ ,SIGNIFICATION)
+ AS SELECT CGRC.RV_LOW_VALUE CODE
+          ,CGRC.RV_ABBREVIATION ABREVIATION
+          ,CGRC.RV_MEANING SIGNIFICATION
+FROM CG_REF_CODES CGRC
+  WHERE RV_DOMAIN='POSITIONNEMENT'
+;
 
--- --------------------------------------------------------
+CREATE OR REPLACE  VIEW V_ETAT_EVALUATION
+ (CODE
+ ,ABREVIATION
+ ,SIGNIFICATION)
+ AS SELECT CGRC.RV_LOW_VALUE CODE
+          ,CGRC.RV_ABBREVIATION ABREVIATION
+          ,CGRC.RV_MEANING SIGNIFICATION
+FROM CG_REF_CODES CGRC
+  WHERE RV_DOMAIN='ETAT_EVALUATION'
+;
 
---
--- Structure de la table `v_etat_evaluation`
---
+CREATE OR REPLACE  VIEW V_QUESTION
+ (QEV_ORDRE
+ ,QEV_INTITULE
+ ,QUA_MINIMAL
+ ,QUA_MAXIMAL)
+ AS SELECT QEV.ORDRE QEV_ORDRE
+          ,QEV.INTITULE QEV_INTITULE
+          ,QUA.MINIMAL QUA_MINIMAL
+          ,QUA.MAXIMAL QUA_MAXIMAL
+FROM QUESTION_EVALUATION QEV
+    ,QUALIFICATIF QUA
+  WHERE QUA.ID_QUALIFICATIF = QEV.ID_QUALIFICATIF
+;
 
-CREATE TABLE IF NOT EXISTS `v_etat_evaluation` (
-  `CODE` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `ABREVIATION` varchar(240) COLLATE utf8_bin DEFAULT NULL,
-  `SIGNIFICATION` varchar(240) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE OR REPLACE  VIEW V_QUESTION_S
+ (QUE_INTITULE
+ ,QUA_MINIMAL
+ ,QUA_MAXIMAL)
+ AS SELECT QUE.INTITULE QUE_INTITULE
+          ,QUA.MINIMAL QUA_MINIMAL
+          ,QUA.MAXIMAL QUA_MAXIMAL
+FROM QUESTION QUE
+    ,QUALIFICATIF QUA
+  WHERE QUE.ID_QUALIFICATIF = QUA.ID_QUALIFICATIF
+;
 
--- --------------------------------------------------------
+CREATE OR REPLACE  VIEW V_EVALUATION
+ (EVE_ANNEE_PRO
+ ,FRM_CODE_FORMATION
+ ,EVE_PERIODE
+ ,EVE_DESIGNATION
+ ,EVE_ETAT
+ ,UE_DESIGNATION
+ ,ENS_NOM)
+ AS SELECT EVE.ANNEE_PRO EVE_ANNEE_PRO
+          ,FRM.CODE_FORMATION FRM_CODE_FORMATION
+          ,EVE.PERIODE EVE_PERIODE
+          ,EVE.DESIGNATION EVE_DESIGNATION
+          ,EVE.ETAT EVE_ETAT
+          ,UE.DESIGNATION UE_DESIGNATION
+          ,ENS.NOM ENS_NOM
+FROM ENSEIGNANT ENS
+    ,EVALUATION EVE
+    ,FORMATION FRM
+    ,PROMOTION PRO
+    ,UNITE_ENSEIGNEMENT UE
+  WHERE EVE.NO_ENSEIGNANT=ENS.NO_ENSEIGNANT AND EVE.ANNEE_PRO=PRO.ANNEE_PRO AND PRO.CODE_FORMATION=FRM.CODE_FORMATION AND UE.CODE_UE = EVE.CODE_UE
+;
 
---
--- Structure de la table `v_question`
---
-
-CREATE TABLE IF NOT EXISTS `v_question` (
-  `QEV_ORDRE` decimal(2,0) DEFAULT NULL,
-  `QEV_INTITULE` varchar(64) COLLATE utf8_bin DEFAULT NULL,
-  `QUA_MINIMAL` varchar(16) COLLATE utf8_bin DEFAULT NULL,
-  `QUA_MAXIMAL` varchar(16) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `v_question_s`
---
-
-CREATE TABLE IF NOT EXISTS `v_question_s` (
-  `QUE_INTITULE` varchar(64) COLLATE utf8_bin DEFAULT NULL,
-  `QUA_MINIMAL` varchar(16) COLLATE utf8_bin DEFAULT NULL,
-  `QUA_MAXIMAL` varchar(16) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `v_evaluation`
---
-
-CREATE TABLE IF NOT EXISTS `v_evaluation` (
-  `EVE_ANNEE_PRO` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  `FRM_CODE_FORMATION` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `EVE_PERIODE` varchar(64) COLLATE utf8_bin DEFAULT NULL,
-  `EVE_DESIGNATION` varchar(300) COLLATE utf8_bin DEFAULT NULL,
-  `EVE_ETAT` varchar(3) COLLATE utf8_bin DEFAULT NULL,
-  `UE_DESIGNATION` varchar(64) COLLATE utf8_bin DEFAULT NULL,
-  `ENS_NOM` varchar(50) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
 ALTER TABLE QUESTION_EVALUATION
  ADD (CONSTRAINT QEV_PK PRIMARY KEY 
   (ID_QUESTION_EVALUATION))
@@ -1777,27 +1680,3 @@ INSERT INTO `rubrique_question` (`ID_RUBRIQUE`, `ID_QUESTION`, `ORDRE`) VALUES
 ('2', '5', 5),
 ('2', '6', 6);
 
---
--- Contenu de la table `v_evaluation`
---
-
-INSERT INTO `v_evaluation` (`EVE_ANNEE_PRO`, `FRM_CODE_FORMATION`, `EVE_PERIODE`, `EVE_DESIGNATION`, `EVE_ETAT`, `UE_DESIGNATION`, `ENS_NOM`) VALUES
-('2012-2013', 'M2DOSI', '60', 'Evaluation WEB', 'DIS', 'Langages du WEB', 'Lallali'),
-('2012-2013', 'M2DOSI', '35', 'Evaluation Web', 'CLO', 'Langages du WEB', 'Le Roux'),
-('2012-2013', 'M2DOSI', '60', 'Evaluation SRE', 'ELA', 'Ingénierie des Systèmes d’Information', 'Saliou'),
-('2012-2013', 'M2DOSI', '35', 'Evaluation ISI', 'CLO', 'Systèmes Répartis', 'Saliou');
-
--- --------------------------------------------------------
---
--- Contenu de la table `v_question_s`
---
-
-INSERT INTO `v_question_s` (`QUE_INTITULE`, `QUA_MINIMAL`, `QUA_MAXIMAL`) VALUES
-('Qualité pédagogique de l’enseignant', 'Forte', 'Faible'),
-('Disponinilité de l’enseignant', 'Forte', 'Faible'),
-('Nombre de séances', 'Suffisant', 'Insuffisant'),
-('Contenu', 'Riche', 'Pauvre'),
-('Assimilabilité', 'Difficile', 'Facile'),
-('Clarté des énoncés', 'Très clair', 'Peu clair');
-
--- --------------------------------------------------------
