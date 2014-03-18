@@ -44,8 +44,8 @@ var nbEnregistrementEval = {};
 var promotion1,promotion2,formation1,formation2,designation1,designation2,ue1,ue2,etat1,etat2,periode1,periode2;
 var ordreRubrique1,ordreRubrique2,ordreRubrique3,designationRubrique1,designationRubrique2,designationRubrique3;
 var listePromotion = [];
-var ENS_NOM = "'Le Roux'";
-var requetteListeEnseignant = 'SELECT * from v_evaluation where ENS_NOM ='+ENS_NOM;
+var ENS_NOM = "'Saliou'";
+var requetteListeEvaluations = 'SELECT * from v_evaluation where ENS_NOM ='+ENS_NOM;
 var countEvaluationEnseignant = 'SELECT count(*) as nb from v_evaluation where ENS_NOM ='+ENS_NOM;
 var requetteRubrique = 'SELECT * from v_rubeval where ENS_NOM =' +ENS_NOM;
 
@@ -74,7 +74,7 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
 		
 		
     });
-	connection.query(countEvaluationEnseignant, function(err, rows){
+	/*connection.query(countEvaluationEnseignant, function(err, rows){
         // There was a error or not?
         if(err != null) {
             res.end("Query error:" + err);
@@ -85,46 +85,9 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
          }
 		
 		
-    });
-	    connection.query(requetteListeEnseignant, function(err, rows){
-        // There was a error or not?
-        if(err != null) {
-            res.end("Query error:" + err);
-        } else {
-		
-		
-		
-       if (nbEnregistrementEval == 2 ){ 
-            promotion1 = rows[0].EVE_ANNEE_PRO;
-			promotion2 = rows[1].EVE_ANNEE_PRO;
-			formation1 = rows[0].FRM_CODE_FORMATION;
-			formation2 = rows[1].FRM_CODE_FORMATION;
-			designation1 = rows[0].EVE_DESIGNATION;
-			designation2 = rows[1].EVE_DESIGNATION;
-			ue1 = rows[0].UE_DESIGNATION;
-			ue2= rows[1].UE_DESIGNATION;
-			etat1 = rows[0].EVE_ETAT;
-			etat2 = rows[1].EVE_ETAT;
-			periode1 = rows[0].EVE_PERIODE;
-			periode2 = rows[1].EVE_PERIODE;
-			}
-			
-			else {
-			
-            promotion1 = rows[0].EVE_ANNEE_PRO;
-			
-			formation1 = rows[0].FRM_CODE_FORMATION;
-			designation1 = rows[0].EVE_DESIGNATION;
-			ue1 = rows[0].UE_DESIGNATION;
-			etat1 = rows[0].EVE_ETAT;
-			periode1 = rows[0].EVE_PERIODE;
-			
-		}
-		
-        }
-			
-    });
-	 connection.query(requetteRubrique, function(err, rows){
+    });*/
+	    
+	 /*connection.query(requetteRubrique, function(err, rows){
         // There was a error or not?
         if(err != null) {
             res.end("Query error:" + err);
@@ -142,7 +105,7 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
         }
 		
 		
-    });
+    });*/
 });
 
 // Database setup
@@ -179,39 +142,55 @@ app.get('/eval/listeRubriqueEvaluation/', eval.listeRubriqueEvaluation);
 //app.post('/eval/editRubrique/', eval.NouvelleRubrique);
 app.get('/eval/injecterEvaluation', eval.InjecterNouvelleEvaluation);
 app.get('/ajouterEval', eval.ajouterEval);
-app.get('/listeEval', function (req, res){
-if (nbEnregistrementEval == 1) {
-		
-	   var hidden = "hidden";
-		}
-		
-var data1 = {
-       // Enseignant1: Enseignant1,
-	   
-		    promotion1: promotion1,
-			promotion2: promotion2,
-			formation1: formation1,
-			formation2: formation2,
-			designation1: designation1,
-			designation2: designation2,
-			ue1: ue1,
-			ue2: ue2,
-			etat1: etat1,
-			etat2: etat2,
-			periode1: periode1,
-			periode2: periode2,
-            hidden: hidden,
-			ordreRubrique1: ordreRubrique1,
-			ordreRubrique2: ordreRubrique2,
-			ordreRubrique3: ordreRubrique3,
-			designationRubrique1: designationRubrique1,
-			designationRubrique2: designationRubrique2,
-			designationRubrique3: designationRubrique3
-		
-		
-    }
 
-    res.render('index-2.hbs',data1);
+/**
+ * Cette fonction récupère la liste des évaluations et alimente un template handlebars
+ */
+app.get('/listeEval', function (req, res){
+			
+	connection.query(requetteListeEvaluations, function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			   /*if (nbEnregistrementEval == 2 ){ 
+					promotion1 = rows[0].EVE_ANNEE_PRO;
+					promotion2 = rows[1].EVE_ANNEE_PRO;
+					formation1 = rows[0].FRM_CODE_FORMATION;
+					formation2 = rows[1].FRM_CODE_FORMATION;
+					designation1 = rows[0].EVE_DESIGNATION;
+					designation2 = rows[1].EVE_DESIGNATION;
+					ue1 = rows[0].UE_DESIGNATION;
+					ue2= rows[1].UE_DESIGNATION;
+					etat1 = rows[0].EVE_ETAT;
+					etat2 = rows[1].EVE_ETAT;
+					periode1 = rows[0].EVE_PERIODE;
+					periode2 = rows[1].EVE_PERIODE;
+					}
+					
+					else {
+					
+					promotion1 = rows[0].EVE_ANNEE_PRO;
+					
+					formation1 = rows[0].FRM_CODE_FORMATION;
+					designation1 = rows[0].EVE_DESIGNATION;
+					ue1 = rows[0].UE_DESIGNATION;
+					etat1 = rows[0].EVE_ETAT;
+					periode1 = rows[0].EVE_PERIODE;
+					
+				}*/
+				var data1 = {
+					   listeEvaluations: rows
+				}
+				res.render('index-2.hbs',data1);
+			}
+				
+		});		
+			
+			
+	
+
+    
 });
 
 
