@@ -147,6 +147,7 @@ app.get('/ajouterEval', eval.ajouterEval);
  * Cette fonction récupère la liste des évaluations et alimente un template handlebars
  */
 app.get('/listeEval', function (req, res){
+<<<<<<< HEAD
 			
 	connection.query(requetteListeEvaluations, function(err, rows){
         // There was a error or not?
@@ -189,6 +190,39 @@ app.get('/listeEval', function (req, res){
 			
 			
 	
+=======
+console.log(req.params.nom);
+if (nbEnregistrementEval == 1) {
+		
+	   var hidden = "hidden";
+		}
+		
+var data1 = {
+       // Enseignant1: Enseignant1,
+	   
+		    promotion1: promotion1,
+			promotion2: promotion2,
+			formation1: formation1,
+			formation2: formation2,
+			designation1: designation1,
+			designation2: designation2,
+			ue1: ue1,
+			ue2: ue2,
+			etat1: etat1,
+			etat2: etat2,
+			periode1: periode1,
+			periode2: periode2,
+            hidden: hidden,
+			ordreRubrique1: ordreRubrique1,
+			ordreRubrique2: ordreRubrique2,
+			ordreRubrique3: ordreRubrique3,
+			designationRubrique1: designationRubrique1,
+			designationRubrique2: designationRubrique2,
+			designationRubrique3: designationRubrique3
+		
+		
+    }
+>>>>>>> 95c6be27dde90ef0e432612ea1e4200d9843ba61
 
     
 });

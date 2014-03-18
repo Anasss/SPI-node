@@ -6,7 +6,7 @@ FOR %%X IN (*.sql) DO mysql -h localhost -u root NomDevotreBDD < %%X
 
 3. Ouvrerez le cmd et executez les commandes suivantes : 
 
-cd rÃ©pertoire contenant le dossier "scripts"
+cd répertoire contenant le dossier "scripts"
 
 generate.bat
 
@@ -14,4 +14,4 @@ generate.bat
 
 hooooooo hooooooooooooo
 
-Regardez votre Base de DonnÃ©es Maintenant 
+Regardez votre Base de Données Maintenant 
