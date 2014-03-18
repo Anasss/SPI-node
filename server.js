@@ -112,8 +112,35 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
 
 
 
+
+
+
 app.get('/handlebars', eval.testerHandlebars);
 app.get('/eval/edit/:titre', eval.NouvelleEvaluationParams);
+
+
+app.get('/listeRubriques/:idEval',function(req, res) {
+
+var id = req.params.idEval;
+console.log(id);
+connection.query("SELECT * from v_rubeval where EVE_ID_EVALUATION ="+id, function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			  
+				var data1 = {
+					   listeRubrique: rows
+				}
+				res.render('index-2.hbs',data1);
+			}
+				
+		});	
+
+});
+
+
+
 app.post('/eval/editEvaluation/', eval.NouvelleEvaluationData);
 app.get('/eval/liste', evalDao.listeEvaluation);
 app.get('/index', accueil.index);
@@ -147,7 +174,7 @@ app.get('/ajouterEval', eval.ajouterEval);
  * Cette fonction récupère la liste des évaluations et alimente un template handlebars
  */
 app.get('/listeEval', function (req, res){
-<<<<<<< HEAD
+
 			
 	connection.query(requetteListeEvaluations, function(err, rows){
         // There was a error or not?
@@ -190,7 +217,7 @@ app.get('/listeEval', function (req, res){
 			
 			
 	
-=======
+
 console.log(req.params.nom);
 if (nbEnregistrementEval == 1) {
 		
@@ -222,7 +249,7 @@ var data1 = {
 		
 		
     }
->>>>>>> 95c6be27dde90ef0e432612ea1e4200d9843ba61
+
 
     
 });
