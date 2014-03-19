@@ -49,6 +49,7 @@ var requetteListeEnseignant = 'SELECT * from v_evaluation where ENS_NOM ='+ENS_N
 var countEvaluationEnseignant = 'SELECT count(*) as nb from v_evaluation where ENS_NOM ='+ENS_NOM;
 var requetteRubrique = 'SELECT * from v_rubeval where ENS_NOM =' +ENS_NOM;
 
+
 connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
     if (err) throw err;
     connection.query('USE evaespi', function (err) {
@@ -59,7 +60,7 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
     connection.query("SELECT * from ENSEIGNANT", function(err, rows){
         // There was a error or not?
         if(err != null) {
-            res.end("Query error:" + err);
+           console.log("Query error:" + err);
         } else {
 		
        	
@@ -77,7 +78,7 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
 	connection.query(countEvaluationEnseignant, function(err, rows){
         // There was a error or not?
         if(err != null) {
-            res.end("Query error:" + err);
+            console.log("Query error:" + err);
         } else {
 		   nbEnregistrementEval = rows[0].nb;
          
@@ -89,7 +90,7 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
 	    connection.query(requetteListeEnseignant, function(err, rows){
         // There was a error or not?
         if(err != null) {
-            res.end("Query error:" + err);
+            console.log("Query error:" + err);
         } else {
 		
 		
@@ -127,15 +128,14 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
 	 connection.query(requetteRubrique, function(err, rows){
         // There was a error or not?
         if(err != null) {
-            res.end("Query error:" + err);
+            console.log("Query error:" + err);
         } else {
-		
-       	ordreRubrique1= rows[0].REV_ORDRE;
+		ordreRubrique1= rows[0].REV_ORDRE;
 		ordreRubrique2= rows[1].REV_ORDRE;
-		ordreRubrique3= rows[2].REV_ORDRE;
+		//ordreRubrique3= rows[2].REV_ORDRE;
 		designationRubrique1= rows[0].REV_DESIGNATION;
 		designationRubrique2= rows[1].REV_DESIGNATION;
-		designationRubrique3= rows[2].REV_DESIGNATION;
+		//designationRubrique3= rows[2].REV_DESIGNATION;
 		
 		
 		
