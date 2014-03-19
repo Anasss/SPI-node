@@ -44,8 +44,8 @@ var nbEnregistrementEval = {};
 var promotion1,promotion2,formation1,formation2,designation1,designation2,ue1,ue2,etat1,etat2,periode1,periode2;
 var ordreRubrique1,ordreRubrique2,ordreRubrique3,designationRubrique1,designationRubrique2,designationRubrique3;
 var listePromotion = [];
-var ENS_NOM = "'Le Roux'";
-var requetteListeEnseignant = 'SELECT * from v_evaluation where ENS_NOM ='+ENS_NOM;
+var ENS_NOM = "'Saliou'";
+var requetteListeEvaluations = 'SELECT * from v_evaluation where ENS_NOM ='+ENS_NOM;
 var countEvaluationEnseignant = 'SELECT count(*) as nb from v_evaluation where ENS_NOM ='+ENS_NOM;
 var requetteRubrique = 'SELECT * from v_rubeval where ENS_NOM =' +ENS_NOM;
 
@@ -75,7 +75,7 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
 		
 		
     });
-	connection.query(countEvaluationEnseignant, function(err, rows){
+	/*connection.query(countEvaluationEnseignant, function(err, rows){
         // There was a error or not?
         if(err != null) {
             console.log("Query error:" + err);
@@ -86,6 +86,7 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
          }
 		
 		
+<<<<<<< HEAD
     });
 	    connection.query(requetteListeEnseignant, function(err, rows){
         // There was a error or not?
@@ -126,6 +127,11 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
 			
     });
 	 connection.query(requetteRubrique, function(err, rows){
+=======
+    });*/
+	    
+	 /*connection.query(requetteRubrique, function(err, rows){
+>>>>>>> f14c70b1459000cb294158ac7cb4026b7d31cebf
         // There was a error or not?
         if(err != null) {
             console.log("Query error:" + err);
@@ -142,15 +148,42 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
         }
 		
 		
-    });
+    });*/
 });
 
 // Database setup
 
 
 
+
+
+
 app.get('/handlebars', eval.testerHandlebars);
 app.get('/eval/edit/:titre', eval.NouvelleEvaluationParams);
+
+
+app.get('/listeRubriques/:idEval',function(req, res) {
+
+var id = req.params.idEval;
+console.log(id);
+connection.query("SELECT * from v_rubeval where EVE_ID_EVALUATION ="+id, function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			  
+				var data1 = {
+					   listeRubrique: rows
+				}
+				res.render('index-2.hbs',data1);
+			}
+				
+		});	
+
+});
+
+
+
 app.post('/eval/editEvaluation/', eval.NouvelleEvaluationData);
 app.get('/eval/liste', evalDao.listeEvaluation);
 app.get('/index', accueil.index);
@@ -179,7 +212,70 @@ app.get('/eval/listeRubriqueEvaluation/', eval.listeRubriqueEvaluation);
 //app.post('/eval/editRubrique/', eval.NouvelleRubrique);
 app.get('/eval/injecterEvaluation', eval.InjecterNouvelleEvaluation);
 app.get('/ajouterEval', eval.ajouterEval);
+
+
+app.post('/evalajoute', function (req, res) {
+    console.log(req.body);
+	
+	var con=connection.query('INSERT INTO evaluation SET CODE_FORMATION=?', req.body.formation, 
+        function (err, result) {
+            if (err) throw err;
+			console.log(con.sql);
+            res.send('User added to database with ID: ' + result.insertId);
+			
+        }
+    );
+	
+});
+
+/**
+ * Cette fonction récupère la liste des évaluations et alimente un template handlebars
+ */
 app.get('/listeEval', function (req, res){
+
+			
+	connection.query(requetteListeEvaluations, function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			   /*if (nbEnregistrementEval == 2 ){ 
+					promotion1 = rows[0].EVE_ANNEE_PRO;
+					promotion2 = rows[1].EVE_ANNEE_PRO;
+					formation1 = rows[0].FRM_CODE_FORMATION;
+					formation2 = rows[1].FRM_CODE_FORMATION;
+					designation1 = rows[0].EVE_DESIGNATION;
+					designation2 = rows[1].EVE_DESIGNATION;
+					ue1 = rows[0].UE_DESIGNATION;
+					ue2= rows[1].UE_DESIGNATION;
+					etat1 = rows[0].EVE_ETAT;
+					etat2 = rows[1].EVE_ETAT;
+					periode1 = rows[0].EVE_PERIODE;
+					periode2 = rows[1].EVE_PERIODE;
+					}
+					
+					else {
+					
+					promotion1 = rows[0].EVE_ANNEE_PRO;
+					
+					formation1 = rows[0].FRM_CODE_FORMATION;
+					designation1 = rows[0].EVE_DESIGNATION;
+					ue1 = rows[0].UE_DESIGNATION;
+					etat1 = rows[0].EVE_ETAT;
+					periode1 = rows[0].EVE_PERIODE;
+					
+				}*/
+				var data1 = {
+					   listeEvaluations: rows
+				}
+				res.render('index-2.hbs',data1);
+			}
+				
+		});		
+			
+			
+	
+
 console.log(req.params.nom);
 if (nbEnregistrementEval == 1) {
 		
@@ -212,7 +308,8 @@ var data1 = {
 		
     }
 
-    res.render('index-2.hbs',data1);
+
+    
 });
 
 

@@ -1292,6 +1292,7 @@ CREATE OR REPLACE  VIEW V_EVALUATION
  ,EVE_PERIODE
  ,EVE_DESIGNATION
  ,EVE_ETAT
+ ,EVE_ID_EVALUATION
  ,UE_DESIGNATION
  ,ENS_NOM)
  AS SELECT EVE.ANNEE_PRO EVE_ANNEE_PRO
@@ -1299,6 +1300,7 @@ CREATE OR REPLACE  VIEW V_EVALUATION
           ,EVE.PERIODE EVE_PERIODE
           ,EVE.DESIGNATION EVE_DESIGNATION
           ,EVE.ETAT EVE_ETAT
+		  ,EVE.ID_EVALUATION EVE_ID_EVALUATION
           ,UE.DESIGNATION UE_DESIGNATION
           ,ENS.NOM ENS_NOM
 FROM ENSEIGNANT ENS
@@ -1598,10 +1600,12 @@ COMMIT
 --
 
 INSERT INTO `evaluation` (`NO_ENSEIGNANT`, `CODE_FORMATION`, `ANNEE_PRO`, `CODE_UE`, `CODE_EC`, `NO_EVALUATION`, `DESIGNATION`, `ETAT`, `PERIODE`, `DEBUT_REPONSE`, `FIN_REPONSE`) VALUES
-('1', 'M2DOSI', '2012-2013', 'SRE', 'SD', '1', 'Evaluation ISI', 'CLO', '35', '2012-10-10 00:00:00', '2012-11-15 00:00:00'),
-('2', 'M2DOSI', '2012-2013', 'WEB', 'AA', '2', 'Evaluation Web', 'CLO', '35', '2012-10-10 00:00:00', '2012-11-15 00:00:00'),
-('3', 'M2DOSI', '2012-2013', 'WEB', 'AA', '4', 'Evaluation WEB', 'DIS', '60', '2013-10-16 00:00:00', '2013-12-20 00:00:00'),
-('1', 'M2DOSI', '2012-2013', 'ISI', 'BB', '3', 'Evaluation SRE', 'ELA', '60', '2013-01-12 00:00:00', '2013-02-17 00:00:00');
+('1', 'M2DOSI', '2012-2013', 'SRE', 'SD', '1', 'Evaluation ISI', 'CLO', 'Du 2012-10-10 Au 2012-11-15', '2012-10-10 00:00:00', '2012-11-15 00:00:00'),
+('2', 'M2DOSI', '2012-2013', 'WEB', 'AA', '2', 'Evaluation Web', 'CLO', 'Du 2012-10-10 Au 2012-11-15', '2012-10-10 00:00:00', '2012-11-15 00:00:00'),
+('3', 'M2DOSI', '2012-2013', 'WEB', 'AA', '4', 'Evaluation WEB', 'DIS', 'Du 2013-10-16 Au 2013-12-20', '2013-10-16 00:00:00', '2013-12-20 00:00:00'),
+('1', 'M2DOSI', '2012-2013', 'ISI', 'BB', '3', 'Evaluation SRE', 'ELA', 'Du 2013-01-12 Au 2013-02-17', '2013-01-12 00:00:00', '2013-02-17 00:00:00'),
+('2', 'M2DOSI', '2012-2013', 'WEB', NULL, '6', 'Evaluation SRE', 'DIS', 'Du 2012-11-11 Au 2012-12-15', '2012-11-11 00:00:00', '2012-12-15 00:00:00'),
+('3', 'M2DOSI', '2012-2013', 'SRE', NULL, '5', 'Evaluation SRE', 'ELA', 'Du 2013-04-16 Au 2013-05-20', '2013-04-16 00:00:00', '2013-05-20 00:00:00');
 
 --
 -- Contenu de la table `qualificatif`
@@ -1662,8 +1666,10 @@ values
 ('1', '2', '2', 'Travaux Dirigés'),
 ('3', '3', '3', 'Travaux Pratiques'),
 ('2', '1', '4', 'Cours Magistraux'),
+('5', '2', '5', 'Travaux Dirigés'),
 ('2', '3', '6', 'Travaux Pratiques'),
 ('4', '1', '7', 'Cours Magistraux'),
-('4', '2', '8', 'Travaux Dirigés');
+('4', '2', '8', 'Travaux Dirigés'),
+('6', '3', '9', 'Travaux Pratiques');
 
 

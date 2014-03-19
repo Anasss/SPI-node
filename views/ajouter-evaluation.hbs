@@ -117,6 +117,7 @@
                 </header>
                 
 				<section class="welly form_align">
+<<<<<<< HEAD
                   <form class="formClass" method="post">
                     <table>
 					<tr><th> Promotion:
@@ -131,10 +132,25 @@
 					  Formation:
                         <select name="formation" id="formation" >
                           <option value="">Choisir formation</option>
+=======
+                  <form class="formClass" method="post" action="/evalajoute">
+                    
+                   
+                   
+                    <hr>
+                   
+                    <hr>
+					<div class="row-fluid">
+                      <div class="span4">Formation:</div>
+                      <div class="span8">
+                        <select name="formation" id="formation" class="validate[required]">
+                          <option>Choisir formation</option>
+>>>>>>> f14c70b1459000cb294158ac7cb4026b7d31cebf
                           <option value="option1">Tennis</option>
                           <option value="option2">Football</option>
                           <option value="option3">Golf</option>
                         </select>
+<<<<<<< HEAD
                      
 					  </th>
 					  
@@ -184,6 +200,18 @@
 <br>
 <br>
 					<center><button class="btn btn-inverse" type="submit">Valider</button> <button class="btn btn-inverse" type="reset">Annuler</button> 
+=======
+                      </div>
+                    </div>
+					<hr>
+					
+                    
+                    
+                                     
+                  
+
+                    <input class="btn btn-inverse" type="submit" id="ajout_submit" value="valider"/><hr/>
+>>>>>>> f14c70b1459000cb294158ac7cb4026b7d31cebf
                   </form>  
                 </section>
               </div>
@@ -202,6 +230,31 @@
 
    
 
+<<<<<<< HEAD
+=======
+    <!-- ===================== JS ===================== -->
+	 <script type="text/javascript">
+        $(document).ready(function () {
+            $('#ajout_submit').click(function () {
+                var payload = {
+                    CODE_FORMATION: $('#formation').val()
+                };
+
+                $.ajax({
+                    url: "/evalajoute",
+                    type: "POST",
+                    contentType: "application/json",
+                    processData: false,
+                    data: JSON.stringify(payload),
+                    complete: function (data) {
+                        //$('#output').html(data.responseText);
+						
+                    }
+                });
+            });
+        });
+    </script>
+>>>>>>> f14c70b1459000cb294158ac7cb4026b7d31cebf
     <script src="js/libs/jquery-1.7.2.min.js"></script>    
     <script src="js/libs/bootstrap.min.js"></script>   
     <script src="js/libs/ios-orientationchange-fix.js"></script>      
