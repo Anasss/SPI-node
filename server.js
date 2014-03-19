@@ -170,6 +170,21 @@ app.get('/eval/listeRubriqueEvaluation/', eval.listeRubriqueEvaluation);
 app.get('/eval/injecterEvaluation', eval.InjecterNouvelleEvaluation);
 app.get('/ajouterEval', eval.ajouterEval);
 
+
+app.post('/evalajoute', function (req, res) {
+    console.log(req.body);
+	
+	var con=connection.query('INSERT INTO evaluation SET CODE_FORMATION=?', req.body.formation, 
+        function (err, result) {
+            if (err) throw err;
+			console.log(con.sql);
+            res.send('User added to database with ID: ' + result.insertId);
+			
+        }
+    );
+	
+});
+
 /**
  * Cette fonction récupère la liste des évaluations et alimente un template handlebars
  */

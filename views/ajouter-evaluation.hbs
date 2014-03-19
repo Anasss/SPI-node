@@ -138,101 +138,32 @@
                 </header>
                 
 				<section class="welly form_align">
-                  <form class="formClass" method="post">
+                  <form class="formClass" method="post" action="/evalajoute">
                     
                    
                    
                     <hr>
-                    <div class="row-fluid">
-                      <div class="span4">Promotion:</div>
-                      <div class="span8">
-                        <select name="promotion" id="promotion" class="validate[required]">
-                          <option value="">Choisir promotion</option>
-                          <option value="option1">Tennis</option>
-                          <option value="option2">Football</option>
-                          <option value="option3">Golf</option>
-                        </select>
-                      </div>
-                    </div>
+                   
                     <hr>
 					<div class="row-fluid">
                       <div class="span4">Formation:</div>
                       <div class="span8">
                         <select name="formation" id="formation" class="validate[required]">
-                          <option value="">Choisir formation</option>
+                          <option>Choisir formation</option>
                           <option value="option1">Tennis</option>
                           <option value="option2">Football</option>
                           <option value="option3">Golf</option>
                         </select>
                       </div>
                     </div>
-					<hr>
-					<div class="row-fluid">
-                      <div class="span4">Unit&eacute; d'enseignement :</div>
-                      <div class="span8">
-                        <select name="ue" id="ue" class="validate[required]">
-                          <option value="">unit&eacute; d'enseignement </option>
-                          <option value="option1">Tennis</option>
-                          <option value="option2">Football</option>
-                          <option value="option3">Golf</option>
-                        </select>
-                      </div>
-                    </div>
-					<hr>
-					<div class="row-fluid">
-                      <div class="span4">D&eacute;signation:</div>
-                      <div class="span8">
-                        <select name="designation" id="designation" class="validate[required]">
-                          <option value="">Choisir d&eacute;signation</option>
-                          <option value="option1">Tennis</option>
-                          <option value="option2">Football</option>
-                          <option value="option3">Golf</option>
-                        </select>
-                      </div>
-                    </div>
-					<hr>
-					<div class="row-fluid">
-                          <div class="span4">Mise &agrave; disposition:</div>
-                          <div class="span3"><input id="debut" type="text" name="debut"><span class="help-inline">99/99/9999</span></div>
-						  <div class="span4"><input id="debut" type="text" name="debut"><span class="help-inline">99/99/9999</span></div>
-                        </div> 
-						
 					<hr>
 					
-                    <div class="row-fluid">
-                      <div class="span4">P&eacute;riode :</div>
-                      <div class="span8"><input value="" data-validation-placeholder="This is a placeholder" class="validate[required] text-input" type="text" name="periode" id="periode" /></div>
-                    </div>
-					
-                                  
                     
-                  
-                   
-                    <hr class="big_space">
-                   
-                    <div class="row-fluid">
-                      <div class="span4"> Etat :</div>                      
-                      <div class="span8 radio_btn_cont">
-                        <div>
-                          <label for="radio1">En cours d'&eacute;laboration</label>
-                          <input class="validate[required] radio" type="radio" name="enCours" id="enCours" value="5"/>
-                        </div>
-                        <div>
-                          <label for="radio2">Mise &agrave; disposition</label>
-                          <input class="validate[required] radio" type="radio" name="miseADisposition" id="miseADisposition" value="3"/>
-                        </div>
-                        <div>
-                          <label for="radio3">Cl&ocirc;tur&eacute;</label>
-                          <input class="validate[required] radio" type="radio" name="cloture" id="cloture" value="9"/>
-                        </div>
-                      </div>
-                    </div>                    
-                    <hr class="big_space">
                     
                                      
                   
 
-                    <input class="btn btn-inverse" type="submit" value="valider"/><hr/>
+                    <input class="btn btn-inverse" type="submit" id="ajout_submit" value="valider"/><hr/>
                   </form>  
                 </section>
               </div>
@@ -254,6 +185,27 @@
    
 
     <!-- ===================== JS ===================== -->
+	 <script type="text/javascript">
+        $(document).ready(function () {
+            $('#ajout_submit').click(function () {
+                var payload = {
+                    CODE_FORMATION: $('#formation').val()
+                };
+
+                $.ajax({
+                    url: "/evalajoute",
+                    type: "POST",
+                    contentType: "application/json",
+                    processData: false,
+                    data: JSON.stringify(payload),
+                    complete: function (data) {
+                        //$('#output').html(data.responseText);
+						
+                    }
+                });
+            });
+        });
+    </script>
     <script src="js/libs/jquery-1.7.2.min.js"></script>    
     <script src="js/libs/bootstrap.min.js"></script>   
     <script src="js/libs/ios-orientationchange-fix.js"></script>      
