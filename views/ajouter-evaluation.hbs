@@ -51,8 +51,7 @@
             <span class="sweet-gray sweet-go-back-from-screen">&nbsp;</span>
           </a>
           <div class="nav-collapse">            
-           
-            <ul class="main_nav nav pull-right">                
+           <ul class="main_nav nav pull-right">                
                 <li id="search" class="search"> 
                   <a href="#">Recherche</a> 
                   <div class="search_cont">
@@ -139,19 +138,16 @@
                 
 				<section class="welly form_align">
                   <form class="formClass" method="post">
-                    
-                   
-                   
-                    <hr>
+                     <hr>
                     <div class="row-fluid">
                       <div class="span4">Promotion:</div>
                       <div class="span8">
                         <select name="promotion" id="promotion" class="validate[required]">
-                          <option value="">Choisir promotion</option>
-                          <option value="option1">Tennis</option>
-                          <option value="option2">Football</option>
-                          <option value="option3">Golf</option>
-                        </select>
+						<option value="">Choisir promotion</option>
+						{{#each listePromotions}}
+                          <option value="">{{ANNEE_PRO}}</option>
+						{{/each}}
+                          </select>
                       </div>
                     </div>
                     <hr>
@@ -160,10 +156,10 @@
                       <div class="span8">
                         <select name="formation" id="formation" class="validate[required]">
                           <option value="">Choisir formation</option>
-                          <option value="option1">Tennis</option>
-                          <option value="option2">Football</option>
-                          <option value="option3">Golf</option>
-                        </select>
+						  {{#each listeFormations}}
+                          <option value="">{{CODE_FORMATION}}</option>
+						  {{/each}}
+                          </select>
                       </div>
                     </div>
 					<hr>
@@ -172,9 +168,9 @@
                       <div class="span8">
                         <select name="ue" id="ue" class="validate[required]">
                           <option value="">unit&eacute; d'enseignement </option>
-                          <option value="option1">Tennis</option>
-                          <option value="option2">Football</option>
-                          <option value="option3">Golf</option>
+                          {{#each uniteEnseignements}}
+                          <option value="">{{CODE_UE}}</option>
+						{{/each}}
                         </select>
                       </div>
                     </div>
@@ -184,10 +180,7 @@
                       <div class="span8">
                         <select name="designation" id="designation" class="validate[required]">
                           <option value="">Choisir d&eacute;signation</option>
-                          <option value="option1">Tennis</option>
-                          <option value="option2">Football</option>
-                          <option value="option3">Golf</option>
-                        </select>
+                         </select>
                       </div>
                     </div>
 					<hr>

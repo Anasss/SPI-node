@@ -63,18 +63,17 @@
 	
             <h2>Authentification</h2>          
             <div class="login_form">
-              <form class="formClass" method="get" action="listeEval">
+            <form class="formClass" method="POST" action="/listeEval">
                 
                 <fieldset>                
                    
-                    <select id="select01" style="width:300px;">
-                                <option>{{Enseignant1}}</option>
-                                <option>{{Enseignant2}}</option>
-                                <option>{{Enseignant3}}</option>
-								<option>{{Enseignant4}}</option>
-                                
-                                
-                              </select>
+						<select id="select01" name="select01" style="width:300px;">
+						{{#each listeEnseignants}}
+								<option value={{NOM}}>{{PRENOM}} {{NOM}}</option>
+						{{/each}}
+				
+</select>		
+				
                 </fieldset>
                 <fieldset class="login_submit"><button type="submit" class="btn">Se connecter </button></fieldset>
                 <fieldset class="login_social">              
