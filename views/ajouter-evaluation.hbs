@@ -123,42 +123,37 @@
 					<tr><th> Promotion:
 
                         <select name="promotion" id="promotion" >
-                          <option value="">Choisir promotion</option>
-                          <option value="option1">Tennis</option>
+                          
+                          <option value="2012-2013">Tennis</option>
                           <option value="option2">Football</option>
                           <option value="option3">Golf</option>
                         </select>
                     </th> <th>
 					  Formation:
                         <select name="formation" id="formation" >
-                          <option value="">Choisir formation</option>
-						   <option value="option1">Tennis</option>
-                          <option value="option2">Football</option>
-                          <option value="option3">Golf</option>
+                          
+						  <option value="M2DOSI">formation 1</option>
+                          <option value="formation2">formation 2</option>
+                          <option value="formation3">formation 3</option>
 						  </select>
                   
                     </th>
                    
-                   
-                   
-                      
-                        
-                     
-					  
+
 					  
 					  <th>Unit&eacute; d'enseignement:
                         <select name="ue" id="ue" >
-                          <option value="">unit&eacute; d'enseignement </option>
-                          <option value="option1">Tennis</option>
-                          <option value="option2">Football</option>
-                          <option value="option3">Golf</option>
+                          
+                          <option value="SRE">sre</option>
+                          <option value="ue2">ue2</option>
+                          <option value="option3">ue3</option>
                         </select>
                       </th></tr>
 					  <hr>
 					 <tr>
 	            <td><b>D&eacute;signation:</b></td>
 	<td>
-	        <TEXTAREA name="nom" rows=1 cols=40></TEXTAREA>
+	        <TEXTAREA name="designation" rows=1 cols=40 id="designation"></TEXTAREA>
 	</td>
 	<tr>
 	
@@ -175,7 +170,7 @@
 <td>
 
 
-<input type="text">
+<input type="text" name="periode">
 
 </td>
 </tr>  
@@ -217,7 +212,12 @@
         $(document).ready(function () {
             $('#ajout_submit').click(function () {
                 var payload = {
-                    CODE_FORMATION: $('#formation').val()
+                    CODE_FORMATION: $('#formation').val() ,
+					ANNEE_PRO: $('#promotion').val() ,
+					CODE_UE: $('#ue').val() ,  
+					DESIGNATION: $('#designation').val() ,
+					//DEBUT_REPONSE: $('#debut').val() , 
+					//FIN_REPONSE: $('#fin').val()
                 };
 
                 $.ajax({
