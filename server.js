@@ -219,12 +219,17 @@ app.get('/ajouterEval', eval.ajouterEval);
 
 app.post('/evalajoute', function (req, res) {
     
+	var formation = req.body.formation;
+	var promotion = req.body.promotion;
+	var ue = req.body.ue;
 	
-	var con=connection.query("INSERT INTO evaluation  (CODE_FORMATION, ANNEE_PRO, CODE_UE) values('"+req.body.formation +"','"+req.body.promotion +"','"+req.body.ue +"')",
+	console.log(formation+promotion+ue);
+	var con=connection.query("INSERT INTO evaluation  (CODE_FORMATION, ANNEE_PRO, CODE_UE) values(?,?,?);" , [formation,promotion,ue],
         function (err, result) {
             if (err) throw err;
-			console.log(con.sql);
-            res.send('evaluation added to database with ID: ' + result.insertId);
+		console.log(con);	
+		console.log(result.insertId);
+           
 			
         }
     );

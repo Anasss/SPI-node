@@ -227,7 +227,7 @@
                     processData: false,
                     data: JSON.stringify(payload),
                     complete: function (data) {
-                        //$('#output').html(data.responseText);
+                        $( ".span9" ).append("<div class='alert alert-success'>Evaluation Ajoute avec succes</div>");
 						
                     }
                 });
