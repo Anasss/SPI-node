@@ -112,7 +112,7 @@
 
               <div class="widget chart">
                 <header>
-                    <h3 ><font color="#A4A4A4"><b>Saisie et Mise &agrave; jour d'une rubrique</b> </font> </h3>
+                    <h3 ><font color="#A4A4A4"><b>Saisie et Mise &agrave; jour d'une question</b> </font> </h3>
                     <ul class="toggle_content">                          
                         <li class="arrow"><a href="#">Toggle Content</a></li>
                     </ul>
@@ -123,12 +123,12 @@
                   <form class="formClass" method="post" action="/evalajoute">
                     
 					 <table>
-					<tr><th> Ordre:
-<input type="text" name="ordre">
+					<tr><th> Qualificatif maximal:
+<input type="text" name="mx">
                     </th> 
 					<th> &nbsp; &nbsp; &nbsp; &nbsp;</th><th>
-					  D&eacute;signation:
-                       <input type="text" name="designation">
+					  Qualificatif minimal:
+                       <input type="text" name="min">
                     </th>
 		 
 </tr>  
@@ -142,30 +142,35 @@
 				  
                 </section>
               </div>
-			  <h3>Liste des Rubriques </h3>
+			  <h3>Liste des questions </h3>
                       
                   </header>
-                  <section class="group">                         
+                   <section class="group">                         
                        <table id="example" class="display" >
                           <thead>
                               <tr>
-                                  <th>Ordre</th>
+                                  <th>ID</th>
+                                  <th>Qualificatif Maximal</th>
+                                  <th>Qualificatif Minimal</th>
+                               
                                   
-                                  <th>D&eacute;signation</th>
-                                
+								
                               </tr>
                           </thead>
-						  
                           <tbody>
-						  {{#each listeRubrique}}
+						      {{#each listeRubriques}}
                               <tr class="gradeX">
-                                  <td>{{REV_ORDRE}}</td>
-                                  <td>{{REV_DESIGNATION}}</td>
-                                  <td class="center"><i class="icon-remove"/></td>
-								  <td class ="center"><i class="icon-edit"/></td>
+                                  <td>{{ID}}</td>
+                                  <td>{{MAX}}</td>
+								  <td>{{MIN}}</td>
+								 
+								
+								
+								  <td class="center"><i class="icon-edit"/></td>
+								  <td class="center"><i class="icon-remove"/></td>
+							     
                               </tr>
-                              
-							{{/each}} 
+                             {{/each}} 
                              
                           </tbody>
                       </table>                      
