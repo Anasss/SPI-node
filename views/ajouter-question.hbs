@@ -125,7 +125,7 @@
                         <select name="choix_ques" id="choix_ques" style="width:400px;">
 						  <option>Choisir une question</option>
 						  {{#each listeQuestions}}
-                          <option value = "">{{QUE_INTITULE}}-{{QUA_MINIMAL}}-{{QUA_MAXIMAL}}</option>
+                          <option value = {{QUE_INTITULE}}>{{QUE_INTITULE}}-{{QUA_MINIMAL}}-{{QUA_MAXIMAL}}</option>
                            {{/each}} 
                         </select>
                       </div>
