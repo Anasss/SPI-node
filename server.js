@@ -40,12 +40,12 @@ var connection = mysql.createConnection({
 var Enseignant1 ={};
 var Enseignant2 ={};
 var Enseignant3 ={};
-var NOM;
+var NumEns;
 var nbEnregistrementEval = {};
 var promotion1,promotion2,formation1,formation2,designation1,designation2,ue1,ue2,etat1,etat2,periode1,periode2;
 var ordreRubrique1,ordreRubrique2,ordreRubrique3,designationRubrique1,designationRubrique2,designationRubrique3;
 //var ENS_NOM = "'Saliou'";
-var requetteListeEvaluations = 'SELECT * from v_evaluation where ENS_NOM =';
+var requetteListeEvaluations = 'SELECT * from v_evaluation where ENS_NO_ENSEIGNANT =';
 //var countEvaluationEnseignant = 'SELECT count(*) as nb from v_evaluation where ENS_NOM ='+ENS_NOM;
 var requetteRubrique = "'SELECT * from v_rubeval where ENS_NOM ='Saliou'";
 var listeFormation = [];
@@ -262,9 +262,9 @@ app.post('/evalajoute', function (req, res) {
 		console.log(con);	
 		console.log(result.insertId);
            
-		   connection.query("SELECT * from v_evaluation where ENS_NOM ='"+NOM+"'", function(err, rows){
+		   connection.query("SELECT * from v_evaluation where ENS_NO_ENSEIGNANT ='"+NumEns+"'", function(err, rows){
         // There was a error or not?
-		console.log(NOM);
+		console.log(NumEns);
 			if(err != null) {
 				res.end("Query error:" + err);
 			} else {
@@ -284,10 +284,10 @@ app.post('/evalajoute', function (req, res) {
  */
 app.post('/listeEval', function (req, res){
 //var NOEnseignant = req.params.select01;
-var NOM = req.body.select01;
+NumEns = req.body.select01;
 
-console.log(requetteListeEvaluations+NOM);		
-	connection.query("SELECT * from v_evaluation where ENS_NOM ='"+NOM+"'", function(err, rows){
+console.log(requetteListeEvaluations+NumEns);		
+	connection.query("SELECT * from v_evaluation where ENS_NO_ENSEIGNANT ='"+NumEns+"'", function(err, rows){
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
