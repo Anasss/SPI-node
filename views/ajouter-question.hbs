@@ -122,14 +122,11 @@
                       <div class="span4">Question:</div>
                       <div class="span8">
                        
-                        <select name="sport2" id="sport2" style="width:400px;">
-                          <option value="">Clart&eacute; des &eacute;nonc&eacute;s-Peu clair-Tr&egrave;s clair</option>
-                           <option value="">Clart&eacute; des cours-Peu clair-Tr&egrave;s clair</option>
-                           <option value="">Nombre de s&eacute;ances-Suffisant-Insuffisant</option>
-						   <option value="">Clart&eacute; des &eacute;nonc&eacute;s-Peu clair-Tr&egrave;s clair</option>
-                           <option value="">Clart&eacute; des cours-Peu clair-Tr&egrave;s clair</option>
-                           <option value="">Nombre de s&eacute;ances-Suffisant-Insuffisant</option>
-                          
+                        <select name="choix_ques" id="choix_ques" style="width:400px;">
+						  <option>Choisir une question</option>
+						  {{#each listeQuestions}}
+                          <option value = "">{{QUE_INTITULE}}-{{QUA_MINIMAL}}-{{QUA_MAXIMAL}}</option>
+                           {{/each}} 
                         </select>
                       </div>
                       

@@ -300,6 +300,51 @@ console.log(requetteListeEvaluations+NumEns);
 		});	
 });
 
+
+/**
+ * Cette fonction récupère la liste des questions et alimente une template handlebars
+ */
+app.get('/ajouterQuestion', function (req, res){
+
+			
+	connection.query("select * from v_question_s", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			   
+				var data = {
+					   listeQuestions: rows
+				}
+				res.render('ajouter-question.hbs',data);
+			}
+				
+		});		
+			
+	});
+
+/**
+ * Cette fonction récupère la liste des rubriques et alimente une template handlebars
+ */
+app.get('/ajouterRubrique', function (req, res){
+
+			
+	connection.query("select * from Rubrique", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			   
+				var data = {
+					   listeRubriques: rows
+				}
+				res.render('ajouter-rubrique.hbs',data);
+			}
+				
+		});		
+			
+	});
+
 app.get('/creerRubrique', function (req,res){
 res.render('creerRubrique.hbs');
 });
@@ -308,12 +353,6 @@ app.get('/creerQuestion', function (req,res){
 res.render('creerQuestion.hbs');
 });
 
-app.get('/ajouterQuestion', function (req,res){
-res.render('ajouter-question.hbs');
-});
-app.get('/ajouterRubrique', function (req,res){
-res.render('ajouter-rubrique.hbs');
-});
 
 
 app.listen(9090);
