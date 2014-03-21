@@ -46,7 +46,7 @@ var promotion1,promotion2,formation1,formation2,designation1,designation2,ue1,ue
 var ordreRubrique1,ordreRubrique2,ordreRubrique3,designationRubrique1,designationRubrique2,designationRubrique3;
 //var ENS_NOM = "'Saliou'";
 
-var requetteListeEvaluations = 'SELECT DISTINCT * from v_evaluation where ENS_NOM =';
+var requetteListeEvaluations = 'SELECT DISTINCT * from v_evaluation where ENS_NOM =+ENS_NOM';
 
 //var countEvaluationEnseignant = 'SELECT count(*) as nb from v_evaluation where ENS_NOM ='+ENS_NOM;
 var requetteRubrique = "'SELECT * from v_rubeval where ENS_NOM ='Saliou'";
