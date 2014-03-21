@@ -28,11 +28,15 @@
     <link rel="stylesheet" href="css/theme_light/prettify.css">    
     <link rel="stylesheet" href="css/theme_light/tables/dataTables.css">         
     <link rel='stylesheet' href='css/theme_light/calendar/fullcalendar.css' />
+	    <link rel='stylesheet' href='css/theme_light/calendar/calendar_dark.css' />
     <link rel='stylesheet' href='css/theme_light/calendar/fullcalendar.print.css' media='print' /> 
     <link rel="stylesheet" href="css/theme_light/formselements/chosen.css">
     <link rel="stylesheet" href="css/theme_light/formselements/dropkick.css">
-    <link rel="stylesheet" href="css/theme_light/jquery-ui-1.8.20.custom.css">        
-
+    <link rel="stylesheet" href="css/theme_light/jquery-ui-1.8.20.custom.css">    
+   
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
     <!-- Common - CSS -->     
     <link rel="stylesheet" href="css/theme_light/common.css">  
     <link rel="stylesheet" href="css/theme_light.css" class="style_set">
@@ -44,66 +48,40 @@
   <body>
     <div id="loader_cont"><img src="img/loaders/page_loader.gif"></div> 
       
+      
     <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
+	<div style="display:inline-block;">
+	 <img src="img/logo2.png" height="100" width="100">
+	 <img src="img/portal_baseline-ubo.png" height="200" width="225" style="margin-left:1000px" >
+	 <img src="img/bandeau.png"  style="margin-top:5px;"  height="100" width="1345">
+	</div>
+         
+	  <div class="navbar-innr">
+
         <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="sweet-gray sweet-go-back-from-screen">&nbsp;</span>
-          </a>
-          <div class="nav-collapse">            
-           <ul class="main_nav nav pull-right">                
-                <li id="search" class="search"> 
-                  <a href="#">Recherche</a> 
-                  <div class="search_cont">
-                      <form class="navbar-search form-search">                          
-                          <input type="text" class="input-medium search-query" placeholder="Recherche">
-                          <button type="submit">Recherche</button>
-                      </form> 
-                  </div>              
-                </li> 
-                <li id="settings" class="styled dropdown settings">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings</a>
-                    <ul class="dropdown-menu top_menu">
-                        <li class="show_all">Settings</li>
-                        <li><a class="mn_site" href="#"><span>Site</span></a></li>
-                        <li><a class="mn_admin" href="#"><span>Admin</span></a></li>
-                        <li><a class="mn_mail" href="#"><span>Mail</span></a></li>
-                        <li><a class="mn_user" href="#"><span>User</span></a></li>
-                    </ul>
-                </li>
-                <li id="profile" class="styled dropdown profile">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile</a>
-                    <ul class="dropdown-menu top_menu">                        
-                        <li class="profile group">
-                          <img src="img/general/user_1.jpg" width="50" height="50" alt="User">
-                          <ul>
-                            <li><strong>John Doe</strong></li>
-                            <li>@johndoe</li>
-                            <li><span>Administrator</span></li>
-                          </ul>
-                        </li>
-                         <li><a class="mn_settings" href="#"><span>Mes param&egrave;tres</span></a></li>
-                        <li><a class="mn_profile" href="#"><span>Mon profil</span></a></li>
-                        <li><a class="mn_logout" href="login.html"><span>D&eacute;connexion</span></a></li>
-                    </ul>
-                </li>                          
-            </ul>           
-          </div>
-          <h1 class="brand"><a href="index-2.html">Gestion des &eacute;valuations</a></h1>                                       
+
+
+                 
+      <br>  <h1 ><center><font color="#FFFFFF">Gestion des &eacute;valuations</font> </center></h1>
+
+        
+                                               
+
+  
+     
+                                           
         </div>
       </div>
     </div>
             
-    <div class="container">      
-      <div class="sub_nav">
-       
-      </div>    
-      <div class="main_content row-fluid">
+<br>
+<br>
 
-        <div class="span3">
+
+        <div class="span3" style="clear:both;">
 
           <div class="side_nav sidebar-nav" data-spy="affix" data-offset-top="150">
-           
+            
             <h3 class="main_menu group">
                 <span class="title">Main Menu</span>
                 <a id="nav_list_btn" class="btn-collapse btn btn-inverse">
@@ -111,15 +89,17 @@
                 </a>
             </h3>
             <ul class="nav nav-list">                          
-              <li class="active"><a class="home" href="listeEval">Liste des &eacutevaluations </a></li>
+              <li class="active"><a class="home" href="listeEval">G&eacuterer mes &eacutevaluations </a></li>
               
-              <li><a class="charts" href="ajouterEval">Ajouter une &eacutevaluation </a></li>
-               <li><a class="calendar" href="ajouterEval">Modifier une &eacutevaluation </a></li>
+              
                 			   
              
              
                        
             </ul>
+           
+           
+            
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
@@ -130,102 +110,84 @@
 
               <div class="widget chart">
                 <header>
-                    <h3>Saisie et Mise &agrave; jour d'une &eacute;valuation </h3>
+                    <h3 ><font color="#A4A4A4"><b>Saisie et Mise &agrave; jour d'une &eacute;valuation</b> </font> </h3>
                     <ul class="toggle_content">                          
                         <li class="arrow"><a href="#">Toggle Content</a></li>
                     </ul>
                 </header>
                 
 				<section class="welly form_align">
-                  <form class="formClass" method="post">
-                     <hr>
-                    <div class="row-fluid">
-                      <div class="span4">Promotion:</div>
-                      <div class="span8">
-                        <select name="promotion" id="promotion" class="validate[required]">
-						<option value="">Choisir promotion</option>
+
+                  <form class="formClass" method="post" action="/evalajoute">
+                    <table>
+					<tr><th> Promotion:
+
+                        <select name="promotion" id="promotion" >
+                          <option value="">Choisir promotion</option>
 						{{#each listePromotions}}
-                          <option value="">{{ANNEE_PRO}}</option>
-						{{/each}}
-                          </select>
-                      </div>
-                    </div>
-                    <hr>
-					<div class="row-fluid">
-                      <div class="span4">Formation:</div>
-                      <div class="span8">
-                        <select name="formation" id="formation" class="validate[required]">
-                          <option value="">Choisir formation</option>
-						  {{#each listeFormations}}
-                          <option value="">{{CODE_FORMATION}}</option>
-						  {{/each}}
-                          </select>
-                      </div>
-                    </div>
-					<hr>
-					<div class="row-fluid">
-                      <div class="span4">Unit&eacute; d'enseignement :</div>
-                      <div class="span8">
-                        <select name="ue" id="ue" class="validate[required]">
-                          <option value="">unit&eacute; d'enseignement </option>
-                          {{#each uniteEnseignements}}
-                          <option value="">{{CODE_UE}}</option>
+                          <option value={{ANNEE_PRO}}>{{ANNEE_PRO}}</option>
 						{{/each}}
                         </select>
-                      </div>
-                    </div>
-					<hr>
-					<div class="row-fluid">
-                      <div class="span4">D&eacute;signation:</div>
-                      <div class="span8">
-                        <select name="designation" id="designation" class="validate[required]">
-                          <option value="">Choisir d&eacute;signation</option>
-                         </select>
-                      </div>
-                    </div>
-					<hr>
-					<div class="row-fluid">
-                          <div class="span4">Mise &agrave; disposition:</div>
-                          <div class="span3"><input id="debut" type="text" name="debut"><span class="help-inline">99/99/9999</span></div>
-						  <div class="span4"><input id="debut" type="text" name="debut"><span class="help-inline">99/99/9999</span></div>
-                        </div> 
-						
-					<hr>
-					
-                    <div class="row-fluid">
-                      <div class="span4">P&eacute;riode :</div>
-                      <div class="span8"><input value="" data-validation-placeholder="This is a placeholder" class="validate[required] text-input" type="text" name="periode" id="periode" /></div>
-                    </div>
-					
-                                  
-                    
+                    </th> <th>
+					  Formation:
+                        <select name="formation" id="formation" >
+                          <option value="">Choisir formation</option>
+						  {{#each listeFormations}}
+                          <option value={{CODE_FORMATION}}>{{CODE_FORMATION}}</option>
+						  {{/each}}
+						  </select>
                   
+                    </th>
                    
-                    <hr class="big_space">
-                   
-                    <div class="row-fluid">
-                      <div class="span4"> Etat :</div>                      
-                      <div class="span8 radio_btn_cont">
-                        <div>
-                          <label for="radio1">En cours d'&eacute;laboration</label>
-                          <input class="validate[required] radio" type="radio" name="enCours" id="enCours" value="5"/>
-                        </div>
-                        <div>
-                          <label for="radio2">Mise &agrave; disposition</label>
-                          <input class="validate[required] radio" type="radio" name="miseADisposition" id="miseADisposition" value="3"/>
-                        </div>
-                        <div>
-                          <label for="radio3">Cl&ocirc;tur&eacute;</label>
-                          <input class="validate[required] radio" type="radio" name="cloture" id="cloture" value="9"/>
-                        </div>
-                      </div>
-                    </div>                    
-                    <hr class="big_space">
-                    
-                                     
-                  
 
-                    <input class="btn btn-inverse" type="submit" value="valider"/><hr/>
+
+					  <th>Unit&eacute; d'enseignement:
+                        <select name="ue" id="ue" >
+                           <option value="">unit&eacute; d'enseignement </option>
+                          {{#each uniteEnseignements}}
+                          <option value={{CODE_UE}}>{{CODE_UE}}</option>
+						{{/each}}
+                        </select>
+                      </th></tr>
+					  <hr>
+					 <tr>
+	            <td><b>D&eacute;signation:</b></td>
+	<td>
+	        <TEXTAREA  name="designation" rows=1 cols=40 id="designation"></TEXTAREA>
+	</td>
+	<tr>
+
+	<td><b>Mise &agrave; disposition: &nbsp; &nbsp; &nbsp;&nbsp; du: </b></td>
+	<td><input  id="datepicker_ui"  type="text" name="debut"><span class="help-inline"> <img id="calendrier" src="img/calendar.gif">
+	</td>
+	<td>
+	<b>au:</b>
+	<input  id="datepicker_ui"  type="text" name="fin"><span class="help-inline"><a  id="date_dark-gldp" role="button" href="#"> <img src="img/calendar.gif"></a>
+	</td>
+</tr>
+<tr>
+<td><b>P&eacute;riode :</b></td>
+<td>
+
+
+<input type="text" name="periode">
+
+</td>
+</tr>  
+<tr>
+<td><b> Etat:</b></td>
+<td>
+                    <input type="radio" name="choice" value="En cours d'&eacute;laboration">En cours d'&eacute;laboration </td>
+					<td> <input type="radio" name="choice" value="Mise &agrave; disposition">Mise &agrave; disposition  &nbsp;&nbsp;&nbsp;
+				<input type="radio" name="choice" value="Cl&ocirc;tur&eacute;e">Cl&ocirc;tur&eacute;e </td>
+
+</tr>  
+   
+</table>
+<br>
+<br>
+					<center><button class="btn btn-inverse" id="ajout_submit" type="submit">Valider</button> <button class="btn btn-inverse" type="reset">Annuler</button> 
+
                   </form>  
                 </section>
               </div>
@@ -236,31 +198,67 @@
           
         </div><!--/span-->
       </div><!--/row-->      
-      <hr>
+   
 
-      <footer>
-        <p>&copy; LoxDesign.net - Phoenix 2012</p>
-      </footer>
+      
 
     </div><!--/.fluid-container-->
 
    
 
+
     <!-- ===================== JS ===================== -->
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#ajout_submit').click(function () {
+                var payload = {
+                    CODE_FORMATION: $('#formation').val() ,
+					ANNEE_PRO: $('#promotion').val() ,
+					CODE_UE: $('#ue').val() ,  
+					DESIGNATION: $('#designation').val() ,
+					//DEBUT_REPONSE: $('#debut').val() , 
+					//FIN_REPONSE: $('#fin').val()
+                };
+
+                $.ajax({
+                    url: "/evalajoute",
+                    type: "POST",
+                    contentType: "application/json",
+                    processData: false,
+                    data: JSON.stringify(payload),
+                    complete: function (data) {
+                        $( ".formClass" ).append("<div class='alert alert-success'><strong>Evaluation Ajoute avec succes</strong></div>");
+
+                    }
+                });
+            });
+        });
+    </script>
+
     <script src="js/libs/jquery-1.7.2.min.js"></script>    
     <script src="js/libs/bootstrap.min.js"></script>   
     <script src="js/libs/ios-orientationchange-fix.js"></script>      
     <script src="js/libs/jquery-ui-1.8.20.custom.min.js"></script>
+    <script src="js/plugins/widgets/jquery.sparkline.min.js"></script>
     <script src="js/common.js"></script>  
 
     <!-- Site specific --> 
-    <script src="js/plugins/filevalidation/languages/jquery.validationEngine-en.js"></script>  
-    <script src="js/plugins/filevalidation/jquery.validationEngine.js"></script>  
-
+    <script src="js/libs/prettify.js"></script>      
+    <script src="js/plugins/tagedit/jquery.autoGrowInput.js"></script>
+    <script src="js/plugins/tagedit/jquery.tagedit.js"></script>
+    <script src="js/plugins/widgets/slidernav-min.js"></script>    
+    <script src="js/plugins/widgets/glDatePicker.min.js"></script>    
+    <script src="js/plugins/widgets/jquery-ui-timepicker-addon.js"></script>    
+    <script src="js/plugins/widgets/jquery-ui-sliderAccess.js"></script>    
+    <script src="js/plugins/widgets/jquery.miniColors.min.js"></script>    
+    <script src="js/plugins/widgets/colorpicker.js"></script>  
+    <script src="js/plugins/widgets/jquery.knob.js"></script>      
 
     <script src="js/script.js"></script>
-    <script src="js/specific/file_validation.js"></script>
-	
+    <script src="js/specific/sparks.js"></script>
+    <script src="js/specific/widgets.js"></script>
+
+
 	 <!-- Site specific - JS --> 
     <script src="js/libs/prettify.js"></script> 
     <script src="js/plugins/formselements/jquery.maskedinput-1.3.min.js"></script> 
@@ -275,7 +273,11 @@
     <script src="js/plugins/formselements/jquery.ibutton.min.js"></script> 
     <script src="js/plugins/formselements/jquery.metadata.js"></script> 
 
+
     <script src="js/script.js"></script>
+	 <script>
+  
+  </script>
     <script src="js/specific/forms_elements.js"></script>
 
    

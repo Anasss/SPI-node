@@ -40,6 +40,7 @@ var connection = mysql.createConnection({
 var Enseignant1 ={};
 var Enseignant2 ={};
 var Enseignant3 ={};
+var NOM = 'Saliou';
 var nbEnregistrementEval = {};
 var promotion1,promotion2,formation1,formation2,designation1,designation2,ue1,ue2,etat1,etat2,periode1,periode2;
 var ordreRubrique1,ordreRubrique2,ordreRubrique3,designationRubrique1,designationRubrique2,designationRubrique3;
@@ -49,6 +50,7 @@ var requetteListeEvaluations = 'SELECT * from v_evaluation where ENS_NOM =';
 var requetteRubrique = "'SELECT * from v_rubeval where ENS_NOM ='Saliou'";
 var listeFormation = [];
 var listePromotion = [];
+
 
 connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
     if (err) throw err;
@@ -60,7 +62,7 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
     /*connection.query("SELECT * from ENSEIGNANT", function(err, rows){
         // There was a error or not?
         if(err != null) {
-            res.end("Query error:" + err);
+           console.log("Query error:" + err);
         } else {
 		
        	var data1 = {
@@ -82,7 +84,7 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
 	/*connection.query(countEvaluationEnseignant, function(err, rows){
         // There was a error or not?
         if(err != null) {
-            res.end("Query error:" + err);
+            console.log("Query error:" + err);
         } else {
 		   nbEnregistrementEval = rows[0].nb;
          
@@ -90,20 +92,62 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
          }
 		
 		
+<<<<<<< HEAD
+    });
+	    connection.query(requetteListeEnseignant, function(err, rows){
+        // There was a error or not?
+        if(err != null) {
+            console.log("Query error:" + err);
+        } else {
+		
+		
+		
+       if (nbEnregistrementEval == 2 ){ 
+            promotion1 = rows[0].EVE_ANNEE_PRO;
+			promotion2 = rows[1].EVE_ANNEE_PRO;
+			formation1 = rows[0].FRM_CODE_FORMATION;
+			formation2 = rows[1].FRM_CODE_FORMATION;
+			designation1 = rows[0].EVE_DESIGNATION;
+			designation2 = rows[1].EVE_DESIGNATION;
+			ue1 = rows[0].UE_DESIGNATION;
+			ue2= rows[1].UE_DESIGNATION;
+			etat1 = rows[0].EVE_ETAT;
+			etat2 = rows[1].EVE_ETAT;
+			periode1 = rows[0].EVE_PERIODE;
+			periode2 = rows[1].EVE_PERIODE;
+			}
+			
+			else {
+			
+            promotion1 = rows[0].EVE_ANNEE_PRO;
+			
+			formation1 = rows[0].FRM_CODE_FORMATION;
+			designation1 = rows[0].EVE_DESIGNATION;
+			ue1 = rows[0].UE_DESIGNATION;
+			etat1 = rows[0].EVE_ETAT;
+			periode1 = rows[0].EVE_PERIODE;
+			
+		}
+		
+        }
+			
+    });
+	 connection.query(requetteRubrique, function(err, rows){
+=======
     });*/
 	    
 	 /*connection.query(requetteRubrique, function(err, rows){
+>>>>>>> f14c70b1459000cb294158ac7cb4026b7d31cebf
         // There was a error or not?
         if(err != null) {
-            res.end("Query error:" + err);
+            console.log("Query error:" + err);
         } else {
-		
-       	ordreRubrique1= rows[0].REV_ORDRE;
+		ordreRubrique1= rows[0].REV_ORDRE;
 		ordreRubrique2= rows[1].REV_ORDRE;
-		ordreRubrique3= rows[2].REV_ORDRE;
+		//ordreRubrique3= rows[2].REV_ORDRE;
 		designationRubrique1= rows[0].REV_DESIGNATION;
 		designationRubrique2= rows[1].REV_DESIGNATION;
-		designationRubrique3= rows[2].REV_DESIGNATION;
+		//designationRubrique3= rows[2].REV_DESIGNATION;
 		
 		
 		
@@ -174,7 +218,7 @@ app.get('/ajouterEval', function(req, res){
 			 
 			}
 		});	
-			connection.query("Select CODE_FORMATION from Formation", function(err, rows){
+			connection.query("Select DISTINCT CODE_FORMATION from UNITE_ENSEIGNEMENT", function(err, rows){
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
@@ -198,6 +242,43 @@ app.get('/ajouterEval', function(req, res){
 		});	
 });
 
+
+
+
+
+app.post('/evalajoute', function (req, res) {
+    
+	var formation = req.body.formation;
+	var promotion = req.body.promotion;
+	var ue = req.body.ue;
+	var designation = req.body.designation;
+	var periode = req.body.periode;
+	var etat = req.body.choice;
+	
+	console.log(formation+promotion+ue+designation+etat);
+	var con=connection.query("INSERT INTO evaluation  (CODE_FORMATION, ANNEE_PRO, CODE_UE, DESIGNATION, PERIODE, ETAT) values(?,?,?,?,?,?);" , [formation,promotion,ue,designation,periode,etat],
+        function (err, result) {
+            if (err) throw err;
+		console.log(con);	
+		console.log(result.insertId);
+           
+		   connection.query("SELECT * from v_evaluation where ENS_NOM ='"+NOM+"'", function(err, rows){
+        // There was a error or not?
+		console.log(NOM);
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeEvaluations: rows
+				}
+				res.render('index-2.hbs',data1);
+			}
+		});	
+			
+        }
+    );
+	
+});
 /**
  * Cette fonction récupère la liste des évaluations et alimente un template handlebars
  */
