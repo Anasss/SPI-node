@@ -57,7 +57,7 @@
 	</div>
          
 	  <div class="navbar-innr">
-
+	  	
         <div class="container">
 
 
@@ -89,7 +89,7 @@
                 </a>
             </h3>
             <ul class="nav nav-list">                          
-                 <li class="active"><a class="home" href="listeEval">G&eacuterer mes &eacutevaluations </a></li>
+              <li class="active"><a class="home" href="listeEval">G&eacuterer mes &eacutevaluations </a></li>
 			  <li class="active"><a class="home" href="">G&eacuterer mes rubriques </a></li>
 			  <li class="active"><a class="home" href="">G&eacuterer mes questions </a></li>
               
@@ -112,7 +112,7 @@
 
               <div class="widget chart">
                 <header>
-                    <h3 ><font color="#A4A4A4"><b>Saisie et Mise &agrave; jour d'une &eacute;valuation</b> </font> </h3>
+                    <h3 ><font color="#A4A4A4"><b>Saisie et Mise &agrave; jour d'une question</b> </font> </h3>
                     <ul class="toggle_content">                          
                         <li class="arrow"><a href="#">Toggle Content</a></li>
                     </ul>
@@ -121,78 +121,61 @@
 				<section class="welly form_align">
 
                   <form class="formClass" method="post" action="/evalajoute">
-                    <table>
-					<tr><th> Promotion:
-
-                        <select name="promotion" id="promotion" >
-                          <option value="">Choisir promotion</option>
-						{{#each listePromotions}}
-                          <option value={{ANNEE_PRO}}>{{ANNEE_PRO}}</option>
-						{{/each}}
-                        </select>
-                    </th> <th>
-					  Formation:
-                        <select name="formation" id="formation" >
-                          <option value="">Choisir formation</option>
-						  {{#each listeFormations}}
-                          <option value={{CODE_FORMATION}}>{{CODE_FORMATION}}</option>
-						  {{/each}}
-						  </select>
-                  
+                    
+					 <table>
+					<tr><th> Qualificatif maximal:
+<input type="text" name="mx">
+                    </th> 
+					<th> &nbsp; &nbsp; &nbsp; &nbsp;</th><th>
+					  Qualificatif minimal:
+                       <input type="text" name="min">
                     </th>
-                   
-
-
-					  <th>Unit&eacute; d'enseignement:
-                        <select name="ue" id="ue" >
-                           <option value="">unit&eacute; d'enseignement </option>
-                          {{#each uniteEnseignements}}
-                          <option value={{CODE_UE}}>{{CODE_UE}}</option>
-						{{/each}}
-                        </select>
-                      </th></tr>
-					  <hr>
-					 <tr>
-	            <td><b>D&eacute;signation:</b></td>
-	<td>
-	        <TEXTAREA  name="designation" rows=1 cols=40 id="designation"></TEXTAREA>
-	</td>
-	<tr>
-
-	<td><b>Mise &agrave; disposition: &nbsp; &nbsp; &nbsp;&nbsp; du: </b></td>
-	<td><input  id="datepicker_ui"  type="text" name="debut"><span class="help-inline"> <img id="calendrier" src="img/calendar.gif">
-	</td>
-	<td>
-	<b>au:</b>
-	<input  id="datepicker_ui"  type="text" name="fin"><span class="help-inline"><a  id="date_dark-gldp" role="button" href="#"> <img src="img/calendar.gif"></a>
-	</td>
-</tr>
-<tr>
-<td><b>P&eacute;riode :</b></td>
-<td>
-
-
-<input type="text" name="periode">
-
-</td>
-</tr>  
-<tr>
-<td><b> Etat:</b></td>
-<td>
-                    <input type="radio" name="choice" value="ELA">En cours d'&eacute;laboration </td>
-					<td> <input type="radio" name="choice" value="DIS">Mise &agrave; disposition  &nbsp;&nbsp;&nbsp;
-				<input type="radio" name="choice" value="CLO">Cl&ocirc;tur&eacute;e </td>
-
+		 
 </tr>  
    
 </table>
 <br>
 <br>
-					<center><button class="btn btn-inverse" id="ajout_submit" type="submit">Valider</button> <button class="btn btn-inverse" type="reset">Annuler</button> 
+					<button class="btn btn-inverse" id="ajout_submit" type="submit">Ajouter</button>  
 
                   </form>  
+				  
                 </section>
               </div>
+			  <h3>Liste des questions </h3>
+                      
+                  </header>
+                   <section class="group">                         
+                       <table id="example" class="display" >
+                          <thead>
+                              <tr>
+                                  <th>ID</th>
+                                  <th>Qualificatif Maximal</th>
+                                  <th>Qualificatif Minimal</th>
+                               
+                                  
+								
+                              </tr>
+                          </thead>
+                          <tbody>
+						      {{#each listeRubriques}}
+                              <tr class="gradeX">
+                                  <td>{{ID}}</td>
+                                  <td>{{MAX}}</td>
+								  <td>{{MIN}}</td>
+								 
+								
+								
+								  <td class="center"><i class="icon-edit"/></td>
+								  <td class="center"><i class="icon-remove"/></td>
+							     
+                              </tr>
+                             {{/each}} 
+                             
+                          </tbody>
+                      </table>                      
+                  </section>
+              </div> 	
 
             </div>                  
           </div><!--/row-->
@@ -210,7 +193,7 @@
 
 
     <!-- ===================== JS ===================== -->
-<script type="text/javascript">
+	 <script type="text/javascript">
         $(document).ready(function () {
             $('#ajout_submit').click(function () {
                 var payload = {
@@ -229,8 +212,8 @@
                     processData: false,
                     data: JSON.stringify(payload),
                     complete: function (data) {
-                        $( ".formClass" ).append("<div class='alert alert-success'><strong>Evaluation Ajoute avec succes</strong></div>");
-
+                        //$('#output').html(data.responseText);
+						
                     }
                 });
             });
@@ -260,7 +243,7 @@
     <script src="js/specific/sparks.js"></script>
     <script src="js/specific/widgets.js"></script>
 
-
+	
 	 <!-- Site specific - JS --> 
     <script src="js/libs/prettify.js"></script> 
     <script src="js/plugins/formselements/jquery.maskedinput-1.3.min.js"></script> 
@@ -274,7 +257,7 @@
     <script src="js/plugins/formselements/ui.spinner.min.js"></script> 
     <script src="js/plugins/formselements/jquery.ibutton.min.js"></script> 
     <script src="js/plugins/formselements/jquery.metadata.js"></script> 
-
+	 
 
     <script src="js/script.js"></script>
 	 <script>

@@ -90,6 +90,8 @@
             </h3>
             <ul class="nav nav-list">                          
               <li class="active"><a class="home" href="listeEval">G&eacuterer mes &eacutevaluations </a></li>
+			  <li class="active"><a class="home" href="">G&eacuterer mes rubriques </a></li>
+			  <li class="active"><a class="home" href="">G&eacuterer mes questions </a></li>
               
               
                 			   
@@ -110,7 +112,7 @@
 
               <div class="widget chart">
                 <header>
-                    <h3 ><font color="#A4A4A4"><b>Saisie et Mise &agrave; jour d'une &eacute;valuation</b> </font> </h3>
+                    <h3 ><font color="#A4A4A4"><b>Saisie et Mise &agrave; jour d'une rubrique</b> </font> </h3>
                     <ul class="toggle_content">                          
                         <li class="arrow"><a href="#">Toggle Content</a></li>
                     </ul>
@@ -119,32 +121,22 @@
 				<section class="welly form_align">
 
                   <form class="formClass" method="post" action="/evalajoute">
-                    <table>
-					
-<tr>
-<td><b>Ordre:</b></td>
-<td>
-
-
+                    
+					 <table>
+					<tr><th> Ordre:
 <input type="text" name="ordre">
-
-</td>
-</tr>  
-<tr>
-<td><b>D&eacute;signation:</b></td>
-<td>
-
-
-<input type="text" name="ordre">
-
-</td>
-					 
+                    </th> 
+					<th> &nbsp; &nbsp; &nbsp; &nbsp;</th><th>
+					  D&eacute;signation:
+                       <input type="text" name="designation">
+                    </th>
+		 
 </tr>  
    
 </table>
 <br>
 <br>
-					<center><button class="btn btn-inverse" id="ajout_submit" type="submit">Ajouter</button>  
+					<button class="btn btn-inverse" id="ajout_submit" type="submit">Ajouter</button>  
 
                   </form>  
 				  
@@ -170,7 +162,7 @@
                                   <td>{{REV_ORDRE}}</td>
                                   <td>{{REV_DESIGNATION}}</td>
                                   <td class="center"><i class="icon-remove"/></td>
-								  <td class ="center"><i class="icon-search"/></td>
+								  <td class ="center"><i class="icon-edit"/></td>
                               </tr>
                               
 							{{/each}} 
