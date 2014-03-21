@@ -300,7 +300,49 @@ console.log(requetteListeEvaluations+NOM);
 		});	
 });
 
+/**
+ * Cette fonction récupère la liste des questions et alimente une template handlebars
+ */
+app.get('/ajouterQues', function (req, res){
 
+			
+	connection.query("select * from v_question_s", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			   
+				var data = {
+					   listeQuestions: rows
+				}
+				res.render('ajouter-question.hbs',data);
+			}
+				
+		});		
+			
+	});
+
+/**
+ * Cette fonction récupère la liste des rubriques et alimente une template handlebars
+ */
+app.get('/ajouterRub', function (req, res){
+
+			
+	connection.query("select * from Rubrique", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			   
+				var data = {
+					   listeRubriques: rows
+				}
+				res.render('ajouter-rubrique.hbs',data);
+			}
+				
+		});		
+			
+	});
 
 
 app.listen(9090);
