@@ -1,4 +1,4 @@
-// Chargement de modules utilisés. 
+// Chargement de modules utilisï¿½s. 
 var express = require('express')
   , path = require('path')
   , app = express()
@@ -7,7 +7,7 @@ var express = require('express')
   , eval = require('./routes/eval')
   , evalDao = require('./dao/evalDao'); // eval
  
-// les vues seront placées dans le répertoire views
+// les vues seront placï¿½es dans le rï¿½pertoire views
 app.set('views', __dirname + '/views');
  // utilisation du moteur de templates "handelbars"
 app.set('view engine', 'hbs');
@@ -19,7 +19,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 // utilisation du router pour diriger les requetes
 app.use(app.router);
-// defini le répertoire contenant le contenu statique
+// defini le rï¿½pertoire contenant le contenu statique
 app.use(express.static(path.join(__dirname, 'public')));
   
 app.configure(function(){
@@ -45,11 +45,9 @@ var nbEnregistrementEval = {};
 var promotion1,promotion2,formation1,formation2,designation1,designation2,ue1,ue2,etat1,etat2,periode1,periode2;
 var ordreRubrique1,ordreRubrique2,ordreRubrique3,designationRubrique1,designationRubrique2,designationRubrique3;
 //var ENS_NOM = "'Saliou'";
-<<<<<<< HEAD
+
 var requetteListeEvaluations = 'SELECT DISTINCT * from v_evaluation where ENS_NOM =';
-=======
-var requetteListeEvaluations = 'SELECT * from v_evaluation where ENS_NO_ENSEIGNANT =';
->>>>>>> 6b5612c90c5e6e5c044e9780527650cef1ac7d31
+
 //var countEvaluationEnseignant = 'SELECT count(*) as nb from v_evaluation where ENS_NOM ='+ENS_NOM;
 var requetteRubrique = "'SELECT * from v_rubeval where ENS_NOM ='Saliou'";
 var listeFormation = [];
@@ -284,7 +282,7 @@ app.post('/evalajoute', function (req, res) {
 	
 });
 /**
- * Cette fonction récupère la liste des évaluations et alimente un template handlebars
+ * Cette fonction rï¿½cupï¿½re la liste des ï¿½valuations et alimente un template handlebars
  */
 app.post('/listeEval', function (req, res){
 //var NOEnseignant = req.params.select01;
@@ -306,7 +304,7 @@ console.log(requetteListeEvaluations+NumEns);
 
 
 /**
- * Cette fonction récupère la liste des questions et alimente une template handlebars
+ * Cette fonction rï¿½cupï¿½re la liste des questions et alimente une template handlebars
  */
 app.get('/ajouterQuestion', function (req, res){
 
@@ -328,7 +326,7 @@ app.get('/ajouterQuestion', function (req, res){
 	});
 
 /**
- * Cette fonction récupère la liste des rubriques et alimente une template handlebars
+ * Cette fonction rï¿½cupï¿½re la liste des rubriques et alimente une template handlebars
  */
 app.get('/ajouterRubrique', function (req, res){
 
