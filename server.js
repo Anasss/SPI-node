@@ -40,14 +40,12 @@ var connection = mysql.createConnection({
 var Enseignant1 ={};
 var Enseignant2 ={};
 var Enseignant3 ={};
-var NumEnsFa;
+var NumEns;
 var nbEnregistrementEval = {};
 var promotion1,promotion2,formation1,formation2,designation1,designation2,ue1,ue2,etat1,etat2,periode1,periode2;
 var ordreRubrique1,ordreRubrique2,ordreRubrique3,designationRubrique1,designationRubrique2,designationRubrique3;
 //var ENS_NOM = "'Saliou'";
-
 var requetteListeEvaluations = 'SELECT DISTINCT * from v_evaluation where ENS_NOM =+ENS_NOM';
-
 //var countEvaluationEnseignant = 'SELECT count(*) as nb from v_evaluation where ENS_NOM ='+ENS_NOM;
 var requetteRubrique = "'SELECT * from v_rubeval where ENS_NOM ='Saliou'";
 var listeFormation = [];
@@ -289,7 +287,7 @@ app.post('/listeEval', function (req, res){
 NumEns = req.body.select01;
 
 //console.log(requetteListeEvaluations+NumEns);		
-	connection.query("SELECT * from evaluation where NO_ENSEIGNANT ='"+NumEns+"'", function(err, rows){
+	connection.query("SELECT * from v_evaluation where NO_ENSEIGNANT ='"+NumEns+"'", function(err, rows){
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
