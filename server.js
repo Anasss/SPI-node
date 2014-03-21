@@ -284,10 +284,10 @@ app.post('/evalajoute', function (req, res) {
  */
 app.post('/listeEval', function (req, res){
 //var NOEnseignant = req.params.select01;
-var NOM = req.body.select01;
+var NumEns = req.body.select01;
 
-console.log(requetteListeEvaluations+NOM);		
-	connection.query("SELECT * from v_evaluation where ENS_NOM ='"+NOM+"'", function(err, rows){
+console.log(requetteListeEvaluations+NumEns);		
+	connection.query("SELECT * from v_evaluation where ENS_NOM ='"+NumEns+"'", function(err, rows){
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
@@ -300,7 +300,9 @@ console.log(requetteListeEvaluations+NOM);
 		});	
 });
 
-
+app.get('/creerRubrique', function (req,res){
+res.render('creerRubrique.hbs');
+});
 
 
 app.listen(9090);
