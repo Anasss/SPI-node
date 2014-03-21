@@ -40,7 +40,7 @@ var connection = mysql.createConnection({
 var Enseignant1 ={};
 var Enseignant2 ={};
 var Enseignant3 ={};
-var NumEns;
+var NumEnsFa;
 var nbEnregistrementEval = {};
 var promotion1,promotion2,formation1,formation2,designation1,designation2,ue1,ue2,etat1,etat2,periode1,periode2;
 var ordreRubrique1,ordreRubrique2,ordreRubrique3,designationRubrique1,designationRubrique2,designationRubrique3;
@@ -256,7 +256,7 @@ app.post('/evalajoute', function (req, res) {
 	var etat = req.body.choice;
 	
 	console.log(formation+promotion+ue+designation+etat);
-	var con=connection.query("INSERT INTO evaluation  (CODE_FORMATION, ANNEE_PRO, CODE_UE, DESIGNATION, PERIODE, ETAT) values(?,?,?,?,?,?);" , [formation,promotion,ue,designation,periode,etat],
+	var con=connection.query("INSERT INTO evaluation  (NO_ENSEIGNANT,CODE_FORMATION, ANNEE_PRO, CODE_UE, DESIGNATION, PERIODE, ETAT) values(?,?,?,?,?,?,?);" , [NumEns,formation,promotion,ue,designation,periode,etat],
         function (err, result) {
             if (err) throw err;
 		console.log(con);	
