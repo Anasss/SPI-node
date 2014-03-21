@@ -40,12 +40,16 @@ var connection = mysql.createConnection({
 var Enseignant1 ={};
 var Enseignant2 ={};
 var Enseignant3 ={};
-var NOM;
+var NumEns;
 var nbEnregistrementEval = {};
 var promotion1,promotion2,formation1,formation2,designation1,designation2,ue1,ue2,etat1,etat2,periode1,periode2;
 var ordreRubrique1,ordreRubrique2,ordreRubrique3,designationRubrique1,designationRubrique2,designationRubrique3;
 //var ENS_NOM = "'Saliou'";
+<<<<<<< HEAD
 var requetteListeEvaluations = 'SELECT DISTINCT * from v_evaluation where ENS_NOM =';
+=======
+var requetteListeEvaluations = 'SELECT * from v_evaluation where ENS_NO_ENSEIGNANT =';
+>>>>>>> 6b5612c90c5e6e5c044e9780527650cef1ac7d31
 //var countEvaluationEnseignant = 'SELECT count(*) as nb from v_evaluation where ENS_NOM ='+ENS_NOM;
 var requetteRubrique = "'SELECT * from v_rubeval where ENS_NOM ='Saliou'";
 var listeFormation = [];
@@ -262,9 +266,9 @@ app.post('/evalajoute', function (req, res) {
 		console.log(con);	
 		console.log(result.insertId);
            
-		   connection.query("SELECT * from v_evaluation where ENS_NOM ='"+NOM+"'", function(err, rows){
+		   connection.query("SELECT * from v_evaluation where ENS_NO_ENSEIGNANT ='"+NumEns+"'", function(err, rows){
         // There was a error or not?
-		console.log(NOM);
+		console.log(NumEns);
 			if(err != null) {
 				res.end("Query error:" + err);
 			} else {
@@ -284,10 +288,10 @@ app.post('/evalajoute', function (req, res) {
  */
 app.post('/listeEval', function (req, res){
 //var NOEnseignant = req.params.select01;
-var NOM = req.body.select01;
+NumEns = req.body.select01;
 
-console.log(requetteListeEvaluations+NOM);		
-	connection.query("SELECT * from v_evaluation where ENS_NOM ='"+NOM+"'", function(err, rows){
+console.log(requetteListeEvaluations+NumEns);		
+	connection.query("SELECT * from v_evaluation where ENS_NO_ENSEIGNANT ='"+NumEns+"'", function(err, rows){
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
@@ -300,6 +304,51 @@ console.log(requetteListeEvaluations+NOM);
 		});	
 });
 
+
+/**
+ * Cette fonction récupère la liste des questions et alimente une template handlebars
+ */
+app.get('/ajouterQuestion', function (req, res){
+
+			
+	connection.query("select * from v_question_s", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			   
+				var data = {
+					   listeQuestions: rows
+				}
+				res.render('ajouter-question.hbs',data);
+			}
+				
+		});		
+			
+	});
+
+/**
+ * Cette fonction récupère la liste des rubriques et alimente une template handlebars
+ */
+app.get('/ajouterRubrique', function (req, res){
+
+			
+	connection.query("select * from Rubrique", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			   
+				var data = {
+					   listeRubriques: rows
+				}
+				res.render('ajouter-rubrique.hbs',data);
+			}
+				
+		});		
+			
+	});
+
 app.get('/creerRubrique', function (req,res){
 res.render('creerRubrique.hbs');
 });
@@ -307,6 +356,7 @@ res.render('creerRubrique.hbs');
 app.get('/creerQuestion', function (req,res){
 res.render('creerQuestion.hbs');
 });
+
 
 
 app.listen(9090);

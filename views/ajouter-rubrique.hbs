@@ -122,11 +122,11 @@
 				<section class="welly form_align">
                   <form class="formClass" method="post">
 					 Rubrique:
-                        <select name="promotion" id="rubrique" >
-                          <option value="">Choisir une rubrique</option>
-                          <option value="option1">Tennis</option>
-                          <option value="option2">Football</option>
-                          <option value="option3">Golf</option>
+                        <select name="choix_ques" id="choix_ques" style="width:400px;">
+						  <option>Choisir une rubrique</option>
+						  {{#each listeRubriques}}
+                          <option value = "">{{DESIGNATION}}</option>
+                           {{/each}} 
                         </select>
                  
 					  
