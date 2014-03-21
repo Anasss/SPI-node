@@ -40,7 +40,7 @@ var connection = mysql.createConnection({
 var Enseignant1 ={};
 var Enseignant2 ={};
 var Enseignant3 ={};
-var NOM = 'Saliou';
+var NOM;
 var nbEnregistrementEval = {};
 var promotion1,promotion2,formation1,formation2,designation1,designation2,ue1,ue2,etat1,etat2,periode1,periode2;
 var ordreRubrique1,ordreRubrique2,ordreRubrique3,designationRubrique1,designationRubrique2,designationRubrique3;
@@ -236,7 +236,7 @@ app.get('/ajouterEval', function(req, res){
 			    listeFormations: listeFormation,
 				uniteEnseignements: rows
 						}
-						console.log("ok");
+				console.log("ok");
 				res.render('ajouter-evaluation.hbs',data);
 			}
 		});	
@@ -302,6 +302,10 @@ console.log(requetteListeEvaluations+NOM);
 
 app.get('/creerRubrique', function (req,res){
 res.render('creerRubrique.hbs');
+});
+
+app.get('/creerQuestion', function (req,res){
+res.render('creerQuestion.hbs');
 });
 
 
