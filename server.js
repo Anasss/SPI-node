@@ -308,6 +308,13 @@ app.get('/creerQuestion', function (req,res){
 res.render('creerQuestion.hbs');
 });
 
+app.get('/ajouterQuestion', function (req,res){
+res.render('ajouter-question.hbs');
+});
+app.get('/ajouterRubrique', function (req,res){
+res.render('ajouter-rubrique.hbs');
+});
+
 
 app.listen(9090);
 console.log('Server running at http://127.0.0.1:9090/');
