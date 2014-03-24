@@ -164,12 +164,12 @@
                           </thead>
 						  
                           <tbody>
-						  {{#each listeRubrique}}
+						  {{#each listeRubriques}}
                               <tr class="gradeX">
                                   <td>{{REV_ORDRE}}</td>
                                   <td>{{REV_DESIGNATION}}</td>
                                   <td class="center"><i class="icon-remove"/></td>
-								  <td class ="center"><i class="icon-search"/></td>
+								  <td class ="center"><a href="/listeQuestions/{{REV_ID_RUBRIQUE_EVALUATION}}"><i class="icon-search"/></a></td>
                               </tr>
                               
 							{{/each}} 
@@ -201,23 +201,22 @@
                                   <th>Qualificatif min</th>
                                   <th>Qualificatif max</th>
 								  <th>Supprimer</th>
-								  <th>Afficher</th>
+								  
                               </tr>
                           </thead>
                           <tbody>
-                              <tr style="visibility:{{hidden}}" class="gradeX">
-                                  <td></td>
-                                  
-                                  <td></td>
-                                  <td> </td>
-                                  <td> </td>
-								  <td></td>
-								  <td></td>
-                              </tr>
+                               {{#each listeQuestions}}
+                              <tr class="gradeX">
+                                  <td>ORDRE n'est pas encor pris en charge</td>
+                                  <td>{{QUE_INTITULE}}</td>
+								  <td>{{QUA_MINIMAL}}</td>
+                                  <td>{{QUA_MAXIMAL}}</td>
+                                  <td class="center"><i class="icon-remove"/></td>
+								 </tr>
+                              
+							{{/each}} 
 							  
-							
-                             
-                          </tbody>
+                         </tbody>
                       </table>                      
                   </section>
               </div> 

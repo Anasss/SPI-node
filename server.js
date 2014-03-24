@@ -36,10 +36,9 @@ var connection = mysql.createConnection({
         user     : 'root',
         password : ''
     });
- 
-var Enseignant1 ={};
-var Enseignant2 ={};
-var Enseignant3 ={};
+
+var listeEvaluations;
+var listeRubriqueEvaluations;
 var NumEns;
 var nbEnregistrementEval = {};
 var promotion1,promotion2,formation1,formation2,designation1,designation2,ue1,ue2,etat1,etat2,periode1,periode2;
@@ -57,122 +56,48 @@ connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
     connection.query('USE evaespi', function (err) {
         if (err) throw err;
         
-			
-			
-    /*connection.query("SELECT * from ENSEIGNANT", function(err, rows){
-        // There was a error or not?
-        if(err != null) {
-           console.log("Query error:" + err);
-        } else {
-		
-       	var data1 = {
-					   listeEnseignants: rows
-				}
-				res.render('login.hbs',data1);
-		
-        /*Enseignant1= rows[0].PRENOM+' '+rows[0].NOM;
-		Enseignant2= rows[1].PRENOM+' '+rows[1].NOM;
-		Enseignant3= rows[2].PRENOM+' '+rows[2].NOM;
-		Enseignant4= rows[3].PRENOM+' '+rows[3].NOM;
-		
-		
-        }
-		
-		
-    });*/
-	
-	/*connection.query(countEvaluationEnseignant, function(err, rows){
-        // There was a error or not?
-        if(err != null) {
-            console.log("Query error:" + err);
-        } else {
-		   nbEnregistrementEval = rows[0].nb;
-         
-		   
-         }
-		
-		
-<<<<<<< HEAD
-    });
-	    connection.query(requetteListeEnseignant, function(err, rows){
-        // There was a error or not?
-        if(err != null) {
-            console.log("Query error:" + err);
-        } else {
-		
-		
-		
-       if (nbEnregistrementEval == 2 ){ 
-            promotion1 = rows[0].EVE_ANNEE_PRO;
-			promotion2 = rows[1].EVE_ANNEE_PRO;
-			formation1 = rows[0].FRM_CODE_FORMATION;
-			formation2 = rows[1].FRM_CODE_FORMATION;
-			designation1 = rows[0].EVE_DESIGNATION;
-			designation2 = rows[1].EVE_DESIGNATION;
-			ue1 = rows[0].UE_DESIGNATION;
-			ue2= rows[1].UE_DESIGNATION;
-			etat1 = rows[0].EVE_ETAT;
-			etat2 = rows[1].EVE_ETAT;
-			periode1 = rows[0].EVE_PERIODE;
-			periode2 = rows[1].EVE_PERIODE;
-			}
-			
-			else {
-			
-            promotion1 = rows[0].EVE_ANNEE_PRO;
-			
-			formation1 = rows[0].FRM_CODE_FORMATION;
-			designation1 = rows[0].EVE_DESIGNATION;
-			ue1 = rows[0].UE_DESIGNATION;
-			etat1 = rows[0].EVE_ETAT;
-			periode1 = rows[0].EVE_PERIODE;
-			
-		}
-		
-        }
-			
-    });
-	 connection.query(requetteRubrique, function(err, rows){
-=======
-    });*/
-	    
-	 /*connection.query(requetteRubrique, function(err, rows){
->>>>>>> f14c70b1459000cb294158ac7cb4026b7d31cebf
-        // There was a error or not?
-        if(err != null) {
-            console.log("Query error:" + err);
-        } else {
-		ordreRubrique1= rows[0].REV_ORDRE;
-		ordreRubrique2= rows[1].REV_ORDRE;
-		//ordreRubrique3= rows[2].REV_ORDRE;
-		designationRubrique1= rows[0].REV_DESIGNATION;
-		designationRubrique2= rows[1].REV_DESIGNATION;
-		//designationRubrique3= rows[2].REV_DESIGNATION;
-		
-		
-		
-        }
-		
-		
-    });*/
-});
+		});
 
 app.get('/handlebars', eval.testerHandlebars);
 app.get('/eval/edit/:titre', eval.NouvelleEvaluationParams);
-
-
 app.get('/listeRubriques/:idEval',function(req, res) {
 
 var id = req.params.idEval;
 console.log(id);
 connection.query("SELECT DISTINCT * from v_rubeval where EVE_ID_EVALUATION ="+id, function(err, rows){
+		
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			  console.log(rows);
+			  listeRubriqueEvaluations = rows;
+		      console.log(listeRubriqueEvaluations);
+				var data1 = {
+				       listeEvaluations: listeEvaluations,
+					   listeRubriques: rows
+				}
+				res.render('index-2.hbs',data1);
+			}
+				
+		});	
+
+});
+
+app.get('/listeQuestions/:idRubrique',function(req, res) {
+
+var id = req.params.idRubrique;
+console.log(id);
+connection.query("SELECT DISTINCT * from v_question_evaluation where REV_ID_RUBRIQUE_EVALUATION ="+id, function(err, rows){
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
 			} else {
 			  
 				var data1 = {
-					   listeRubrique: rows
+				       listeEvaluations: listeEvaluations,
+					   listeRubriques: listeRubriqueEvaluations,
+					   listeQuestions: rows
 				}
 				res.render('index-2.hbs',data1);
 			}
@@ -209,7 +134,7 @@ app.get('/eval/listeRubriqueEvaluation/', eval.listeRubriqueEvaluation);
 //app.post('/eval/editRubrique/', eval.NouvelleRubrique);
 app.get('/eval/injecterEvaluation', eval.InjecterNouvelleEvaluation);
 app.get('/ajouterEval', function(req, res){
-	connection.query("Select ANNEE_PRO from Promotion", function(err, rows){
+	connection.query("Select DISTINCT ANNEE_PRO from Promotion", function(err, rows){
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
@@ -218,7 +143,9 @@ app.get('/ajouterEval', function(req, res){
 			 
 			}
 		});	
-			connection.query("Select DISTINCT CODE_FORMATION from UNITE_ENSEIGNEMENT", function(err, rows){
+		    var promotions = req.params.ANNEE_PRO;
+		    console.log(promotions);
+			connection.query("Select DISTINCT CODE_FORMATION from FORMATION where N0_ANNEE='"+promotions+"'", function(err, rows){
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
@@ -287,7 +214,9 @@ app.post('/listeEval', function (req, res){
 NumEns = req.body.select01;
 
 //console.log(requetteListeEvaluations+NumEns);		
-	connection.query("SELECT * from v_evaluation where NO_ENSEIGNANT ='"+NumEns+"'", function(err, rows){
+	connection.query("SELECT * from v_evaluation where ENS_NO_ENSEIGNANT ='"+NumEns+"'", function(err, rows){
+	listeEvaluations = rows;
+	
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);

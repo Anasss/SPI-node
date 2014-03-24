@@ -127,7 +127,7 @@
                         <select name="promotion" id="promotion" >
                           <option value="">Choisir promotion</option>
 						{{#each listePromotions}}
-                          <option value={{ANNEE_PRO}}>{{ANNEE_PRO}}</option>
+                          <option id="annee_pro" value={{ANNEE_PRO}}>{{ANNEE_PRO}}</option>
 						{{/each}}
                         </select>
                     </th> <th>
@@ -230,6 +230,27 @@
                     data: JSON.stringify(payload),
                     complete: function (data) {
                         $( ".formClass" ).append("<div class='alert alert-success'><strong>Evaluation Ajoute avec succes</strong></div>");
+
+                    }
+                });
+            });
+        });
+    </script>
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $('#promotion').change(function () {
+                var payload = {
+                    ANNEE_PRO: $('#promotion').val() 
+				};
+
+                $.ajax({
+                    url: "/ajouterEval",
+                    type: "GET",
+                    contentType: "application/json",
+                    processData: false,
+                    data: JSON.stringify(payload),
+                    complete: function (data) {
+                    $( ".formClass" ).append("<div class='alert alert-success'><strong>Evaluation Ajoute avec succes</strong></div>");
 
                     }
                 });
