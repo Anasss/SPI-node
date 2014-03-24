@@ -227,7 +227,61 @@ app.post('/rubriqueajoute', function (req, res) {
 });
 
 
-
+app.post('/qualifAjoute', function (req, res) {
+    
+	var minimal=req.body.minimal;
+	var maximal = req.body.maximal;
+	var id = req.body.id_qualif;
+	
+	if(id ==""){
+	var con=connection.query("INSERT INTO qualificatif(MAXIMAL,MINIMAL) values(?,?);" , [maximal, minimal],
+        function (err, result) {
+            if (err) throw err;
+		console.log(con);	
+		console.log(result.insertId);
+           
+		  	connection.query("SELECT * from qualificatif ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeQualificatifs: rows
+				}
+				res.render('creerQualificatif.hbs',data1);
+			}
+		});	
+			
+        }
+    );
+	}
+	
+	else {
+	
+	var con=connection.query("UPDATE qualificatif SET MAXIMAL=?, MINIMAL=? WHERE ID_QUALIFICATIF='"+id+"'" , [minimal,maximal],
+        function (err, result) {
+            if (err) throw err;
+		console.log(con);	
+		
+           
+		  	connection.query("SELECT * from qualificatif ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeQualificatifs: rows
+				}
+				res.render('creerQualificatif.hbs',data1);
+			}
+		});	
+			
+        }
+    );
+	
+	}
+	
+});
 
 
 
@@ -355,8 +409,20 @@ app.get('/creerRubrique', function (req,res){
 		});	
 });
 
-app.get('/creerQuestion', function (req,res){
-res.render('creerQuestion.hbs');
+app.get('/creerQualif', function (req,res){
+
+
+connection.query("SELECT * from qualificatif ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeQualificatifs: rows
+				}
+				res.render('creerQualificatif.hbs',data1);
+			}
+		});	
 });
 
 
