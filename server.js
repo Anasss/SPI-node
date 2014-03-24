@@ -176,7 +176,7 @@ app.post('/rubriqueajoute', function (req, res) {
 	var designation = req.body.designation;
 	var id = req.body.id_rub;
 	
-	if(id =='undefined'){
+	if(id ==""){
 	var con=connection.query("INSERT INTO rubrique(ORDRE, DESIGNATION) values(?,?);" , [ordre,designation],
         function (err, result) {
             if (err) throw err;

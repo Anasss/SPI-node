@@ -176,7 +176,7 @@
                                   <td class="designation-liste{{ID_RUBRIQUE}}">{{DESIGNATION}}</td> 
                                   <td class="center"><i class="icon-remove"/></td>
 								  <td class ="center" id="td-123" OnClick="modifier({{ID_RUBRIQUE}});"> <i class="icon-search"> </a></td>
-								  <input type="hidden">{{ID_RUBRIQUE}}</input>
+								  <input type="hidden" value={{ID_RUBRIQUE}}>
                               </tr>
                               
 							{{/each}} 
@@ -205,6 +205,7 @@
 	 <script type="text/javascript">
         $(document).ready(function () {
             $('#ajout_rubrique_submit').click(function () {
+			
                 var payload = {
                     ORDRE: $('#ordre').val() ,
 					DESIGNATION: $('#designation').val() ,
@@ -230,7 +231,7 @@
         
 		
             function modifier(id) {
-			
+		
 			var recup1 = '.ordre-liste'+id;
 			var recup2 = '.designation-liste'+id;
                 var payload = {
