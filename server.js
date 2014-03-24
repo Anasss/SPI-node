@@ -174,9 +174,9 @@ app.post('/rubriqueajoute', function (req, res) {
     
 	var ordre=req.body.ordre;
 	var designation = req.body.designation;
+	var id = req.body.id_rub;
 	
-	
-	
+	if(id =='undefined'){
 	var con=connection.query("INSERT INTO rubrique(ORDRE, DESIGNATION) values(?,?);" , [ordre,designation],
         function (err, result) {
             if (err) throw err;
@@ -197,6 +197,32 @@ app.post('/rubriqueajoute', function (req, res) {
 			
         }
     );
+	}
+	
+	else {
+	
+	var con=connection.query("UPDATE rubrique SET ORDRE=?, DESIGNATION=? WHERE ID_RUBRIQUE='"+id+"'" , [ordre,designation],
+        function (err, result) {
+            if (err) throw err;
+		console.log(con);	
+		console.log(result.insertId);
+           
+		  	connection.query("SELECT * from rubrique ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeRubrique: rows
+				}
+				res.render('creerRubrique.hbs',data1);
+			}
+		});	
+			
+        }
+    );
+	
+	}
 	
 });
 
@@ -312,7 +338,6 @@ app.get('/ajouterRubrique', function (req, res){
 	});
 
 app.get('/creerRubrique', function (req,res){
-
 
 
 
