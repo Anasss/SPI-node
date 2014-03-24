@@ -198,6 +198,43 @@ app.get('/ajouterEval', function(req, res){
 });
 
 
+app.post('/rubriqueajoute', function (req, res) {
+    
+	var ordre=req.body.ordre;
+	var designation = req.body.designation;
+	
+	
+	
+	var con=connection.query("INSERT INTO rubrique(ORDRE, DESIGNATION) values(?,?);" , [ordre,designation],
+        function (err, result) {
+            if (err) throw err;
+		console.log(con);	
+		console.log(result.insertId);
+           
+		  	connection.query("SELECT * from rubrique ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeRubrique: rows
+				}
+				res.render('creerRubrique.hbs',data1);
+			}
+		});	
+			
+        }
+    );
+	
+});
+
+
+
+
+
+
+
+
 
 
 
@@ -303,7 +340,22 @@ app.get('/ajouterRubrique', function (req, res){
 	});
 
 app.get('/creerRubrique', function (req,res){
-res.render('creerRubrique.hbs');
+
+
+
+
+	
+	connection.query("SELECT * from rubrique ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeRubrique: rows
+				}
+				res.render('creerRubrique.hbs',data1);
+			}
+		});	
 });
 
 app.get('/creerQuestion', function (req,res){

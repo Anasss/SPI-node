@@ -118,7 +118,7 @@
                 
 				<section class="welly form_align">
 
-                  <form class="formClass" method="post" action="/evalajoute">
+                  <form class="formClass" method="post" action="/rubriqueajoute">
                     <table>
 					
 <tr>
@@ -126,7 +126,7 @@
 <td>
 
 
-<input type="text" name="ordre">
+<input type="text"  id="ordre" name="ordre" value="" />
 
 </td>
 </tr>  
@@ -135,7 +135,7 @@
 <td>
 
 
-<input type="text" name="ordre">
+<input type="text" id="designation" name="designation">
 
 </td>
 					 
@@ -144,7 +144,7 @@
 </table>
 <br>
 <br>
-					<center><button class="btn btn-inverse" id="ajout_submit" type="submit">Ajouter</button>  
+					<center><button class="btn btn-inverse" id="ajout_rubrique_submit" type="submit">Valider</button>  
 
                   </form>  
 				  
@@ -167,10 +167,11 @@
                           <tbody>
 						  {{#each listeRubrique}}
                               <tr class="gradeX">
-                                  <td>{{REV_ORDRE}}</td>
-                                  <td>{{REV_DESIGNATION}}</td>
+                                  <td class="ordre-liste">{{ORDRE}}</td>
+                                  <td class="designation-liste">{{DESIGNATION}}</td> 
                                   <td class="center"><i class="icon-remove"/></td>
-								  <td class ="center"><i class="icon-search"/></td>
+								  <td class ="center" id="td-123" OnClick="modifier();"> <i class="icon-search"> </a></td>
+								  <input type="hidden">{{ID_RUBRIQUE}}</input>
                               </tr>
                               
 							{{/each}} 
@@ -198,18 +199,15 @@
     <!-- ===================== JS ===================== -->
 	 <script type="text/javascript">
         $(document).ready(function () {
-            $('#ajout_submit').click(function () {
+            $('#ajout_rubrique_submit').click(function () {
                 var payload = {
-                    CODE_FORMATION: $('#formation').val() ,
-					ANNEE_PRO: $('#promotion').val() ,
-					CODE_UE: $('#ue').val() ,  
+                    ORDRE: $('#ordre').val() ,
 					DESIGNATION: $('#designation').val() ,
-					//DEBUT_REPONSE: $('#debut').val() , 
-					//FIN_REPONSE: $('#fin').val()
+					
                 };
 
                 $.ajax({
-                    url: "/evalajoute",
+                    url: "/rubriqueajoute",
                     type: "POST",
                     contentType: "application/json",
                     processData: false,
@@ -222,6 +220,34 @@
             });
         });
     </script>
+	
+	<script type="text/javascript">
+        
+		
+            function modifier() {
+                var payload = {
+                    ORDRE: $('.ordre-liste').html() ,
+					DESIGNATION: $('.designation-liste').html() ,
+					
+                };
+
+                $.ajax({
+                    url: "/creerRubrique",
+                    type: "GET",
+                    contentType: "application/json",
+                    processData: false,
+                    data: JSON.stringify(payload),
+                    complete: function (data) {
+					    console.log("oui");
+                        document.getElementById('ordre').value= (payload.ORDRE);
+						document.getElementById('designation').value=(payload.DESIGNATION);
+						
+                    }
+                });
+            };
+        
+    </script>
+	
 
     <script src="js/libs/jquery-1.7.2.min.js"></script>    
     <script src="js/libs/bootstrap.min.js"></script>   
