@@ -336,10 +336,47 @@ app.get('/ajouterRubrique', function (req, res){
 		});		
 			
 	});
+	
+	
+	app.post('/ajouterRubrique', function (req, res){
+
+	var designation = req.body.choix_ques;
+	console.log(designation);
+	
+	var ordre = 3;
+			
+	connection.query("INSERT INTO rubrique_evaluation(ID_EVALUATION, ID_RUBRIQUE, ORDRE, DESIGNATION) values(?,?,?,?);",[1,2,ordre,designation], function(err, rows){
+       
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			   
+			   connection.query("SELECT * from v_evaluation where ENS_NO_ENSEIGNANT ='"+NumEns+"'", function(err, rows){
+	
+	listeEvaluations = rows;
+	
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeEvaluations: rows
+				}
+				res.render('index-2.hbs',data1);
+			}
+		});		
+			}
+				
+		});		
+		
+		
+			
+	});
 
 app.get('/creerRubrique', function (req,res){
 
-
+var id = req.params.idEval;
+console.log(id);
 
 	
 	connection.query("SELECT * from rubrique ", function(err, rows){
@@ -351,6 +388,7 @@ app.get('/creerRubrique', function (req,res){
 			listeRubrique: rows
 				}
 				res.render('creerRubrique.hbs',data1);
+				
 			}
 		});	
 });
@@ -358,8 +396,6 @@ app.get('/creerRubrique', function (req,res){
 app.get('/creerQuestion', function (req,res){
 res.render('creerQuestion.hbs');
 });
-
-
 
 app.listen(9090);
 console.log('Server running at http://127.0.0.1:9090/');
