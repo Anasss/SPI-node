@@ -362,6 +362,29 @@ app.get('/creerQuestion', function (req,res){
 res.render('creerQuestion.hbs');
 });
 
+app.get('/supprimerRubrique', function (req,res){
+			var con=connection.query("DELETE FROM RUBRIQUE WHERE ID_RUBRIQUE = 6", function (err, result) {
+            if (err != null) {
+			res.end("impossible de supprimer cette rubrique");
+			}
+		   else{
+		  	connection.query("SELECT * from rubrique ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeRubrique: rows
+				}
+				res.render('creerRubrique.hbs',data1);
+			}
+		});	}
+			
+        	
+		});	
+//res.render('creerQuestion.hbs');
+});
+
 
 
 app.listen(9090);
