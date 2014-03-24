@@ -138,7 +138,12 @@
 <input type="text" id="designation" name="designation">
 
 </td>
-					 
+<td>
+
+
+<input type="hidden" id="id_rub" name="id_rub">
+
+</td>				 
 </tr>  
    
 </table>
@@ -167,10 +172,10 @@
                           <tbody>
 						  {{#each listeRubrique}}
                               <tr class="gradeX">
-                                  <td class="ordre-liste">{{ORDRE}}</td>
-                                  <td class="designation-liste">{{DESIGNATION}}</td> 
+                                  <td class="ordre-liste{{ID_RUBRIQUE}}">{{ORDRE}}</td>
+                                  <td class="designation-liste{{ID_RUBRIQUE}}">{{DESIGNATION}}</td> 
                                   <td class="center"><i class="icon-remove"/></td>
-								  <td class ="center" id="td-123" OnClick="modifier();"> <i class="icon-search"> </a></td>
+								  <td class ="center" id="td-123" OnClick="modifier({{ID_RUBRIQUE}});"> <i class="icon-search"> </a></td>
 								  <input type="hidden">{{ID_RUBRIQUE}}</input>
                               </tr>
                               
@@ -224,10 +229,14 @@
 	<script type="text/javascript">
         
 		
-            function modifier() {
+            function modifier(id) {
+			
+			var recup1 = '.ordre-liste'+id;
+			var recup2 = '.designation-liste'+id;
                 var payload = {
-                    ORDRE: $('.ordre-liste').html() ,
-					DESIGNATION: $('.designation-liste').html() ,
+                    ORDRE: $(recup1).html() ,
+					DESIGNATION: $(recup2).html() ,
+					idRub : id,
 					
                 };
 
@@ -241,6 +250,7 @@
 					    console.log("oui");
                         document.getElementById('ordre').value= (payload.ORDRE);
 						document.getElementById('designation').value=(payload.DESIGNATION);
+						document.getElementById('id_rub').value=(payload.idRub);
 						
                     }
                 });
