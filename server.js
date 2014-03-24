@@ -133,19 +133,27 @@ app.get('/eval/listeRubrique/', eval.listeRubrique);
 app.get('/eval/listeRubriqueEvaluation/', eval.listeRubriqueEvaluation);
 //app.post('/eval/editRubrique/', eval.NouvelleRubrique);
 app.get('/eval/injecterEvaluation', eval.InjecterNouvelleEvaluation);
-app.get('/ajouterEval', function(req, res){
-	connection.query("Select DISTINCT ANNEE_PRO from Promotion", function(err, rows){
+
+app.post('/ajouterEval', function(req, res){
+			
+			connection.query("Select DISTINCT CODE_FORMATION from FORMATION", function(err, rows){
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
 			} else {
-			 listePromotion = rows;
-			 
+			var data = {
+			listeFormations: rows	
 			}
+			res.render('ajouter-evaluation.hbs',data);			
+			}
+			
 		});	
-		    var promotions = req.params.ANNEE_PRO;
-		    console.log(promotions);
-			connection.query("Select DISTINCT CODE_FORMATION from FORMATION where N0_ANNEE='"+promotions+"'", function(err, rows){
+		
+
+});
+app.get('/ajouterEval', function(req, res){
+
+		connection.query("Select DISTINCT CODE_FORMATION from FORMATION", function(err, rows){
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
@@ -153,6 +161,23 @@ app.get('/ajouterEval', function(req, res){
 			listeFormation = rows;				
 			}
 		});	
+			
+			/*var formation = req.body.CODE_FORMATION;
+		    console.log(req.body.CODE_FORMATION);
+			console.log("Select DISTINCT ANNEE_PRO from Promotion where CODE_FORMATION ='"+formation+"'");*/
+			
+	connection.query("Select DISTINCT ANNEE_PRO from Promotion where CODE_FORMATION ='M2DOSI'", function(err, rows){
+			
+			// There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			 listePromotion = rows;
+			 
+			}
+		});	
+		    
+		
 		    connection.query("Select CODE_UE from UNITE_ENSEIGNEMENT", function(err, rows){
         // There was a error or not?
 			if(err != null) {
@@ -163,6 +188,9 @@ app.get('/ajouterEval', function(req, res){
 			    listeFormations: listeFormation,
 				uniteEnseignements: rows
 						}
+				console.log(listePromotion);
+				console.log(listeFormation);
+				
 				console.log("ok");
 				res.render('ajouter-evaluation.hbs',data);
 			}

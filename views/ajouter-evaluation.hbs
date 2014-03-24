@@ -238,14 +238,14 @@
     </script>
 	<script type="text/javascript">
         $(document).ready(function () {
-            $('#promotion').change(function () {
+            $('#formation').change(function () {
                 var payload = {
-                    ANNEE_PRO: $('#promotion').val() 
+                   CODE_FORMATION: $('#formation').val() 
 				};
 
                 $.ajax({
                     url: "/ajouterEval",
-                    type: "GET",
+                    type: "POST",
                     contentType: "application/json",
                     processData: false,
                     data: JSON.stringify(payload),
