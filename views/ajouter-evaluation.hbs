@@ -89,7 +89,9 @@
                 </a>
             </h3>
             <ul class="nav nav-list">                          
-              <li class="active"><a class="home" href="listeEval">G&eacuterer mes &eacutevaluations </a></li>
+                 <li class="active"><a class="home" href="listeEval">G&eacuterer mes &eacutevaluations </a></li>
+			  <li class="active"><a class="home" href="">G&eacuterer mes rubriques </a></li>
+			  <li class="active"><a class="home" href="">G&eacuterer mes questions </a></li>
               
               
                 			   
@@ -125,7 +127,7 @@
                         <select name="promotion" id="promotion" >
                           <option value="">Choisir promotion</option>
 						{{#each listePromotions}}
-                          <option value={{ANNEE_PRO}}>{{ANNEE_PRO}}</option>
+                          <option id="annee_pro" value={{ANNEE_PRO}}>{{ANNEE_PRO}}</option>
 						{{/each}}
                         </select>
                     </th> <th>
@@ -177,9 +179,9 @@
 <tr>
 <td><b> Etat:</b></td>
 <td>
-                    <input type="radio" name="choice" value="En cours d'&eacute;laboration">En cours d'&eacute;laboration </td>
-					<td> <input type="radio" name="choice" value="Mise &agrave; disposition">Mise &agrave; disposition  &nbsp;&nbsp;&nbsp;
-				<input type="radio" name="choice" value="Cl&ocirc;tur&eacute;e">Cl&ocirc;tur&eacute;e </td>
+                    <input type="radio" name="choice" value="ELA">En cours d'&eacute;laboration </td>
+					<td> <input type="radio" name="choice" value="DIS">Mise &agrave; disposition  &nbsp;&nbsp;&nbsp;
+				<input type="radio" name="choice" value="CLO">Cl&ocirc;tur&eacute;e </td>
 
 </tr>  
    
@@ -228,6 +230,27 @@
                     data: JSON.stringify(payload),
                     complete: function (data) {
                         $( ".formClass" ).append("<div class='alert alert-success'><strong>Evaluation Ajoute avec succes</strong></div>");
+
+                    }
+                });
+            });
+        });
+    </script>
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $('#promotion').change(function () {
+                var payload = {
+                    ANNEE_PRO: $('#promotion').val() 
+				};
+
+                $.ajax({
+                    url: "/ajouterEval",
+                    type: "GET",
+                    contentType: "application/json",
+                    processData: false,
+                    data: JSON.stringify(payload),
+                    complete: function (data) {
+                    $( ".formClass" ).append("<div class='alert alert-success'><strong>Evaluation Ajoute avec succes</strong></div>");
 
                     }
                 });
