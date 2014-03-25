@@ -21,25 +21,25 @@
 
     <!-- ===================== CSS ===================== -->    
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>  
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap/bootstrap-responsive.min.css">    
+    <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap/bootstrap-responsive.min.css">    
 
     <!-- Site specific - CSS --> 
-    <link rel="stylesheet" href="css/theme_light/prettify.css">    
-    <link rel="stylesheet" href="css/theme_light/tables/dataTables.css">         
-    <link rel='stylesheet' href='css/theme_light/calendar/fullcalendar.css' />
-	    <link rel='stylesheet' href='css/theme_light/calendar/calendar_dark.css' />
-    <link rel='stylesheet' href='css/theme_light/calendar/fullcalendar.print.css' media='print' /> 
-    <link rel="stylesheet" href="css/theme_light/formselements/chosen.css">
-    <link rel="stylesheet" href="css/theme_light/formselements/dropkick.css">
-    <link rel="stylesheet" href="css/theme_light/jquery-ui-1.8.20.custom.css">    
+    <link rel="stylesheet" href="../css/theme_light/prettify.css">    
+    <link rel="stylesheet" href="../css/theme_light/tables/dataTables.css">         
+    <link rel='stylesheet' href='../css/theme_light/calendar/fullcalendar.css' />
+	    <link rel='stylesheet' href='../css/theme_light/calendar/calendar_dark.css' />
+    <link rel='stylesheet' href='../css/theme_light/calendar/fullcalendar.print.css' media='print' /> 
+    <link rel="stylesheet" href="../css/theme_light/formselements/chosen.css">
+    <link rel="stylesheet" href="../css/theme_light/formselements/dropkick.css">
+    <link rel="stylesheet" href="../css/theme_light/jquery-ui-1.8.20.custom.css">    
    
   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
     <!-- Common - CSS -->     
-    <link rel="stylesheet" href="css/theme_light/common.css">  
-    <link rel="stylesheet" href="css/theme_light.css" class="style_set">
+    <link rel="stylesheet" href="../css/theme_light/common.css">  
+    <link rel="stylesheet" href="../css/theme_light.css" class="style_set">
     
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -51,10 +51,9 @@
       
     <div class="navbar navbar-fixed-top">
 	<div style="display:inline-block;">
-	<img src="../img/logo2.png" height="170" width="160">
-
-	 <img src="../img/portal_baseline-ubo.png" height="200" width="225" style="margin-left:900px" >
-	 <img src="../img/bandeau.png"  style="margin-top:10px;"  height="100" width="1345">
+	  <img src="../img/logo2.png" height="100" width="100">
+	<img src="../img/portal_baseline-ubo.png" height="200" width="225" style="margin-left:1150px" >
+	 <img src="../img/bandeau.png"  style="margin-top:10px;"  height="100" width="1485">
 	</div>
          
 	  <div class="navbar-innr">
@@ -90,17 +89,13 @@
                 </a>
             </h3>
             <ul class="nav nav-list">                          
-             <li class="active"><a class="home" href="listeEval">G&eacuterer mes &eacutevaluations </a></li>
+
+              <li class="active"><a class="home" href="listeEval">G&eacuterer mes &eacutevaluations </a></li>
 			  <li class="active"><a class="home" href="creerRubrique">G&eacuterer mes rubriques </a></li>
 			  <li class="active"><a class="home" href="creerQuestion">G&eacuterer mes questions </a></li>
 			  <li class="active"><a class="home" href="creerQualificatif">G&eacuterer mes qualificatifs </a></li>
 
-              
-              
-                			   
-             
-             
-                       
+
             </ul>
            
            
@@ -115,7 +110,7 @@
 
               <div class="widget chart">
                 <header>
-                    <h3 ><font color="#A4A4A4"><b>Saisie et Mise &agrave; jour d'une rubrique</b> </font> </h3>
+                    <h3 ><font color="#A4A4A4"><b>Saisie et Mise &agrave; jour d'une question</b> </font> </h3>
                     <ul class="toggle_content">                          
                         <li class="arrow"><a href="#">Toggle Content</a></li>
                     </ul>
@@ -123,49 +118,75 @@
                 
 				<section class="welly form_align">
 
-                  <form class="formClass" method="post" action="/evalajoute">
-                    
-					 <table>
-					<tr><th> Ordre:
+                  <form class="formClass" method="post" action="/quesajoute">
+                    <table>
+					
+<tr>
+<td><b>Ordre:</b></td>
+<td>
+
 <input type="text" name="ordre">
-                    </th> 
-					<th> &nbsp; &nbsp; &nbsp; &nbsp;</th><th>
-					  D&eacute;signation:
-                       <input type="text" name="designation">
-                    </th>
-		 
+
+</td>
+</tr>  
+<tr>
+<td><b>D&eacute;signation:</b></td>
+<td>
+
+<input type="text" name="ordre">
+
+</td>
+</tr>
+<tr>
+<td><b>Qualificatif:</b> </td>
+<td> 
+	<select id="qualificatif" >
+	<option value=""> Maximal - Minimal -</option>
+    {{#each listeQualificatifs}}
+         <option value={{ID_QUALIFICATIF}}>{{MINIMAL}}- {{MAXIMAL}}</option>
+	{{/each}}
+	</select>
+                         
+</td>
+
+
+
+</tr>
+<td> <center><button class="btn btn-inverse" id="ajout_submit" type="submit">Ajouter</button> </td> </center>
+
+					 
 </tr>  
    
-</table>
-<br>
-<br>
-					<button class="btn btn-inverse" id="ajout_submit" type="submit">Ajouter</button>  
+</table> 
 
                   </form>  
 				  
                 </section>
               </div>
-			  <h3>Liste des Rubriques </h3>
+			  <h3>Liste des questions </h3>
                       
                   </header>
                   <section class="group">                         
                        <table id="example" class="display" >
                           <thead>
                               <tr>
-                                  <th>Ordre</th>
+                                  
                                   
                                   <th>D&eacute;signation</th>
+								  <th>Qualificatif minimal</th>
+								  <th>Qualificatif maximal</th>
                                 
                               </tr>
                           </thead>
 						  
                           <tbody>
-						  {{#each listeRubrique}}
+						  {{#each listeQuestions}}
                               <tr class="gradeX">
-                                  <td>{{REV_ORDRE}}</td>
-                                  <td>{{REV_DESIGNATION}}</td>
+                                  <td>{{QUE_INTITULE}}</td>
+                                  <td>{{QUA_MINIMAL}}</td>
+								  <td>{{QUA_MAXIMAL}}</td>
                                   <td class="center"><i class="icon-remove"/></td>
-								  <td class ="center"><i class="icon-edit"/></td>
+								  <td class ="center"><i class="icon-search"/></td>
                               </tr>
                               
 							{{/each}} 

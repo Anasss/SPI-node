@@ -8,6 +8,7 @@
     <title>Gestion des &eacute;valuations </title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes" />    
     <meta name="description" content="">
     <meta name="author" content="">
@@ -88,7 +89,9 @@
 
               <li class="active"><a class="home" href="listeEval">G&eacuterer mes &eacutevaluations </a></li>
 			  <li class="active"><a class="home" href="creerRubrique">G&eacuterer mes rubriques </a></li>
-			  <li class="active"><a class="home" href="creerQualif">G&eacuterer mes qualificatifs </a></li>
+			  <li class="active"><a class="home" href="creerQuestion">G&eacuterer mes questions </a></li>
+			  <li class="active"><a class="home" href="creerQualificatif">G&eacuterer mes qualificatifs </a></li>
+
 
             </ul>
            
@@ -113,12 +116,9 @@
                                   <th>Promotion</th>
                                   <th>Formation</th>
                                   <th>D&eacute;signation</th>
-                                  <th>P&eacute;riode</th>
                                   <th>UE</th>
 								  <th>Etat</th>
-								  <th>Modifier</th>
-								  <th>Supprimer</th>
-								  <th>Afficher</th>
+								  
 
                               </tr>
                           </thead>
@@ -128,9 +128,8 @@
                                   <td>{{EVE_ANNEE_PRO}}</td>
                                   <td>{{FRM_CODE_FORMATION}}</td>
 								  <td>{{EVE_DESIGNATION}}</td>
-								  <td>{{EVE_PERIODE}}</td>
 								  <td>{{UE_DESIGNATION}}</td>
-								  <td>{{EVE_ETAT}}</td>
+								  <td>{{SIGNIFICATION}}</td>
 								  <td class="center"><i class="icon-edit"/></td>
 								  <td class="center"><i class="icon-remove"/></td>
 							      <td class ="center"><a href="/listeRubriques/{{EVE_ID_EVALUATION}}"><i class="icon-search"/></a></td>
@@ -159,8 +158,7 @@
                               <tr>
                                   <th>Ordre</th>
                                   <th>D&eacute;signation</th>
-                                  <th>Supprimer</th>
-								  <th>Afficher</th>
+                                 
                               </tr>
                           </thead>
 						  
@@ -179,11 +177,11 @@
                       </table>                      
                   </section>
               </div> 	
-
-         			  
-            </div>   
-		           <a href="../ajouterRubrique"><button class="btn"> <b>Ajouter rubrique</b>  </button></a>
+ 
+            </div>    
 			
+		           <a href="../ajouterRubrique"><button class="btn"> <b>Ajouter rubrique</b>  </button></a>
+			        
 			<br/>
 			<br/>
 			<div class="widget">
@@ -201,8 +199,7 @@
                                   <th>D&eacute;signation</th>
                                   <th>Qualificatif min</th>
                                   <th>Qualificatif max</th>
-								  <th>Supprimer</th>
-								  
+								 
                               </tr>
                           </thead>
                           <tbody>
