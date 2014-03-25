@@ -50,9 +50,10 @@
       
     <div class="navbar navbar-fixed-top">
 	<div style="display:inline-block;">
-	 <img src="img/logo2.png" height="100" width="100">
-	 <img src="img/portal_baseline-ubo.png" height="200" width="225" style="margin-left:1000px" >
-	 <img src="img/bandeau.png"  style="margin-top:5px;"  height="100" width="1345">
+	<img src="../img/logo2.png" height="170" width="160">
+
+	 <img src="../img/portal_baseline-ubo.png" height="200" width="225" style="margin-left:900px" >
+	 <img src="../img/bandeau.png"  style="margin-top:10px;"  height="100" width="1345">
 	</div>
          
 	  <div class="navbar-innr">
@@ -182,6 +183,33 @@
 	
     <script src="js/specific/forms_elements.js"></script>
 
+	
+	<script type="text/javascript">
+	
+	// Ajax attribuer une rubrique à une évaal
+        $(document).ready(function () {
+            $('#ajout_submit').click(function () {
+                var payload = {
+                    ORDRE: $('#ordre').val() , 
+					DESIGNATION: $('#designation').val() 
+					
+                };
+
+                $.ajax({
+                    url: "/CreerRubrique",
+                    type: "POST",
+                    contentType: "application/json",
+                    processData: false,
+                    data: JSON.stringify(payload),
+                    complete: function (data) {
+                       
+					    $( ".formClass" ).append("<div class='alert alert-success'><strong>Rubrique Ajoute avec succes</strong></div>");
+						
+                    }
+                });
+            });
+        });
+    </script>
    
   </body>
 </html>

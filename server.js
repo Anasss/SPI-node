@@ -131,7 +131,6 @@ app.get('/eval/liste', evalDao.listeEvaluation);
 app.get('/index', accueil.index);
 app.get('/eval/listeRubrique/', eval.listeRubrique);
 app.get('/eval/listeRubriqueEvaluation/', eval.listeRubriqueEvaluation);
-//app.post('/eval/editRubrique/', eval.NouvelleRubrique);
 app.get('/eval/injecterEvaluation', eval.InjecterNouvelleEvaluation);
 
 app.post('/ajouterEval', function(req, res){
@@ -179,7 +178,7 @@ app.get('/ajouterEval', function(req, res){
 		    
 		
 		    connection.query("Select CODE_UE from UNITE_ENSEIGNEMENT", function(err, rows){
-        // There was a error or not?
+           // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
 			} else {
@@ -202,9 +201,9 @@ app.post('/rubriqueajoute', function (req, res) {
     
 	var ordre=req.body.ordre;
 	var designation = req.body.designation;
+	var id = req.body.id_rub;
 	
-	
-	
+	if(id ==""){
 	var con=connection.query("INSERT INTO rubrique(ORDRE, DESIGNATION) values(?,?);" , [ordre,designation],
         function (err, result) {
             if (err) throw err;
@@ -225,11 +224,91 @@ app.post('/rubriqueajoute', function (req, res) {
 			
         }
     );
+	}
+	
+	else {
+	
+	var con=connection.query("UPDATE rubrique SET ORDRE=?, DESIGNATION=? WHERE ID_RUBRIQUE='"+id+"'" , [ordre,designation],
+        function (err, result) {
+            if (err) throw err;
+		console.log(con);	
+		console.log(result.insertId);
+           
+		  	connection.query("SELECT * from rubrique ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeRubrique: rows
+				}
+				res.render('creerRubrique.hbs',data1);
+			}
+		});	
+			
+        }
+    );
+	
+	}
 	
 });
 
 
-
+app.post('/qualifAjoute', function (req, res) {
+    
+	var minimal=req.body.minimal;
+	var maximal = req.body.maximal;
+	var id = req.body.id_qualif;
+	
+	if(id ==""){
+	var con=connection.query("INSERT INTO qualificatif(MAXIMAL,MINIMAL) values(?,?);" , [maximal, minimal],
+        function (err, result) {
+            if (err) throw err;
+		console.log(con);	
+		console.log(result.insertId);
+           
+		  	connection.query("SELECT * from qualificatif ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeQualificatifs: rows
+				}
+				res.render('creerQualificatif.hbs',data1);
+			}
+		});	
+			
+        }
+    );
+	}
+	
+	else {
+	
+	var con=connection.query("UPDATE qualificatif SET MAXIMAL=?, MINIMAL=? WHERE ID_QUALIFICATIF='"+id+"'" , [minimal,maximal],
+        function (err, result) {
+            if (err) throw err;
+		console.log(con);	
+		
+           
+		  	connection.query("SELECT * from qualificatif ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeQualificatifs: rows
+				}
+				res.render('creerQualificatif.hbs',data1);
+			}
+		});	
+			
+        }
+    );
+	
+	}
+	
+});
 
 
 
@@ -275,7 +354,7 @@ app.post('/evalajoute', function (req, res) {
  * Cette fonction r�cup�re la liste des �valuations et alimente un template handlebars
  */
 app.post('/listeEval', function (req, res){
-//var NOEnseignant = req.params.select01;
+
 NumEns = req.body.select01;
 
 //console.log(requetteListeEvaluations+NumEns);		
@@ -343,7 +422,6 @@ app.get('/creerRubrique', function (req,res){
 
 
 
-
 	
 	connection.query("SELECT * from rubrique ", function(err, rows){
         // There was a error or not?
@@ -358,14 +436,31 @@ app.get('/creerRubrique', function (req,res){
 		});	
 });
 
-app.get('/creerQuestion', function (req,res){
-res.render('creerQuestion.hbs');
+app.get('/creerQualif', function (req,res){
+
+
+connection.query("SELECT * from qualificatif ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeQualificatifs: rows
+				}
+				res.render('creerQualificatif.hbs',data1);
+			}
+		});	
 });
 
-app.get('/supprimerRubrique', function (req,res){
-			var con=connection.query("DELETE FROM RUBRIQUE WHERE ID_RUBRIQUE = 6", function (err, result) {
+app.get('/supprimerRubrique/:idRubrique', function (req,res){
+			var id = req.params.idRubrique;
+			console.log(id);
+			console.log("DELETE FROM RUBRIQUE WHERE ID_RUBRIQUE = '"+id+"'");
+			var con=connection.query("DELETE FROM RUBRIQUE WHERE ID_RUBRIQUE = '"+id+"'", function (err, result) {
             if (err != null) {
-			res.end("impossible de supprimer cette rubrique");
+			res.send("impossible de supprimer cette rubrique");
+			//alert("impossible de supprimer cette rubrique");
+			
 			}
 		   else{
 		  	connection.query("SELECT * from rubrique ", function(err, rows){
@@ -385,6 +480,33 @@ app.get('/supprimerRubrique', function (req,res){
 //res.render('creerQuestion.hbs');
 });
 
+app.get('/supprimerQualificatif/:idQualificatif', function (req,res){
+			var id = req.params.idQualificatif;
+			console.log(id);
+			console.log("DELETE FROM QUALIFICATIF WHERE ID_QUALIFICATIF = '"+id+"'");
+			var con=connection.query("DELETE FROM QUALIFICATIF WHERE ID_QUALIFICATIF = '"+id+"'", function (err, result) {
+            if (err != null) {
+			res.send("impossible de supprimer ce qualificatif");
+			//alert("impossible de supprimer cette rubrique");
+			
+			}
+		   else{
+		  	connection.query("SELECT * from qualificatif ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeQualificatifs: rows
+				}
+				res.render('creerQualificatif.hbs',data1);
+			}
+		});	}
+			
+        	
+		});	
+//res.render('creerQuestion.hbs');
+});
 
 
 app.listen(9090);

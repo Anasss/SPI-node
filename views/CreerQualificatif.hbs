@@ -20,16 +20,16 @@
     <link rel="apple-touch-icon-precomposed" href="../apple-touch-icon-57-precomposed.png">
 
     <!-- ===================== CSS ===================== -->    
-    <link href='../http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>  
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>  
     <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap/bootstrap-responsive.min.css">    
 
     <!-- Site specific - CSS --> 
     <link rel="stylesheet" href="../css/theme_light/prettify.css">    
     <link rel="stylesheet" href="../css/theme_light/tables/dataTables.css">         
-    <link rel='stylesheet' href='../css/theme_light/calendar/fullcalendar.css' />
-	    <link rel='stylesheet' href='../css/theme_light/calendar/calendar_dark.css' />
-    <link rel='stylesheet' href='../css/theme_light/calendar/fullcalendar.print.css' media='print' /> 
+    <link rel='stylesheet' href='css/theme_light/calendar/fullcalendar.css' />
+	    <link rel='stylesheet' href='css/theme_light/calendar/calendar_dark.css' />
+    <link rel='stylesheet' href='css/theme_light/calendar/fullcalendar.print.css' media='print' /> 
     <link rel="stylesheet" href="../css/theme_light/formselements/chosen.css">
     <link rel="stylesheet" href="../css/theme_light/formselements/dropkick.css">
     <link rel="stylesheet" href="../css/theme_light/jquery-ui-1.8.20.custom.css">    
@@ -38,7 +38,7 @@
   <script type="text/javascript" src="../http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
   <script src="../http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
     <!-- Common - CSS -->     
-    <link rel="stylesheet" href="../Mcss/theme_light/common.css">  
+    <link rel="stylesheet" href="../css/theme_light/common.css">  
     <link rel="stylesheet" href="../css/theme_light.css" class="style_set">
     
     <!--[if lt IE 9]>
@@ -51,26 +51,18 @@
       
     <div class="navbar navbar-fixed-top">
 	<div style="display:inline-block;">
-	  <img src="../img/logo2.png" height="170" width="160">
+	<img src="../../img/logo2.png" height="170" width="160">
 
-	 <img src="../img/portal_baseline-ubo.png" height="200" width="225" style="margin-left:900px" >
-	 <img src="../img/bandeau.png"  style="margin-top:10px;"  height="100" width="1345">
+	 <img src="../../img/portal_baseline-ubo.png" height="200" width="225" style="margin-left:900px" >
+	 <img src="../../img/bandeau.png"  style="margin-top:10px;"  height="100" width="1345">
 	</div>
          
 	  <div class="navbar-innr">
 	  	
         <div class="container">
 
-
-                 
       <br>  <h1 ><center><font color="#FFFFFF">Gestion des &eacute;valuations</font> </center></h1>
-
-        
-                                               
-
-  
-     
-                                           
+                                   
         </div>
       </div>
     </div>
@@ -91,6 +83,8 @@
             </h3>
             <ul class="nav nav-list">                          
               <li class="active"><a class="home" href="../listeEval">G&eacuterer mes &eacutevaluations </a></li>
+			  <li class="active"><a class="home" href="../">G&eacuterer mes rubriques </a></li>
+			  <li class="active"><a class="home" href="../creerQualificatif">G&eacuterer mes qualificatifs </a></li>
               
               
                 			   
@@ -111,77 +105,70 @@
 
               <div class="widget chart">
                 <header>
-                    <h3 ><font color="#A4A4A4"><b>Saisie et Mise &agrave; jour d'une &eacute;valuation</b> </font> </h3>
+                    <h3 ><font color="#A4A4A4"><b>Saisie et Mise &agrave; jour d'une question</b> </font> </h3>
                     <ul class="toggle_content">                          
-                        <li class="arrow"><a href="#">Toggle Content</a></li>
+                        <li class="arrow"><a href="../#">Toggle Content</a></li>
                     </ul>
                 </header>
                 
 				<section class="welly form_align">
 
-                  <form class="formClass" method="post" action="../rubriqueajoute">
-                    <table>
+                  <form class="formClass" method="post" action="../qualifAjoute">
+                    
+					 <table>
+					<tr><th> Qualificatif maximal:
+            <input type="text" id="maximal" name="maximal">
+                    </th> 
+					<th> &nbsp; &nbsp; &nbsp; &nbsp;</th><th>
+					  Qualificatif minimal:
+                       <input type="text" name="minimal" id="minimal">
+                    </th>
 					
-<tr>
-<td><b>Ordre:</b></td>
-<td>
+					<th>
 
 
-<input type="text"  id="ordre" name="ordre" value="" />
+<input type="hidden" id="id_qualif" name="id_qualif">
 
-</td>
-</tr>  
-<tr>
-<td><b>D&eacute;signation:</b></td>
-<td>
-
-
-<input type="text" id="designation" name="designation">
-
-</td>
-<td>
-
-
-<input type="hidden" id="id_rub" name="id_rub">
-
-</td>				 
+</th>	
+		 
 </tr>  
    
 </table>
 <br>
 <br>
-					<center><button class="btn btn-inverse" id="ajout_rubrique_submit" type="submit">Valider</button>  
+					<button class="btn btn-inverse" id="ajout_qualificatif_submit" type="submit">Valider</button>  
 
                   </form>  
 				  
                 </section>
               </div>
-			  <h3>Liste des Rubriques </h3>
+			  <h3>Liste des questions </h3>
                       
                   </header>
-                  <section class="group">                         
+                   <section class="group">                         
                        <table id="example" class="display" >
                           <thead>
                               <tr>
-                                  <th>Ordre</th>
                                   
-                                  <th>D&eacute;signation</th>
-                                
+                                  <th>Qualificatif Maximal</th>
+                                  <th>Qualificatif Minimal</th>
+                               
+                                  
+								
                               </tr>
                           </thead>
-						  
                           <tbody>
-						  {{#each listeRubrique}}
+						      {{#each listeQualificatifs}}
                               <tr class="gradeX">
-								  <td class="ordre-liste{{ID_RUBRIQUE}}">{{ORDRE}}</td>
-                                  <td class="designation-liste{{ID_RUBRIQUE}}">{{DESIGNATION}}</td> 
-                                  <td class="center"><a href="../supprimerRubrique/{{ID_RUBRIQUE}}"><i class="icon-remove"/></td>
-								  <td class ="center" id="td-123" OnClick="modifier({{ID_RUBRIQUE}});"> <i class="icon-search"> </a></td>
-								  <input type="hidden" value={{ID_RUBRIQUE}}>
-
+                                  
+                                   <td class="maximal-liste{{ID_QUALIFICATIF}}">{{MAXIMAL}}</td>
+								   <td class="minimal-liste{{ID_QUALIFICATIF}}">{{MINIMAL}}</td>
+								   <td class="center"id="td-123" OnClick="modifier({{ID_QUALIFICATIF}});"> <i class="icon-edit"/></td>
+								   <td class="center"><a href="../../supprimerQualificatif/{{ID_QUALIFICATIF}}"><i class="icon-remove"/></td>
+								   <input type="hidden" value={{ID_QUALIFICATIF}}>
+							     
                               </tr>
-                              
-							{{/each}} 
+                             {{/each}} 
                              
                           </tbody>
                       </table>                      
@@ -204,18 +191,19 @@
 
 
     <!-- ===================== JS ===================== -->
-	 <script type="text/javascript">
+	
+	<script type="text/javascript">
         $(document).ready(function () {
-            $('#ajout_rubrique_submit').click(function () {
+            $('#ajout_qualificatif_submit').click(function () {
 			
                 var payload = {
-                    ORDRE: $('#ordre').val() ,
-					DESIGNATION: $('#designation').val() ,
+                    MINIMAL: $('#minimal').val() ,
+					MAXIMAL: $('#maximal').val() ,
 					
                 };
 
                 $.ajax({
-                    url: "/rubriqueajoute",
+                    url: "/qualifAjoute",
                     type: "POST",
                     contentType: "application/json",
                     processData: false,
@@ -234,26 +222,26 @@
 		
             function modifier(id) {
 		
-			var recup1 = '.ordre-liste'+id;
-			var recup2 = '.designation-liste'+id;
+			var recup1 = '.maximal-liste'+id;
+			var recup2 = '.minimal-liste'+id;
                 var payload = {
-                    ORDRE: $(recup1).html() ,
-					DESIGNATION: $(recup2).html() ,
-					idRub : id,
+                    MAXIMAL: $(recup1).html() ,
+					MINIMAL: $(recup2).html() ,
+					idQualif : id,
 					
                 };
 
                 $.ajax({
-                    url: "/creerRubrique",
+                    url: "/creerQualif",
                     type: "GET",
                     contentType: "application/json",
                     processData: false,
                     data: JSON.stringify(payload),
                     complete: function (data) {
 					    console.log("oui");
-                        document.getElementById('ordre').value= (payload.ORDRE);
-						document.getElementById('designation').value=(payload.DESIGNATION);
-						document.getElementById('id_rub').value=(payload.idRub);
+                        document.getElementById('maximal').value= (payload.MAXIMAL);
+						document.getElementById('minimal').value=(payload.MINIMAL);
+						document.getElementById('id_qualif').value=(payload.idQualif);
 						
                     }
                 });
@@ -261,6 +249,9 @@
         
     </script>
 	
+	
+	
+	 
 
     <script src="../js/libs/jquery-1.7.2.min.js"></script>    
     <script src="../js/libs/bootstrap.min.js"></script>   

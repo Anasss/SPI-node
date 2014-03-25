@@ -68,18 +68,32 @@ exports.testerHandlebars = function (req, res){
 
 exports.NouvelleEvaluationData = function (req, res){
 	
-	var promotion = req.body.promotion;  // a verifier
+	var promotion = req.body.promotion;  
 	var formation = req.data.formation;
 	var ue = req.data.ue;
 	var designationEvaluation = req.data.designationEvaluation;
 	var debut = req.data.debut;
 	var fin = req.data.fin;
 	var etat = req.data.etat;
+	
+	 connection.query("Select ANNEE_PRO from PROMOTION", function(err, rows){
+           // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			 var data = {
+			    listePromotions: listePromotion,
+			    listeFormations: listeFormation,
+				uniteEnseignements: rows
+						}
+				console.log(listePromotion);
+				console.log(listeFormation);
+				
+				console.log("ok");
+				res.render('ajouter-evaluation.hbs',data);
+			}
+		});	
 	evaluations.push(new EvaluationData(promotion,formation,ue,designationEvaluation,debut,fin,etat));
-	/* 
-	recuperation des champs des rubriques.
-	var designationRubrique = req.data.designationRubrique;
-    rubriques.push(new RubriquesData(designationEvaluation);*/
 	res.send(200);
 };
 
