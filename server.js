@@ -353,9 +353,12 @@ app.post('/evalajoute', function (req, res) {
 	var designation = req.body.designation;
 	var periode = req.body.periode;
 	var etat = req.body.choice;
+	var debutreponse = req.body.DEBUT_REPONSE;
+	var finreponse = req.body.FIN_REPONSE;
+
 	
 	console.log(formation+promotion+ue+designation+etat);
-	var con=connection.query("INSERT INTO evaluation  (NO_ENSEIGNANT,CODE_FORMATION, ANNEE_PRO, CODE_UE, DESIGNATION, PERIODE, ETAT) values(?,?,?,?,?,?,?);" , [NumEns,formation,promotion,ue,designation,periode,etat],
+	var con=connection.query("INSERT INTO evaluation  (NO_ENSEIGNANT,CODE_FORMATION, ANNEE_PRO, CODE_UE, DESIGNATION, PERIODE, ETAT,DEBUT_REPONSE,FIN_REPONSE) values(?,?,?,?,?,?,?,?,?);" , [NumEns,formation,promotion,ue,designation,periode,etat,debutreponse,finreponse],
         function (err, result) {
             if (err) throw err;
 		console.log(con);	

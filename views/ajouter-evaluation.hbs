@@ -165,7 +165,7 @@
 	</td>
 	<td>
 	<b>au:</b>
-	<input  id="datepicker_ui"  type="text" name="fin"><span class="help-inline"><a  id="date_dark-gldp" role="button" href="#"> <img src="img/calendar.gif"></a>
+	<input  id="datepicker_ui2"  type="text" name="fin" > <span class="help-inline"><a  id="date_dark-gldp" role="button" href="#"> <img src="img/calendar.gif"></a>
 	</td>
 </tr>
 <tr>
@@ -219,8 +219,8 @@
 					ANNEE_PRO: $('#promotion').val() ,
 					CODE_UE: $('#ue').val() ,  
 					DESIGNATION: $('#designation').val() ,
-					//DEBUT_REPONSE: $('#debut').val() , 
-					//FIN_REPONSE: $('#fin').val()
+					DEBUT_REPONSE: $( "#datepicker_ui" ).val() , 
+					FIN_REPONSE: $( "#datepicker_ui2" ).val()
                 };
 
                 $.ajax({
@@ -241,7 +241,8 @@
         $(document).ready(function () {
             $('#formation').change(function () {
                 var payload = {
-                   CODE_FORMATION: $('#formation').val() 
+                   CODE_FORMATION: $('#formation').val() ,
+				   
 				};
 
                 $.ajax({
@@ -251,7 +252,7 @@
                     processData: false,
                     data: JSON.stringify(payload),
                     complete: function (data) {
-                    $( ".formClass" ).append("<div class='alert alert-success'><strong>Evaluation Ajoute avec succes</strong></div>");
+                    
 
                     }
                 });
