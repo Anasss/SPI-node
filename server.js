@@ -427,6 +427,30 @@ app.get('/ajouterRubrique', function (req, res){
 			
 	});
 
+app.get('/CreerQuestion', function (req,res){
+
+	connection.query("SELECT * from qualificatif ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			 
+			listeQualificatifs = rows;
+				}})
+	connection.query("SELECT * from v_question_evaluation", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data = {
+			listeQualificatifs: listeQualificatifs,
+			listeQuestions: rows
+				}
+				res.render('CreerQuestion.hbs',data);
+			}
+		});	
+});	
+	
 app.get('/creerRubrique', function (req,res){
 
 var id = req.params.idEval;
@@ -446,6 +470,8 @@ console.log(id);
 			}
 		});	
 });
+
+
 
 app.get('/creerQualif', function (req,res){
 
