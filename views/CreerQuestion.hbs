@@ -140,23 +140,16 @@
 <tr>
 <td><b>Qualificatif:</b> </td>
 <td> 
-	<select name="minimal" id="minimal" >
-	<option value="">Minimal</option>
+	<select id="qualificatif" >
+	<option value=""> Maximal - Minimal -</option>
     {{#each listeQualificatifs}}
-         <option value={{ID_QUALIFICATIF}}>{{MINIMAL}}</option>
+         <option value={{ID_QUALIFICATIF}}>{{MINIMAL}}- {{MAXIMAL}}</option>
 	{{/each}}
 	</select>
                          
 </td>
 
-<td>
-	<select name="maximal" id="maximal" >
-	<option value="">Maximal</option>
-	{{#each listeQualificatifs}}
-         <option value={{ID_QUALIFICATIF}}>{{MAXIMAL}}</option>
-	{{/each}}
-	</select> 
-</td>
+
 
 </tr>
 <td> <center><button class="btn btn-inverse" id="ajout_submit" type="submit">Ajouter</button> </td> </center>

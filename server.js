@@ -347,6 +347,9 @@ NumEns = req.body.select01;
 });
 
 
+
+
+
 /**
  * Cette fonction r�cup�re la liste des questions et alimente une template handlebars
  */
@@ -451,6 +454,22 @@ app.get('/CreerQuestion', function (req,res){
 		});	
 });	
 	
+
+	app.get('/creerQualificatif', function (req,res){
+
+	connection.query("SELECT * from qualificatif ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeQualificatifs: rows
+				}
+				res.render('creerQualificatif.hbs',data1);
+			}
+		});	
+});
+	
 app.get('/creerRubrique', function (req,res){
 
 var id = req.params.idEval;
@@ -473,21 +492,7 @@ console.log(id);
 
 
 
-app.get('/creerQualif', function (req,res){
 
-
-connection.query("SELECT * from qualificatif ", function(err, rows){
-        // There was a error or not?
-			if(err != null) {
-				res.end("Query error:" + err);
-			} else {
-			var data1 = {
-			listeQualificatifs: rows
-				}
-				res.render('creerQualificatif.hbs',data1);
-			}
-		});	
-});
 
 app.listen(9090);
 console.log('Server running at http://127.0.0.1:9090/');
