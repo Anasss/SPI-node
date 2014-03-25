@@ -49,7 +49,11 @@ var requetteListeEvaluations = 'SELECT DISTINCT * from v_evaluation where ENS_NO
 var requetteRubrique = "'SELECT * from v_rubeval where ENS_NOM ='Saliou'";
 var listeFormation = [];
 var listePromotion = [];
+
 var InfoEvaluation = [];
+
+var listeQuestions;
+
 
 
 connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
@@ -312,7 +316,34 @@ app.post('/qualifAjoute', function (req, res) {
 });
 
 
-
+app.post('/quesAjoute', function (req, res) {
+    
+	var designation = req.body.designation;
+	var qualificatif = req.body.qualificatif;
+	console.log(qualificatif);	
+	var con=connection.query("INSERT INTO question  (ID_QUALIFICATIF,INTITULE)  values(?,?);" , [qualificatif,designation],
+        function (err, result) {
+            if (err) throw err;
+		console.log(con);	
+		console.log(result.insertId);
+           
+		 connection.query("SELECT * from v_question_s ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeQuestions: rows
+				}
+				res.render('CreerQuestion.hbs',data1);
+			}
+				
+			
+		});	
+			
+        });
+	
+});
 
 
 
@@ -460,26 +491,35 @@ app.get('/ajouterRubrique', function (req, res){
 
 app.get('/CreerQuestion', function (req,res){
 
-	connection.query("SELECT * from qualificatif ", function(err, rows){
+	connection.query("SELECT * from v_question_s ", function(err, rows){
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
 			} else {
-			 
-			listeQualificatifs = rows;
-				}})
-	connection.query("SELECT * from v_question_evaluation", function(err, rows){
-        // There was a error or not?
-			if(err != null) {
-				res.end("Query error:" + err);
-			} else {
-			var data = {
-			listeQualificatifs: listeQualificatifs,
-			listeQuestions: rows
+			
+			listeQuestions = rows;
 				}
-				res.render('CreerQuestion.hbs',data);
+				
+			
+		});	
+		
+	connection.query("Select * from qualificatif ", function(err, rows){
+			
+			// There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeQuestions: listeQuestions,
+			listeQualificatifs: rows
+			
+				}
+				res.render('creerQuestion.hbs',data1);
 			}
 		});	
+	
+		
+		
 });	
 	
 

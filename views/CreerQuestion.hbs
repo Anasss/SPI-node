@@ -118,32 +118,26 @@
                 
 				<section class="welly form_align">
 
-                  <form class="formClass" method="post" action="/quesajoute">
+                  <form class="formClass" method="post" action="/quesAjoute">
                     <table>
 					
-<tr>
-<td><b>Ordre:</b></td>
-<td>
-
-<input type="text" name="ordre">
-
-</td>
-</tr>  
+ 
 <tr>
 <td><b>D&eacute;signation:</b></td>
 <td>
 
-<input type="text" name="ordre">
+<input type="text" name="designation" id="designation">
 
 </td>
 </tr>
 <tr>
 <td><b>Qualificatif:</b> </td>
 <td> 
-	<select id="qualificatif" >
-	<option value=""> Maximal - Minimal -</option>
+	<select id="qualificatif" name="qualificatif">
+	<option value=""> Maximal - Minimal </option>
     {{#each listeQualificatifs}}
-         <option value={{ID_QUALIFICATIF}}>{{MINIMAL}}- {{MAXIMAL}}</option>
+         <option  value={{ID_QUALIFICATIF}}>{{MINIMAL}}- {{MAXIMAL}}</option>
+		 
 	{{/each}}
 	</select>
                          
@@ -152,7 +146,7 @@
 
 
 </tr>
-<td> <center><button class="btn btn-inverse" id="ajout_submit" type="submit">Ajouter</button> </td> </center>
+<td> <center><button class="btn btn-inverse" id="ajout_submit" type="submit">Valider</button> </td> </center>
 
 					 
 </tr>  
