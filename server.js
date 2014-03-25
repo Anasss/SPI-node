@@ -51,9 +51,8 @@ var listeFormation = [];
 var listePromotion = [];
 var code;
 var texteSupprimer;
-
+var InfoEvaluation = [];
 var listeQuestions;
-
 
 
 connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
@@ -398,9 +397,12 @@ app.post('/evalajoute', function (req, res) {
 	var designation = req.body.designation;
 	var periode = req.body.periode;
 	var etat = req.body.choice;
+	var debutreponse = req.body.DEBUT_REPONSE;
+	var finreponse = req.body.FIN_REPONSE;
+
 	
 	console.log(formation+promotion+ue+designation+etat);
-	var con=connection.query("INSERT INTO evaluation  (NO_ENSEIGNANT,CODE_FORMATION, ANNEE_PRO, CODE_UE, DESIGNATION, PERIODE, ETAT) values(?,?,?,?,?,?,?);" , [NumEns,formation,promotion,ue,designation,periode,etat],
+	var con=connection.query("INSERT INTO evaluation  (NO_ENSEIGNANT,CODE_FORMATION, ANNEE_PRO, CODE_UE, DESIGNATION, PERIODE, ETAT,DEBUT_REPONSE,FIN_REPONSE) values(?,?,?,?,?,?,?,?,?);" , [NumEns,formation,promotion,ue,designation,periode,etat,debutreponse,finreponse],
         function (err, result) {
             if (err) throw err;
 		console.log(con);	
@@ -708,22 +710,22 @@ app.get('/supprimerQualificatif/:idQualificatif', function (req,res){
 //res.render('creerQuestion.hbs');
 });
 
+
 app.get('/supprimerQuestions/:idQuestions', function (req,res){
 			var id = req.params.idQuestions;
-			console.log(id);
-			console.log("DELETE FROM QUESTION WHERE ID_QUESTION = '"+id+"'");
 			var con=connection.query("DELETE FROM QUESTION WHERE ID_QUESTION = '"+id+"'", function (err, result) {
             if (err != null) {
-			//res.send("impossible de supprimer ce qualificatif");
-			//alert("impossible de supprimer cette rubrique");
+			
 			texteSupprimer = "IMPOSSIBLE DE SUPPRIMER CETTE QUESTION"
 			
 		connection.query("SELECT * from v_question_s", function(err, rows){
-			console.log(rows);
+			
+
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
 			} else {
+
 			
 			
 			listeQuestions = rows;
@@ -782,7 +784,71 @@ app.get('/supprimerQuestions/:idQuestions', function (req,res){
 //res.render('creerQuestion.hbs');
 });
 
+/**
+ * Cette fonction r�cup�re les informations d'une évaluation et alimente un template handlebars
+ */
+app.get('/modifierEval/:idEvaluation', function (req, res){
+connection.query("Select DISTINCT CODE_FORMATION from FORMATION", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			listeFormation = rows;				
+			}
+		});	
+			
 
+var id = req.params.idEvaluation;
+
+//console.log(requetteListeEvaluations+NumEns);		
+	connection.query("SELECT * from evaluation where id_evaluation ='"+id+"'", function(err, rows){
+	InfoEvaluation = rows;
+	
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			
+			InfoEvaluation: rows
+				
+				//res.render('modifier-evaluation.hbs',data1);
+			}
+		});
+		
+			/*var formation = req.body.CODE_FORMATION;
+		    console.log(req.body.CODE_FORMATION);
+			console.log("Select DISTINCT ANNEE_PRO from Promotion where CODE_FORMATION ='"+formation+"'");*/
+			
+	connection.query("Select DISTINCT ANNEE_PRO from Promotion where CODE_FORMATION ='M2DOSI'", function(err, rows){
+			
+			// There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			 listePromotion = rows;
+			 
+			}
+		});	
+		    
+		
+		    connection.query("Select CODE_UE from UNITE_ENSEIGNEMENT", function(err, rows){
+           // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			 var data = {
+			    listePromotions: listePromotion,
+			    listeFormations: listeFormation,
+				InfoEvaluation: InfoEvaluation,
+				uniteEnseignements: rows
+						}
+				console.log(listePromotion);
+				console.log(listeFormation);
+				console.log(InfoEvaluation);
+				res.render('modifier-evaluation.hbs',data);
+			}
+		});	
+});
 
 
 app.listen(9090);

@@ -74,6 +74,7 @@ jQuery(function($) {
   $("#date_dark").glDatePicker({cssName: "dark"});
 
   $( "#datepicker_ui" ).datepicker();
+  $( "#datepicker_ui2" ).datepicker();
 
   $('#timepicker').datetimepicker();  
 

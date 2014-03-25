@@ -172,7 +172,7 @@
 	</td>
 	<td>
 	<b>au:</b>
-	<input  id="datepicker_ui"  type="text" name="fin"><span class="help-inline"><a  id="date_dark-gldp" role="button" href="#"> <img src="img/calendar.gif"></a>
+	<input  id="datepicker_ui2"  type="text" name="fin" > <span class="help-inline"><a  id="date_dark-gldp" role="button" href="#"> <img src="img/calendar.gif"></a>
 	</td>
 </tr>
 <tr>
@@ -226,8 +226,8 @@
 					ANNEE_PRO: $('#promotion').val() ,
 					CODE_UE: $('#ue').val() ,  
 					DESIGNATION: $('#designation').val() ,
-					//DEBUT_REPONSE: $('#debut').val() , 
-					//FIN_REPONSE: $('#fin').val()
+					DEBUT_REPONSE: $( "#datepicker_ui" ).val() , 
+					FIN_REPONSE: $( "#datepicker_ui2" ).val()
                 };
 
                 $.ajax({
@@ -245,74 +245,25 @@
         });
     </script>
 	<script type="text/javascript">
-        $(document).ready(function () {
+	   $(document).ready(function () {
             $('#formation').change(function () {
-				  // $('#anneePro').html($('#anneePro').attr('name'));
 				  $('option.anneePro').fadeIn();
                var payload = {
                    CODE_FORMATION: $('#formation').val() 
 				};
-				var listePro = document.getElementsByName(payload.CODE_FORMATION);
-				
 				$('option.anneePro').each(function(){
 					if($(this).attr('name') != payload.CODE_FORMATION)
 					{
 						$(this).fadeOut();
-						//$(this).style.visibility ="hidden";
-						//$(this).style.display ="none";
-						console.log($(this).attr('name')+payload.CODE_FORMATION);
 					}
-					
 				});
-				$('#promotion').append(listePro);
 				
-                //$("[name='CODE_FORMATION']");
-              /*  $.ajax({
-                    url: "/ajouterEval",
-                    type: "POST",
-                    contentType: "application/json",
-                    processData: false,
-                    data: JSON.stringify(payload),
-                    complete: function (data) {
-                    $( ".formClass" ).append("<div class='alert alert-success'><strong>Evaluation Ajoute avec succes</strong></div>");
-					//$('option.anneePro').html($('option.anneePro').attr('name'));
-					
-                    }
-                }); */
             });
         });
-    </script>
-<script type="text/javascript">
-        
+		</script>
 		
-            function modifier(id) {
 		
-			var recup1 = '.maximal-liste'+id;
-			var recup2 = '.minimal-liste'+id;
-                var payload = {
-                    MAXIMAL: $(recup1).html() ,
-					MINIMAL: $(recup2).html() ,
-					idQualif : id,
-					
-                };
 
-                $.ajax({
-                    url: "/creerQualif",
-                    type: "GET",
-                    contentType: "application/json",
-                    processData: false,
-                    data: JSON.stringify(payload),
-                    complete: function (data) {
-					    console.log("oui");
-                        document.getElementById('maximal').value= (payload.MAXIMAL);
-						document.getElementById('minimal').value=(payload.MINIMAL);
-						document.getElementById('id_qualif').value=(payload.idQualif);
-						
-                    }
-                });
-            };
-        
-    </script>
     <script src="js/libs/jquery-1.11.0.js"></script>    
     <script src="js/libs/bootstrap.min.js"></script>   
     <script src="js/libs/ios-orientationchange-fix.js"></script>      
