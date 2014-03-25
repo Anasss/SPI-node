@@ -1,4 +1,4 @@
---
+ï»¿--
 -- Contenu de la table `evaluation`
 --
 
@@ -19,7 +19,7 @@ INSERT INTO `qualificatif` (`MINIMAL`, `MAXIMAL`) VALUES
 ('Insuffisant', 'Suffisant'),
 ('Pauvre', 'Riche'),
 ('Facile', 'Difficile'),
-('Peu clair', 'Très clair');
+('Peu clair', 'TrÃ¨s clair');
 
 
 --
@@ -28,11 +28,11 @@ INSERT INTO `qualificatif` (`MINIMAL`, `MAXIMAL`) VALUES
 
 INSERT INTO `question` (`TYPE`, `NO_ENSEIGNANT`, `ID_QUALIFICATIF`, `INTITULE`) VALUES
 ('QUP', '1', '3', 'Contenu'),
-('QUS', '30', '4', 'Assimilabilité'),
-('QUP', '2', '2', 'Nombre de séances'),
-('QUS', '3', '1', 'Qualité pédagogique de l’enseignant'),
-('QUS', '1', '5', 'Clarté des énoncés'),
-('QUP', '3', '1', 'Disponinilité de l’enseignant');
+('QUS', '30', '4', 'AssimilabilitÃ©'),
+('QUP', '2', '2', 'Nombre de sÃ©ances'),
+('QUS', '3', '1', 'QualitÃ© pÃ©dagogique de lâ€™enseignant'),
+('QUS', '1', '5', 'ClartÃ© des Ã©noncÃ©s'),
+('QUP', '3', '1', 'DisponinilitÃ© de lâ€™enseignant');
 
 
 --
@@ -41,9 +41,9 @@ INSERT INTO `question` (`TYPE`, `NO_ENSEIGNANT`, `ID_QUALIFICATIF`, `INTITULE`) 
 
 INSERT INTO `rubrique` (`TYPE`, `DESIGNATION`, `ORDRE`, `NO_ENSEIGNANT`) VALUES
 ('RBS', 'Cours Magistraux', 1, '1'),
-('RBS', 'Travaux Dirigés', 2, '2'),
+('RBS', 'Travaux DirigÃ©s', 2, '2'),
 ('RBS', 'Travaux Pratiques', 3, '30'),
-('RBP', 'Contrôle Continue', 4, '3');
+('RBP', 'ContrÃ´le Continue', 4, '3');
 
 
 --
@@ -66,13 +66,13 @@ INSERT INTO `rubrique_question` (`ID_RUBRIQUE`, `ID_QUESTION`, `ORDRE`) VALUES
 Insert into `RUBRIQUE_EVALUATION` (`ID_EVALUATION`, `ID_RUBRIQUE`, `ORDRE`,`DESIGNATION` )
 values 
 ('1', '1', '1', 'Cours Magistraux'),
-('1', '2', '2', 'Travaux Dirigés'),
+('1', '2', '2', 'Travaux DirigÃ©s'),
 ('3', '3', '3', 'Travaux Pratiques'),
 ('2', '1', '4', 'Cours Magistraux'),
-('5', '2', '5', 'Travaux Dirigés'),
+('5', '2', '5', 'Travaux DirigÃ©s'),
 ('2', '3', '6', 'Travaux Pratiques'),
 ('4', '1', '7', 'Cours Magistraux'),
-('4', '2', '8', 'Travaux Dirigés'),
+('4', '2', '8', 'Travaux DirigÃ©s'),
 ('6', '3', '9', 'Travaux Pratiques');
 
 
