@@ -49,6 +49,7 @@ var requetteListeEvaluations = 'SELECT DISTINCT * from v_evaluation where ENS_NO
 var requetteRubrique = "'SELECT * from v_rubeval where ENS_NOM ='Saliou'";
 var listeFormation = [];
 var listePromotion = [];
+var texteSupprimer;
 
 
 connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
@@ -373,6 +374,23 @@ NumEns = req.body.select01;
 		});	
 });
 
+app.get('/listeEval', function (req, res){
+
+//console.log(requetteListeEvaluations+NumEns);		
+	connection.query("SELECT * from v_evaluation where ENS_NO_ENSEIGNANT ='"+NumEns+"'", function(err, rows){
+	listeEvaluations = rows;
+	
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeEvaluations: rows
+				}
+				res.render('index-2.hbs',data1);
+			}
+		});	
+});
 
 
 
@@ -504,7 +522,8 @@ console.log(id);
 
 	
 	connection.query("SELECT * from rubrique ", function(err, rows){
-        // There was a error or not?
+       
+		// There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
 			} else {
@@ -518,27 +537,45 @@ console.log(id);
 });
 
 app.get('/supprimerRubrique/:idRubrique', function (req,res){
+            
 			var id = req.params.idRubrique;
 			console.log(id);
 			console.log("DELETE FROM RUBRIQUE WHERE ID_RUBRIQUE = '"+id+"'");
 			var con=connection.query("DELETE FROM RUBRIQUE WHERE ID_RUBRIQUE = '"+id+"'", function (err, result) {
             if (err != null) {
-			res.send("impossible de supprimer cette rubrique");
-			//alert("impossible de supprimer cette rubrique");
+			texteSupprimer = "IMPOSSIBLE DE SUPPRIMER CETTE RUBRIQUE "
+		connection.query("SELECT * from rubrique ", function(err, rows){
 			
-			}
-		   else{
-		  	connection.query("SELECT * from rubrique ", function(err, rows){
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
 			} else {
 			var data1 = {
+			texteSupprimer: texteSupprimer,
 			listeRubrique: rows
 				}
 				res.render('creerRubrique.hbs',data1);
 			}
-		});	}
+		});	
+			
+			}
+		   else{
+		    var texteSupprimer = "Rubrique supprimer avec succès";
+		  	connection.query("SELECT * from rubrique ", function(err, rows){
+			
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			
+			var data1 = {
+			texteSupprimerS : texteSupprimer,
+			listeRubrique: rows
+				}
+				res.render('creerRubrique.hbs',data1);
+			}
+		});	
+		}
 			
         	
 		});	
@@ -551,17 +588,34 @@ app.get('/supprimerQualificatif/:idQualificatif', function (req,res){
 			console.log("DELETE FROM QUALIFICATIF WHERE ID_QUALIFICATIF = '"+id+"'");
 			var con=connection.query("DELETE FROM QUALIFICATIF WHERE ID_QUALIFICATIF = '"+id+"'", function (err, result) {
             if (err != null) {
-			res.send("impossible de supprimer ce qualificatif");
+			//res.send("impossible de supprimer ce qualificatif");
 			//alert("impossible de supprimer cette rubrique");
+			texteSupprimer = "IMPOSSIBLE DE SUPPRIMER CE QUALIFICATIF "
+		connection.query("SELECT * from qualificatif ", function(err, rows){
 			
-			}
-		   else{
-		  	connection.query("SELECT * from qualificatif ", function(err, rows){
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
 			} else {
 			var data1 = {
+			texteSupprimer: texteSupprimer,
+			listeQualificatis: rows
+				}
+				res.render('creerQualificatif.hbs',data1);
+			}
+		});
+			
+			}
+		   else{
+		    var texteSupprimer = "Qualificatif supprimer avec succès";
+		  	connection.query("SELECT * from qualificatif ", function(err, rows){
+			
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			texteSupprimer
 			listeQualificatifs: rows
 				}
 				res.render('creerQualificatif.hbs',data1);

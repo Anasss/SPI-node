@@ -83,10 +83,10 @@
             </h3>
             <ul class="nav nav-list">                          
 
-           <li class="active"><a class="home" href="listeEval">G&eacuterer mes &eacutevaluations </a></li>
-			  <li class="active"><a class="home" href="creerRubrique">G&eacuterer mes rubriques </a></li>
-			  <li class="active"><a class="home" href="creerQuestion">G&eacuterer mes questions </a></li>
-			  <li class="active"><a class="home" href="creerQualificatif">G&eacuterer mes qualificatifs </a></li>
+           <li class="active"><a class="home" href="../listeEval">G&eacuterer mes &eacutevaluations </a></li>
+			  <li class="active"><a class="home" href="../creerRubrique">G&eacuterer mes rubriques </a></li>
+			  <li class="active"><a class="home" href="../creerQuestion">G&eacuterer mes questions </a></li>
+			  <li class="active"><a class="home" href="../creerQualificatif">G&eacuterer mes qualificatifs </a></li>
 
 
                 			   
@@ -144,7 +144,7 @@
 				  
                 </section>
               </div>
-			  <h3>Liste des questions </h3>
+			  <h3>Liste des questions </h3> <FONT COLOR=#00ff00 > {{texteSupprimerS}}</FONT> <FONT COLOR=#ff0000 > {{texteSupprimer}}</FONT>
                       
                   </header>
                    <section class="group">                         
@@ -166,7 +166,7 @@
                                    <td class="maximal-liste{{ID_QUALIFICATIF}}">{{MAXIMAL}}</td>
 								   <td class="minimal-liste{{ID_QUALIFICATIF}}">{{MINIMAL}}</td>
 								   <td class="center"id="td-123" OnClick="modifier({{ID_QUALIFICATIF}});"> <i class="icon-edit"/></td>
-								   <td class="center"><a href="../../supprimerQualificatif/{{ID_QUALIFICATIF}}"><i class="icon-remove"/></td>
+								   <td class="center"><a href="../supprimerQualificatif/{{ID_QUALIFICATIF}}"><i class="icon-remove"/></td>
 								   <input type="hidden" value={{ID_QUALIFICATIF}}>
 							     
                               </tr>
