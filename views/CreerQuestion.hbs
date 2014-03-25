@@ -177,9 +177,11 @@
                        <table id="example" class="display" >
                           <thead>
                               <tr>
-                                  <th>Ordre</th>
+                                  
                                   
                                   <th>D&eacute;signation</th>
+								  <th>Qualificatif minimal</th>
+								  <th>Qualificatif maximal</th>
                                 
                               </tr>
                           </thead>
@@ -187,8 +189,9 @@
                           <tbody>
 						  {{#each listeQuestions}}
                               <tr class="gradeX">
-                                  <td>{{REV_ORDRE}}</td>
-                                  <td>{{REV_DESIGNATION}}</td>
+                                  <td>{{QUE_INTITULE}}</td>
+                                  <td>{{QUA_MINIMAL}}</td>
+								  <td>{{QUA_MAXIMAL}}</td>
                                   <td class="center"><i class="icon-remove"/></td>
 								  <td class ="center"><i class="icon-search"/></td>
                               </tr>
