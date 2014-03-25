@@ -44,6 +44,24 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+	<script type="text/javascript">
+
+<!--
+function valider() {
+
+if( (document.form_eval.promotion.value != "") && (document.form_eval.formation.value != "") && (document.form_eval.ue.value != "") && (document.form_eval.designation.value != "")) {
+
+return true;
+}
+else {
+
+alert("Merci de renseigner tous les champs");
+
+return false;
+}
+}
+//-->
+</script>
   </head>
   <body>
     <div id="loader_cont"><img src="../img/loaders/page_loader.gif"></div> 
@@ -121,7 +139,7 @@
                 
 				<section class="welly form_align">
 
-                  <form class="formClass" method="post" action="/evalajoute">
+                  <form class="formClass" name="form_eval" method="post" onsubmit="return valider()" action="/evalajoute" >
                     <table>
 					<tr><th> Promotion:
 
@@ -237,6 +255,8 @@
             });
         });
     </script>
+	
+	</script>
 	<script type="text/javascript">
         $(document).ready(function () {
             $('#formation').change(function () {
@@ -259,6 +279,7 @@
             });
         });
     </script>
+
 
     <script src="js/libs/jquery-1.7.2.min.js"></script>    
     <script src="js/libs/bootstrap.min.js"></script>   

@@ -117,7 +117,7 @@
                           <thead>
                               <tr>
                                   <th>Promotion</th>
-                                  <th>Formation</th>
+                                  <th >Formation</th>
                                   <th>D&eacute;signation</th>
                                   <th>UE</th>
 								  <th>Etat</th>
@@ -128,14 +128,14 @@
                           <tbody>
 						      {{#each listeEvaluations}}
                               <tr class="gradeX">
-                                  <td>{{EVE_ANNEE_PRO}}</td>
-                                  <td>{{FRM_CODE_FORMATION}}</td>
-								  <td>{{EVE_DESIGNATION}}</td>
-								  <td style="width:20%;">{{UE_CODE_UE}}</td>
-								  <td>{{SIGNIFICATION}}</td>
-								  <td class="center"><a href="/modifierEval/{{EVE_ID_EVALUATION}}"><i class="icon-edit"/></a></td>
-								  <td class="center"><i class="icon-remove"/></td>
-							      <td class ="center"><a href="../listeRubriques/{{EVE_ID_EVALUATION}}"><i class="icon-search"/></a></td>
+                                  <td style="width:10%">{{EVE_ANNEE_PRO}}</td>
+                                  <td style="width:10%">{{FRM_CODE_FORMATION}}</td>
+								  <td style="width:30%">{{EVE_DESIGNATION}}</td>
+								  <td style="width:8%">{{UE_CODE_UE}}</td>
+								  <td style="width:20%">{{SIGNIFICATION}}</td>
+								  <td class="center" style="width:5%"><a href="/modifierEval/{{EVE_ID_EVALUATION}}"><i class="icon-edit"/></a></td>
+								  <td class="center" style="width:5%"><i class="icon-remove"/></td>
+							      <td class ="center" style="width:5%"><a href="../listeRubriques/{{EVE_ID_EVALUATION}}"><i class="icon-search"/></a></td>
                               </tr>
                              {{/each}} 
                              
@@ -168,8 +168,8 @@
                           <tbody>
 						  {{#each listeRubriques}}
                               <tr class="gradeX">
-                                  <td>{{REV_ORDRE}}</td>
-                                  <td>{{REV_DESIGNATION}}</td>
+                                  <td style="width:10%">{{REV_ORDRE}}</td>
+                                  <td style="width:35%">{{REV_DESIGNATION}}</td>
                                   <td class="center"><i class="icon-remove"/></td>
 								  <td class ="center"><a href="/listeQuestions/{{REV_ID_RUBRIQUE_EVALUATION}}"><i class="icon-search"/></a></td>
                               </tr>
@@ -277,6 +277,7 @@
 	var source = "<h1>{{REV_ID_RUBRIQUE_EVALUATION}}</h1>";
 	
 	</script>
+	
    
   </body>
 </html>
