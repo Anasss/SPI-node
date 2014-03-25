@@ -13,11 +13,11 @@
     <meta name="author" content="">
 
     <!-- ===================== Touch Icons ===================== -->
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../apple-touch-icon-57-precomposed.png">
 
     <!-- ===================== CSS ===================== -->    
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>  
@@ -90,10 +90,10 @@
             </h3>
             <ul class="nav nav-list">                          
 
-              <li class="active"><a class="home" href="listeEval">G&eacuterer mes &eacutevaluations </a></li>
-			  <li class="active"><a class="home" href="creerRubrique">G&eacuterer mes rubriques </a></li>
-			  <li class="active"><a class="home" href="creerQuestion">G&eacuterer mes questions </a></li>
-			  <li class="active"><a class="home" href="creerQualificatif">G&eacuterer mes qualificatifs </a></li>
+              <li class="active"><a class="home" href="../listeEval">G&eacuterer mes &eacutevaluations </a></li>
+			  <li class="active"><a class="home" href="../creerRubrique">G&eacuterer mes rubriques </a></li>
+			  <li class="active"><a class="home" href="../creerQuestion">G&eacuterer mes questions </a></li>
+			  <li class="active"><a class="home" href="../creerQualificatif">G&eacuterer mes qualificatifs </a></li>
 
 
             </ul>
@@ -118,32 +118,26 @@
                 
 				<section class="welly form_align">
 
-                  <form class="formClass" method="post" action="/quesajoute">
+                  <form class="formClass" method="post" action="../quesAjoute">
                     <table>
 					
-<tr>
-<td><b>Ordre:</b></td>
-<td>
-
-<input type="text" name="ordre">
-
-</td>
-</tr>  
+ 
 <tr>
 <td><b>D&eacute;signation:</b></td>
 <td>
 
-<input type="text" name="ordre">
+<input type="text" name="designation" id="designation">
 
 </td>
 </tr>
 <tr>
 <td><b>Qualificatif:</b> </td>
 <td> 
-	<select id="qualificatif" >
-	<option value=""> Maximal - Minimal -</option>
+	<select id="qualificatif" name="qualificatif">
+	<option value=""> Maximal - Minimal </option>
     {{#each listeQualificatifs}}
-         <option value={{ID_QUALIFICATIF}}>{{MINIMAL}}- {{MAXIMAL}}</option>
+         <option  value={{ID_QUALIFICATIF}}>{{MINIMAL}}- {{MAXIMAL}}</option>
+		 
 	{{/each}}
 	</select>
                          
@@ -152,7 +146,7 @@
 
 
 </tr>
-<td> <center><button class="btn btn-inverse" id="ajout_submit" type="submit">Ajouter</button> </td> </center>
+<td> <center><button class="btn btn-inverse" id="ajout_submit" type="submit">Valider</button> </td> </center>
 
 					 
 </tr>  
@@ -163,7 +157,7 @@
 				  
                 </section>
               </div>
-			  <h3>Liste des questions </h3>
+			  <h3>Liste des questions </h3> <FONT COLOR=#ff0000 > {{texteSupprimerS}}</FONT> <FONT COLOR=#00ff00 > {{texteSupprimer}}</FONT>
                       
                   </header>
                   <section class="group">                         
@@ -185,7 +179,7 @@
                                   <td>{{QUE_INTITULE}}</td>
                                   <td>{{QUA_MINIMAL}}</td>
 								  <td>{{QUA_MAXIMAL}}</td>
-                                  <td class="center"><i class="icon-remove"/></td>
+                                  <td class="center"><a href="../supprimerQuestions/{{QUE_ID_QUESTION}}"><i class="icon-remove"/></td>
 								  <td class ="center"><i class="icon-search"/></td>
                               </tr>
                               
@@ -239,50 +233,50 @@
         });
     </script>
 
-    <script src="js/libs/jquery-1.7.2.min.js"></script>    
-    <script src="js/libs/bootstrap.min.js"></script>   
-    <script src="js/libs/ios-orientationchange-fix.js"></script>      
-    <script src="js/libs/jquery-ui-1.8.20.custom.min.js"></script>
-    <script src="js/plugins/widgets/jquery.sparkline.min.js"></script>
-    <script src="js/common.js"></script>  
+    <script src="../js/libs/jquery-1.7.2.min.js"></script>    
+    <script src="../js/libs/bootstrap.min.js"></script>   
+    <script src="../js/libs/ios-orientationchange-fix.js"></script>      
+    <script src="../js/libs/jquery-ui-1.8.20.custom.min.js"></script>
+    <script src="../js/plugins/widgets/jquery.sparkline.min.js"></script>
+    <script src="../js/common.js"></script>  
 
     <!-- Site specific --> 
-    <script src="js/libs/prettify.js"></script>      
-    <script src="js/plugins/tagedit/jquery.autoGrowInput.js"></script>
-    <script src="js/plugins/tagedit/jquery.tagedit.js"></script>
-    <script src="js/plugins/widgets/slidernav-min.js"></script>    
-    <script src="js/plugins/widgets/glDatePicker.min.js"></script>    
-    <script src="js/plugins/widgets/jquery-ui-timepicker-addon.js"></script>    
-    <script src="js/plugins/widgets/jquery-ui-sliderAccess.js"></script>    
-    <script src="js/plugins/widgets/jquery.miniColors.min.js"></script>    
-    <script src="js/plugins/widgets/colorpicker.js"></script>  
-    <script src="js/plugins/widgets/jquery.knob.js"></script>      
+    <script src="../js/libs/prettify.js"></script>      
+    <script src="../js/plugins/tagedit/jquery.autoGrowInput.js"></script>
+    <script src="../js/plugins/tagedit/jquery.tagedit.js"></script>
+    <script src="../js/plugins/widgets/slidernav-min.js"></script>    
+    <script src="../js/plugins/widgets/glDatePicker.min.js"></script>    
+    <script src="../js/plugins/widgets/jquery-ui-timepicker-addon.js"></script>    
+    <script src="../js/plugins/widgets/jquery-ui-sliderAccess.js"></script>    
+    <script src="../js/plugins/widgets/jquery.miniColors.min.js"></script>    
+    <script src="../js/plugins/widgets/colorpicker.js"></script>  
+    <script src="../js/plugins/widgets/jquery.knob.js"></script>      
 
-    <script src="js/script.js"></script>
-    <script src="js/specific/sparks.js"></script>
-    <script src="js/specific/widgets.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/specific/sparks.js"></script>
+    <script src="../js/specific/widgets.js"></script>
 
 	
 	 <!-- Site specific - JS --> 
-    <script src="js/libs/prettify.js"></script> 
-    <script src="js/plugins/formselements/jquery.maskedinput-1.3.min.js"></script> 
-    <script src="js/plugins/formselements/chosen.jquery.min.js"></script> 
-    <script src="js/plugins/formselements/scrollability.min.js"></script> 
-    <script src="js/plugins/formselements/jquery.dropkick-1.0.0.js"></script> 
-    <script src="js/plugins/formselements/jquery.multi-select.js"></script> 
-    <script src="js/plugins/formselements/jquery.quicksearch.js"></script> 
-    <script src="js/plugins/formselements/jquery.autogrowtextarea.js"></script> 
-    <script src="js/plugins/formselements/jquery.textareaCounter.plugin.js"></script> 
-    <script src="js/plugins/formselements/ui.spinner.min.js"></script> 
-    <script src="js/plugins/formselements/jquery.ibutton.min.js"></script> 
-    <script src="js/plugins/formselements/jquery.metadata.js"></script> 
+    <script src="../js/libs/prettify.js"></script> 
+    <script src="../js/plugins/formselements/jquery.maskedinput-1.3.min.js"></script> 
+    <script src="../js/plugins/formselements/chosen.jquery.min.js"></script> 
+    <script src="../js/plugins/formselements/scrollability.min.js"></script> 
+    <script src="../js/plugins/formselements/jquery.dropkick-1.0.0.js"></script> 
+    <script src="../js/plugins/formselements/jquery.multi-select.js"></script> 
+    <script src="../js/plugins/formselements/jquery.quicksearch.js"></script> 
+    <script src="../js/plugins/formselements/jquery.autogrowtextarea.js"></script> 
+    <script src="../js/plugins/formselements/jquery.textareaCounter.plugin.js"></script> 
+    <script src="../js/plugins/formselements/ui.spinner.min.js"></script> 
+    <script src="../js/plugins/formselements/jquery.ibutton.min.js"></script> 
+    <script src="../js/plugins/formselements/jquery.metadata.js"></script> 
 	 
 
-    <script src="js/script.js"></script>
+    <script src="../js/script.js"></script>
 	 <script>
   
   </script>
-    <script src="js/specific/forms_elements.js"></script>
+    <script src="../js/specific/forms_elements.js"></script>
 
    
   </body>

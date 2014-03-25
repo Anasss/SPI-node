@@ -49,7 +49,11 @@ var requetteListeEvaluations = 'SELECT DISTINCT * from v_evaluation where ENS_NO
 var requetteRubrique = "'SELECT * from v_rubeval where ENS_NOM ='Saliou'";
 var listeFormation = [];
 var listePromotion = [];
+var code;
 var texteSupprimer;
+
+var listeQuestions;
+
 
 
 connection.query('CREATE DATABASE IF NOT EXISTS evaespi', function (err) {
@@ -135,38 +139,21 @@ app.get('/eval/listeRubriqueEvaluation/', eval.listeRubriqueEvaluation);
 app.get('/eval/injecterEvaluation', eval.InjecterNouvelleEvaluation);
 
 app.post('/ajouterEval', function(req, res){
-			
+			code = req.body.CODE_FORMATION;
 			connection.query("Select DISTINCT CODE_FORMATION from FORMATION", function(err, rows){
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
 			} else {
-			var data = {
-			listeFormations: rows	
-			}
-			res.render('ajouter-evaluation.hbs',data);			
+			
+			listeFormations = rows;	
 			}
 			
 		});	
 		
-
-});
-app.get('/ajouterEval', function(req, res){
-
-		connection.query("Select DISTINCT CODE_FORMATION from FORMATION", function(err, rows){
-        // There was a error or not?
-			if(err != null) {
-				res.end("Query error:" + err);
-			} else {
-			listeFormation = rows;				
-			}
-		});	
-			
-			/*var formation = req.body.CODE_FORMATION;
-		    console.log(req.body.CODE_FORMATION);
-			console.log("Select DISTINCT ANNEE_PRO from Promotion where CODE_FORMATION ='"+formation+"'");*/
-			
-	connection.query("Select DISTINCT ANNEE_PRO from Promotion where CODE_FORMATION ='M2DOSI'", function(err, rows){
+		console.log(req.body.CODE_FORMATION);
+		console.log("Select DISTINCT ANNEE_PRO from Promotion where CODE_FORMATION ='"+code+"'");
+		connection.query("Select DISTINCT ANNEE_PRO from Promotion where CODE_FORMATION ='"+code+"'", function(err, rows){
 			
 			// There was a error or not?
 			if(err != null) {
@@ -176,7 +163,6 @@ app.get('/ajouterEval', function(req, res){
 			 
 			}
 		});	
-		    
 		
 		    connection.query("Select CODE_UE from UNITE_ENSEIGNEMENT", function(err, rows){
            // There was a error or not?
@@ -191,10 +177,55 @@ app.get('/ajouterEval', function(req, res){
 				console.log(listePromotion);
 				console.log(listeFormation);
 				
-				console.log("ok");
 				res.render('ajouter-evaluation.hbs',data);
 			}
+		});
+		
+
+});
+app.get('/ajouterEval', function(req, res){
+
+		var code = req.params.CODE_FORMATION;
+		console.log(req.params);
+		
+		connection.query("Select DISTINCT CODE_FORMATION from FORMATION", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			
+
+			    
+			    listeFormation = rows;		
+			}
 		});	
+		connection.query("Select DISTINCT * from Promotion", function(err, rows){
+			
+			// There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			 listePromotion = rows;
+			 
+			}
+		});	
+		
+		    connection.query("Select CODE_UE from UNITE_ENSEIGNEMENT", function(err, rows){
+           // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			 var data = {
+			    listePromotions: listePromotion,
+			    listeFormations: listeFormation,
+				uniteEnseignements: rows
+						}
+				console.log(listePromotion);
+				console.log(listeFormation);
+				
+				res.render('ajouter-evaluation.hbs',data);
+			}
+		});
 });
 
 
@@ -312,7 +343,48 @@ app.post('/qualifAjoute', function (req, res) {
 });
 
 
-
+app.post('/quesAjoute', function (req, res) {
+    
+	var designation = req.body.designation;
+	var qualificatif = req.body.qualificatif;
+	console.log(qualificatif);	
+	var con=connection.query("INSERT INTO question  (ID_QUALIFICATIF,INTITULE)  values(?,?);" , [qualificatif,designation],
+        function (err, result) {
+            if (err) throw err;
+		console.log(con);	
+		console.log(result.insertId);
+           
+		 connection.query("SELECT * from v_question_s ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			
+			listeQuestions = rows;
+				
+				
+			}
+				
+			
+		});	
+		connection.query("Select * from qualificatif ", function(err, rows){
+			
+			// There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeQuestions: listeQuestions,
+			listeQualificatifs: rows
+			
+				}
+				res.render('creerQuestion.hbs',data1);
+			}
+		});	
+			
+        });
+	
+});
 
 
 
@@ -477,26 +549,35 @@ app.get('/ajouterRubrique', function (req, res){
 
 app.get('/CreerQuestion', function (req,res){
 
-	connection.query("SELECT * from qualificatif ", function(err, rows){
+	connection.query("SELECT * from v_question_s ", function(err, rows){
         // There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
 			} else {
-			 
-			listeQualificatifs = rows;
-				}})
-	connection.query("SELECT * from v_question_evaluation", function(err, rows){
-        // There was a error or not?
-			if(err != null) {
-				res.end("Query error:" + err);
-			} else {
-			var data = {
-			listeQualificatifs: listeQualificatifs,
-			listeQuestions: rows
+			
+			listeQuestions = rows;
 				}
-				res.render('CreerQuestion.hbs',data);
+				
+			
+		});	
+		
+	connection.query("Select * from qualificatif ", function(err, rows){
+			
+			// There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			listeQuestions: listeQuestions,
+			listeQualificatifs: rows
+			
+				}
+				res.render('creerQuestion.hbs',data1);
 			}
 		});	
+	
+		
+		
 });	
 	
 
@@ -599,7 +680,7 @@ app.get('/supprimerQualificatif/:idQualificatif', function (req,res){
 			} else {
 			var data1 = {
 			texteSupprimer: texteSupprimer,
-			listeQualificatis: rows
+			listeQualificatifs: rows
 				}
 				res.render('creerQualificatif.hbs',data1);
 			}
@@ -610,18 +691,92 @@ app.get('/supprimerQualificatif/:idQualificatif', function (req,res){
 		    var texteSupprimer = "Qualificatif supprimer avec succès";
 		  	connection.query("SELECT * from qualificatif ", function(err, rows){
 			
-        // There was a error or not?
+			// There was a error or not?
 			if(err != null) {
 				res.end("Query error:" + err);
 			} else {
 			var data1 = {
-			texteSupprimer
+			texteSupprimerS: texteSupprimer,
 			listeQualificatifs: rows
 				}
 				res.render('creerQualificatif.hbs',data1);
 			}
 		});	}
 			
+        	
+		});	
+//res.render('creerQuestion.hbs');
+});
+
+app.get('/supprimerQuestions/:idQuestions', function (req,res){
+			var id = req.params.idQuestions;
+			console.log(id);
+			console.log("DELETE FROM QUESTION WHERE ID_QUESTION = '"+id+"'");
+			var con=connection.query("DELETE FROM QUESTION WHERE ID_QUESTION = '"+id+"'", function (err, result) {
+            if (err != null) {
+			//res.send("impossible de supprimer ce qualificatif");
+			//alert("impossible de supprimer cette rubrique");
+			texteSupprimer = "IMPOSSIBLE DE SUPPRIMER CETTE QUESTION"
+			
+		connection.query("SELECT * from v_question_s", function(err, rows){
+			console.log(rows);
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			
+			
+			listeQuestions = rows;
+				
+		
+			}
+		});
+			connection.query("Select * from qualificatif ", function(err, rows){
+			
+			// There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			texteSupprimerS: texteSupprimer,
+			listeQuestions: listeQuestions,
+			listeQualificatifs: rows
+			
+				}
+				res.render('creerQuestion.hbs',data1);
+			}
+		});	
+			}
+		   else{
+		    var texteSupprimer = "Question supprimer avec succès";
+		   connection.query("SELECT * from v_question_s ", function(err, rows){
+        // There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			
+			listeQuestions = rows;
+				
+			}
+				
+			
+		});		
+		connection.query("Select * from qualificatif ", function(err, rows){
+			
+			// There was a error or not?
+			if(err != null) {
+				res.end("Query error:" + err);
+			} else {
+			var data1 = {
+			texteSupprimer: texteSupprimer,
+			listeQuestions: listeQuestions,
+			listeQualificatifs: rows
+			
+				}
+				res.render('creerQuestion.hbs',data1);
+			}
+		});	
+			}
         	
 		});	
 //res.render('creerQuestion.hbs');

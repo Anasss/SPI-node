@@ -1614,7 +1614,7 @@ INSERT INTO `evaluation` (`NO_ENSEIGNANT`, `CODE_FORMATION`, `ANNEE_PRO`, `CODE_
 -- Contenu de la table `qualificatif`
 --
 
-INSERT INTO `qualificatif` (`MAXIMAL`, `MINIMAL`) VALUES
+INSERT INTO `qualificatif` (`MINIMAL`, `MAXIMAL`) VALUES
 ('Faible', 'Forte'),
 ('Insuffisant', 'Suffisant'),
 ('Pauvre', 'Riche'),

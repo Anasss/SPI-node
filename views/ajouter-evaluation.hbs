@@ -35,11 +35,18 @@
     <link rel="stylesheet" href="css/theme_light/jquery-ui-1.8.20.custom.css">    
    
   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="js/libs/jquery-1.11.0.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  
     <!-- Common - CSS -->     
     <link rel="stylesheet" href="css/theme_light/common.css">  
     <link rel="stylesheet" href="css/theme_light.css" class="style_set">
+	
+	<style>
+	.anneePro{
+	}
+	</style>
     
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -123,15 +130,7 @@
 
                   <form class="formClass" method="post" action="/evalajoute">
                     <table>
-					<tr><th> Promotion:
-
-                        <select name="promotion" id="promotion" >
-                          <option value="">Choisir promotion</option>
-						{{#each listePromotions}}
-                          <option id="annee_pro" value={{ANNEE_PRO}}>{{ANNEE_PRO}}</option>
-						{{/each}}
-                        </select>
-                    </th> <th>
+					<tr> <th>
 					  Formation:
                         <select name="formation" id="formation" >
                           <option value="">Choisir formation</option>
@@ -141,7 +140,15 @@
 						  </select>
                   
                     </th>
-                   
+                   <th> Promotion:
+
+                        <select name="promotion" id="promotion" >
+                          <option value="">Choisir promotion</option>
+						{{#each listePromotions}}
+                          <option class="anneePro"  id="annee_pro" value={{ANNEE_PRO}} name={{CODE_FORMATION}}>{{ANNEE_PRO}}</option>
+						{{/each}}
+                        </select>
+                    </th>
 
 
 					  <th>Unit&eacute; d'enseignement:
@@ -240,11 +247,27 @@
 	<script type="text/javascript">
         $(document).ready(function () {
             $('#formation').change(function () {
-                var payload = {
+				  // $('#anneePro').html($('#anneePro').attr('name'));
+				  $('option.anneePro').fadeIn();
+               var payload = {
                    CODE_FORMATION: $('#formation').val() 
 				};
-
-                $.ajax({
+				var listePro = document.getElementsByName(payload.CODE_FORMATION);
+				
+				$('option.anneePro').each(function(){
+					if($(this).attr('name') != payload.CODE_FORMATION)
+					{
+						$(this).fadeOut();
+						//$(this).style.visibility ="hidden";
+						//$(this).style.display ="none";
+						console.log($(this).attr('name')+payload.CODE_FORMATION);
+					}
+					
+				});
+				$('#promotion').append(listePro);
+				
+                //$("[name='CODE_FORMATION']");
+              /*  $.ajax({
                     url: "/ajouterEval",
                     type: "POST",
                     contentType: "application/json",
@@ -252,14 +275,45 @@
                     data: JSON.stringify(payload),
                     complete: function (data) {
                     $( ".formClass" ).append("<div class='alert alert-success'><strong>Evaluation Ajoute avec succes</strong></div>");
-
+					//$('option.anneePro').html($('option.anneePro').attr('name'));
+					
                     }
-                });
+                }); */
             });
         });
     </script>
+<script type="text/javascript">
+        
+		
+            function modifier(id) {
+		
+			var recup1 = '.maximal-liste'+id;
+			var recup2 = '.minimal-liste'+id;
+                var payload = {
+                    MAXIMAL: $(recup1).html() ,
+					MINIMAL: $(recup2).html() ,
+					idQualif : id,
+					
+                };
 
-    <script src="js/libs/jquery-1.7.2.min.js"></script>    
+                $.ajax({
+                    url: "/creerQualif",
+                    type: "GET",
+                    contentType: "application/json",
+                    processData: false,
+                    data: JSON.stringify(payload),
+                    complete: function (data) {
+					    console.log("oui");
+                        document.getElementById('maximal').value= (payload.MAXIMAL);
+						document.getElementById('minimal').value=(payload.MINIMAL);
+						document.getElementById('id_qualif').value=(payload.idQualif);
+						
+                    }
+                });
+            };
+        
+    </script>
+    <script src="js/libs/jquery-1.11.0.js"></script>    
     <script src="js/libs/bootstrap.min.js"></script>   
     <script src="js/libs/ios-orientationchange-fix.js"></script>      
     <script src="js/libs/jquery-ui-1.8.20.custom.min.js"></script>
