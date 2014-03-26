@@ -35,11 +35,18 @@
     <link rel="stylesheet" href="css/theme_light/jquery-ui-1.8.20.custom.css">    
    
   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="js/libs/jquery-1.11.0.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  
     <!-- Common - CSS -->     
     <link rel="stylesheet" href="css/theme_light/common.css">  
     <link rel="stylesheet" href="css/theme_light.css" class="style_set">
+	
+	<style>
+	.anneePro{
+	}
+	</style>
     
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -141,15 +148,7 @@ return false;
 
                   <form class="formClass" name="form_eval" method="post" onsubmit="return valider()" action="/evalajoute" >
                     <table>
-					<tr><th> Promotion:
-
-                        <select name="promotion" id="promotion" >
-                          <option value="">Choisir promotion</option>
-						{{#each listePromotions}}
-                          <option id="annee_pro" value={{ANNEE_PRO}}>{{ANNEE_PRO}}</option>
-						{{/each}}
-                        </select>
-                    </th> <th>
+					<tr> <th>
 					  Formation:
                         <select name="formation" id="formation" >
                           <option value="">Choisir formation</option>
@@ -159,7 +158,15 @@ return false;
 						  </select>
                   
                     </th>
-                   
+                   <th> Promotion:
+
+                        <select name="promotion" id="promotion" >
+                          <option value="">Choisir promotion</option>
+						{{#each listePromotions}}
+                          <option class="anneePro"  id="annee_pro" value={{ANNEE_PRO}} name={{CODE_FORMATION}}>{{ANNEE_PRO}}</option>
+						{{/each}}
+                        </select>
+                    </th>
 
 
 					  <th>Unit&eacute; d'enseignement:
@@ -258,30 +265,31 @@ return false;
 	
 	</script>
 	<script type="text/javascript">
-        $(document).ready(function () {
+	   $(document).ready(function () {
             $('#formation').change(function () {
-                var payload = {
-                   CODE_FORMATION: $('#formation').val() ,
-				   
+				  $('option.anneePro').fadeIn();
+               var payload = {
+                   CODE_FORMATION: $('#formation').val() 
 				};
-
-                $.ajax({
-                    url: "/ajouterEval",
-                    type: "POST",
-                    contentType: "application/json",
-                    processData: false,
-                    data: JSON.stringify(payload),
-                    complete: function (data) {
-                    
-
-                    }
-                });
+				$('option.anneePro').each(function(){
+					if($(this).attr('name') != payload.CODE_FORMATION)
+					{
+						$(this).fadeOut();
+					}
+				});
+				
             });
         });
-    </script>
+		</script>
+		
+		
 
+<<<<<<< HEAD
 
     <script src="js/libs/jquery-1.7.2.min.js"></script>    
+=======
+    <script src="js/libs/jquery-1.11.0.js"></script>    
+>>>>>>> c05f7850de42fbe73c8d10f5e263bf5f9d2d1633
     <script src="js/libs/bootstrap.min.js"></script>   
     <script src="js/libs/ios-orientationchange-fix.js"></script>      
     <script src="js/libs/jquery-ui-1.8.20.custom.min.js"></script>

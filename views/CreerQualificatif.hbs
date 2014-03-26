@@ -3,6 +3,22 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<script>
+	function valider() {
+
+var x;
+var r=confirm("Êtes vous sûr de vouloir supprimer cette rubrique?");
+if (r==true)
+  {
+  x="";
+  }
+else
+  {
+  x="You pressed Cancel!";
+  }
+}
+//-->
+</script>
 	<head>
     <meta charset="utf-8">
     <title>Gestion des &eacute;valuations </title>
@@ -83,10 +99,10 @@
             </h3>
             <ul class="nav nav-list">                          
 
-           <li class="active"><a class="home" href="listeEval">G&eacuterer mes &eacutevaluations </a></li>
-			  <li class="active"><a class="home" href="creerRubrique">G&eacuterer mes rubriques </a></li>
-			  <li class="active"><a class="home" href="creerQuestion">G&eacuterer mes questions </a></li>
-			  <li class="active"><a class="home" href="creerQualificatif">G&eacuterer mes qualificatifs </a></li>
+           <li class="active"><a class="home" href="../listeEval">G&eacuterer mes &eacutevaluations </a></li>
+			  <li class="active"><a class="home" href="../creerRubrique">G&eacuterer mes rubriques </a></li>
+			  <li class="active"><a class="home" href="../creerQuestion">G&eacuterer mes questions </a></li>
+			  <li class="active"><a class="home" href="../creerQualificatif">G&eacuterer mes qualificatifs </a></li>
 
 
                 			   
@@ -138,13 +154,13 @@
 </table>
 <br>
 <br>
-					<button class="btn btn-inverse" id="ajout_qualificatif_submit" type="submit">Valider</button>  
+					<button class="btn btn-inverse" id="ajout_qualificatif_submit" type="submit">Valider</button> <td><button class="btn btn-inverse" type="reset">Annuler</button> </td> 
 
                   </form>  
 				  
                 </section>
               </div>
-			  <h3>Liste des questions </h3>
+			  <h3>Liste des questions </h3> <FONT COLOR=#00ff00 > {{texteSupprimerS}}</FONT> <FONT COLOR=#ff0000 > {{texteSupprimer}}</FONT>
                       
                   </header>
                    <section class="group">                         
@@ -166,7 +182,7 @@
                                    <td class="maximal-liste{{ID_QUALIFICATIF}}">{{MAXIMAL}}</td>
 								   <td class="minimal-liste{{ID_QUALIFICATIF}}">{{MINIMAL}}</td>
 								   <td class="center"id="td-123" OnClick="modifier({{ID_QUALIFICATIF}});"> <i class="icon-edit"/></td>
-								   <td class="center"><a href="../../supprimerQualificatif/{{ID_QUALIFICATIF}}"><i class="icon-remove"/></td>
+								   <td class="center"><a href="../supprimerQualificatif/{{ID_QUALIFICATIF}}" Onclick="valider();"><i class="icon-remove"/></td>
 								   <input type="hidden" value={{ID_QUALIFICATIF}}>
 							     
                               </tr>

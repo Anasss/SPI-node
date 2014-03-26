@@ -44,6 +44,22 @@
     <!--[if lt IE 9]>
       <script src="../http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+	<script>
+	function valider() {
+
+var x;
+var r=confirm("Êtes vous sûr de vouloir supprimer cette rubrique?");
+if (r==true)
+  {
+  x="";
+  }
+else
+  {
+  x="You pressed Cancel!";
+  }
+}
+//-->
+</script>
   </head>
   <body>
     <div id="loader_cont"><img src="../img/loaders/page_loader.gif"></div> 
@@ -91,10 +107,10 @@
             </h3>
             <ul class="nav nav-list">                          
 
-             <li class="active"><a class="home" href="listeEval">G&eacuterer mes &eacutevaluations </a></li>
-			  <li class="active"><a class="home" href="creerRubrique">G&eacuterer mes rubriques </a></li>
-			  <li class="active"><a class="home" href="creerQuestion">G&eacuterer mes questions </a></li>
-			  <li class="active"><a class="home" href="creerQualificatif">G&eacuterer mes qualificatifs </a></li>
+             <li class="active"><a class="home" href="../listeEval">G&eacuterer mes &eacutevaluations </a></li>
+			  <li class="active"><a class="home" href="../creerRubrique">G&eacuterer mes rubriques </a></li>
+			  <li class="active"><a class="home" href="../creerQuestion">G&eacuterer mes questions </a></li>
+			  <li class="active"><a class="home" href="../creerQualificatif">G&eacuterer mes qualificatifs </a></li>
  
 
                 			   
@@ -115,7 +131,7 @@
 
               <div class="widget chart">
                 <header>
-                    <h3 ><font color="#A4A4A4"><b>Saisie et Mise &agrave; jour d'une &eacute;valuation</b> </font> </h3>
+                    <h3 ><font color="#A4A4A4"><b>Saisie et Mise &agrave; jour d'une rubrique</b> </font> </h3>
                     <ul class="toggle_content">                          
                         <li class="arrow"><a href="#">Toggle Content</a></li>
                     </ul>
@@ -154,13 +170,13 @@
 </table>
 <br>
 <br>
-					<center><button class="btn btn-inverse" id="ajout_rubrique_submit" type="submit">Valider</button>  
+					<center><button class="btn btn-inverse" id="ajout_rubrique_submit" type="submit">Valider</button>  <td><button class="btn btn-inverse" type="reset">Annuler</button> </td>
 
                   </form>  
 				  
                 </section>
               </div>
-			  <h3>Liste des Rubriques </h3>
+			  <h3>Liste des Rubriques </h3> <FONT COLOR=#00ff00 > {{texteSupprimerS}}</FONT> <FONT COLOR=#ff0000 > {{texteSupprimer}}</FONT>
                       
                   </header>
                   <section class="group">                         
@@ -179,7 +195,7 @@
                               <tr class="gradeX">
 								  <td class="ordre-liste{{ID_RUBRIQUE}}">{{ORDRE}}</td>
                                   <td class="designation-liste{{ID_RUBRIQUE}}">{{DESIGNATION}}</td> 
-                                  <td class="center"><a href="../supprimerRubrique/{{ID_RUBRIQUE}}"><i class="icon-remove"/></td>
+                                  <td class="center"><a href="../supprimerRubrique/{{ID_RUBRIQUE}}" Onclick="valider();"><i class="icon-remove"/> </td>
 								  <td class ="center" id="td-123" OnClick="modifier({{ID_RUBRIQUE}});"> <i class="icon-search"> </a></td>
 								  <input type="hidden" value={{ID_RUBRIQUE}}>
 
